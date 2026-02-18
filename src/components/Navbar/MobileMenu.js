@@ -61,7 +61,7 @@ const MobileMenu = ({ isOpen, toggle }) => {
           aria-label="Email"
           title="Email"
         >
-          Gm
+          mail
         </MobileSocial>
         <MobileSocial
           href="https://github.com/Shivamkumar-33"
@@ -70,7 +70,7 @@ const MobileMenu = ({ isOpen, toggle }) => {
           aria-label="GitHub"
           title="GitHub"
         >
-          Gh
+          github
         </MobileSocial>
 
         <MobileSocial
@@ -80,10 +80,10 @@ const MobileMenu = ({ isOpen, toggle }) => {
           aria-label="LinkedIn"
           title="LinkedIn"
         >
-          Ln
+          linkedin
         </MobileSocial>
       </MobileSocials>
-      <MobileQuote>travaille pour ça</MobileQuote>
+      <MobileQuote>work for that</MobileQuote>
     </MobileMenuContainer>
   );
 };
