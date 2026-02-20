@@ -424,20 +424,19 @@ const About = () => {
         </AboutImageContainer>
         <AboutDetailsContainer>
           <StyledParagraph>
-            My name is Shivam kumar, currently pursuing Bachelor of
-            Enginnering in Chandigarh university in Mohali , Punjab. I
-            am a passionate front-end developer based in India.
+            Hi, I'm Shivam Kumar — a Computer Science Engineering student and
+            passionate Full-Stack Web Developer based in India.
           </StyledParagraph>
           <StyledParagraph>
-            I love to design and create responsive websites or web apps from
-            scratch. The technologies, tools and languages I am using to build
-            my projects are HTML, CSS, JavaScript, REACT JS, TailwindCSS,
-            Bootstrap, Git and GitHub, Figma, and VS Code.
+            I build responsive, scalable, and user-friendly web applications
+            using React.js, JavaScript, and the MERN stack. I enjoy turning
+            ideas into real products, crafting clean interfaces, and
+            continuously learning new technologies to improve my development
+            skills.
           </StyledParagraph>
           <StyledParagraph>
-            I have eagerness to learn something new every day and I love to
-            share my knowledge to my fellow students and developers. And I am
-            looking forward to talk with you!
+            Currently, I'm seeking opportunities to contribute, learn, and grow
+            as a developer.
           </StyledParagraph>
           <Resume>
             <ResumeLink
