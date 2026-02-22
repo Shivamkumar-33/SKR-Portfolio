@@ -39,8 +39,8 @@ export const StyledButton = styled(Button)`
     opacity: 0;
     filter: alpha(opacity=0);
     position: absolute;
-    -webkit-transform: translateX(-1.25);
-    transform: translateX(-1.25);
+    -webkit-transform: translateX(-1.25rem);
+    transform: translateX(-1.25rem);
   }
 
   &:hover:before {

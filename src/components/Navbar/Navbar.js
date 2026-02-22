@@ -130,6 +130,7 @@ const Navbar = () => {
             spyThrottle={0}
             exact="true"
             offset={-85.26}
+            aria-label="Go to Home section"
           >
             Home
           </StyledNavLinks>
@@ -144,6 +145,7 @@ const Navbar = () => {
             spyThrottle={0}
             exact="true"
             offset={-85.26}
+            aria-label="View my Projects"
           >
             Projects
           </StyledNavLinks>
@@ -158,6 +160,7 @@ const Navbar = () => {
             spyThrottle={0}
             exact="true"
             offset={-85.26}
+            aria-label="Learn About me"
           >
             About
           </StyledNavLinks>
@@ -172,6 +175,7 @@ const Navbar = () => {
             spyThrottle={0}
             exact="true"
             offset={-85.26}
+            aria-label="View Playground projects"
           >
             Playground
           </StyledNavLinks>

@@ -23,7 +23,13 @@ const PlaygroundProjectComponent = ({
   return (
     <IconContext.Provider value={{ size: "1.25rem" }}>
       <PlaygroundCard>
-        <PlaygroundCardImage src={img} alt={projectName} />
+        <PlaygroundCardImage 
+          src={img} 
+          alt={projectName} 
+          width="320" 
+          height="200" 
+          loading="lazy" 
+        />
         <PlaygroundCardContent>
           {tags && tags.length > 0 && (
             <PlaygroundTags>
@@ -42,8 +48,8 @@ const PlaygroundProjectComponent = ({
                 href={liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View Live"
-                aria-label="View Live Demo"
+                title="View Live Demo"
+                aria-label={`View live demo of ${projectName}`}
               >
                 <BiLinkExternal />
               </PlaygroundLink>

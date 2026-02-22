@@ -25,7 +25,13 @@ const ProjectCardComponent = ({
   return (
     <IconContext.Provider value={{ size: "1.25rem" }}>
       <ProjectCard>
-        <ProjectCardImage src={image} alt={title} />
+        <ProjectCardImage 
+          src={image} 
+          alt={title} 
+          width="320" 
+          height="200" 
+          loading="lazy" 
+        />
         <ProjectCardContent>
           {tags && tags.length > 0 && (
             <ProjectTags>
@@ -44,19 +50,19 @@ const ProjectCardComponent = ({
                 href={liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View Live"
-                aria-label="View Live Demo"
+                title="View Live Demo"
+                aria-label={`View live demo of ${title}`}
               >
                 <BiLinkExternal />
               </ProjectLink>
             )}
-            {codeLink && (
+            {codeLink && codeLink !== "#" && (
               <ProjectLink
                 href={codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View Code"
-                aria-label="View Source Code on GitHub"
+                title="View Source Code"
+                aria-label={`View source code of ${title} on GitHub`}
               >
                 <FaGithub />
               </ProjectLink>

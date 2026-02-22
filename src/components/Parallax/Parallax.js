@@ -5,7 +5,18 @@ import { ParallaxContainer, ParallaxText } from "../styles/Parallax.styled";
 
 const ParallaxComponent = () => {
   return (
-    <Parallax bgImage={parralaxImage} strength={-200} style={{ width: "100%" }}>
+    <Parallax 
+      bgImage={parralaxImage} 
+      strength={-200} 
+      style={{ width: "100%" }}
+      bgImageStyle={{ 
+        objectFit: "cover",
+        width: "100%",
+        height: "auto"
+      }}
+      bgImageAlt="Inspirational background with motivational quote"
+      lazy={true}
+    >
       <ParallaxContainer>
         <ParallaxText>
           Success comes to <br />

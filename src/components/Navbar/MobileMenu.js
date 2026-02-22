@@ -20,16 +20,16 @@ const MobileMenu = ({ isOpen, toggle }) => {
         <CloseIcon />
       </Icon>
       <MobileMenuList>
-        <MobileMenuLink to="home" onClick={toggle}>
+        <MobileMenuLink to="home" onClick={toggle} aria-label="Go to Home section">
           Home
         </MobileMenuLink>
-        <MobileMenuLink to="projects" onClick={toggle}>
+        <MobileMenuLink to="projects" onClick={toggle} aria-label="View my Projects">
           Projects
         </MobileMenuLink>
-        <MobileMenuLink to="about" onClick={toggle}>
+        <MobileMenuLink to="about" onClick={toggle} aria-label="Learn About me">
           About
         </MobileMenuLink>
-        <MobileMenuLink to="playground" onClick={toggle}>
+        <MobileMenuLink to="playground" onClick={toggle} aria-label="View Playground projects">
           Playground
         </MobileMenuLink>
         <MobileButton
