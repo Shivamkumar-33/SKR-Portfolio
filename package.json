@@ -42,5 +42,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(ogl)/)"
+    ],
+    "moduleNameMapper": {
+      "^ogl$": "<rootDir>/src/__mocks__/ogl.js"
+    }
   }
 }
