@@ -15,6 +15,26 @@ const Technologies = lazy(() => import("./components/Technologies/Technologies")
 const Playground = lazy(() => import("./components/Playground/Playground"));
 const Footer = lazy(() => import("./components/Footer/Footer"));
 
+const LoadingFallback = () => (
+  <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '40vh',
+    background: '#0d0e0e',
+  }}>
+    <div style={{
+      width: '32px',
+      height: '32px',
+      border: '2px solid #333',
+      borderTop: '2px solid #fa2904',
+      borderRadius: '50%',
+      animation: 'spin 0.8s linear infinite',
+    }} />
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+);
+
 function App() {
   if (process.env.NODE_ENV === 'development') {
     console.log(
@@ -35,7 +55,7 @@ function App() {
             <GlobalStyles />
             <Navbar />
             <Home />
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingFallback />}>
               <Projects />
               <About />
               <ParallaxComponent />

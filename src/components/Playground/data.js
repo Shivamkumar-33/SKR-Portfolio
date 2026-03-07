@@ -1,6 +1,8 @@
-import dribble from "../../assets/playground/stay-tuned.png";
-import random from "../../assets/playground/stay-tuned.png";
-import countdown from "../../assets/playground/stay-tuned.png";
+import stayTuned from "../../assets/playground/stay-tuned.png";
+
+const dribble = stayTuned;
+const random = stayTuned;
+const countdown = stayTuned;
 
 export const projectsData = [
   {

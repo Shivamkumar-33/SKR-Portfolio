@@ -21,6 +21,7 @@ export const Name = styled.h1`
   position: relative;
   z-index: 1;
   color: ${({ theme }) => theme.color.light};
+  letter-spacing: 0.02em;
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: 2.1875rem;
@@ -38,6 +39,7 @@ export const Title = styled.h2`
   position: relative;
   z-index: 1;
   color: ${({ theme }) => theme.color.secondaryLight};
+  line-height: 1.15;
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     text-align: center;

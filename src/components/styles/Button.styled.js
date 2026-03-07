@@ -20,6 +20,11 @@ export const StyledButton = styled(Button)`
   cursor: pointer;
 
   background: ${(props) => (props.secondary ? "#4353ff" : "#fa2904")};
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: ${(props) => (props.secondary ? "0 4px 20px rgba(67, 83, 255, 0.35)" : "0 4px 20px rgba(252, 41, 4, 0.35)")};
+  }
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: 0.85em;

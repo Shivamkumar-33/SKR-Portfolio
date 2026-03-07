@@ -3,6 +3,7 @@ import { BiLinkExternal } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import {
   PlaygroundCard,
+  PlaygroundImageWrap,
   PlaygroundCardImage,
   PlaygroundCardContent,
   PlaygroundTags,
@@ -23,13 +24,15 @@ const PlaygroundProjectComponent = ({
   return (
     <IconContext.Provider value={{ size: "1.25rem" }}>
       <PlaygroundCard>
-        <PlaygroundCardImage 
-          src={img} 
-          alt={projectName} 
-          width="320" 
-          height="200" 
-          loading="lazy" 
-        />
+        <PlaygroundImageWrap>
+          <PlaygroundCardImage 
+            src={img} 
+            alt={projectName} 
+            width="320" 
+            height="200" 
+            loading="lazy" 
+          />
+        </PlaygroundImageWrap>
         <PlaygroundCardContent>
           {tags && tags.length > 0 && (
             <PlaygroundTags>

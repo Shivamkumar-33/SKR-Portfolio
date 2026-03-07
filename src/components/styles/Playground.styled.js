@@ -32,17 +32,22 @@ export const PlaygroundCard = styled.article`
   &:hover {
     border-color: ${({ theme }) => theme.backgroundColor.orange};
     box-shadow: 0 8px 24px rgba(252, 41, 4, 0.15);
+    transform: translateY(-4px);
   }
+`;
+
+export const PlaygroundImageWrap = styled.div`
+  overflow: hidden;
 `;
 
 export const PlaygroundCardImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 
   ${PlaygroundCard}:hover & {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 `;
 

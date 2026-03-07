@@ -32,6 +32,8 @@ export const AboutImageContainer = styled.div`
   width: 45%;
   height: 28rem;
   z-index: 3;
+  border-radius: 4px;
+  overflow: hidden;
 
   &::after {
     content: "";
@@ -71,7 +73,12 @@ export const AboutImage = styled.img`
   height: 100%;
   object-fit: cover;
   position: relative;
-  border-radius: 1px;
+  border-radius: 4px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  ${AboutImageContainer}:hover & {
+    transform: scale(1.03);
+  }
 `;
 
 export const AboutDetailsContainer = styled.div`

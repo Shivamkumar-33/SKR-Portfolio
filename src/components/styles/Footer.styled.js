@@ -51,6 +51,14 @@ export const FooterBigLink = styled.a`
   width: 100%;
   letter-spacing: 1px;
   color: ${({ theme }) => theme.color.secondaryLight};
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+
+  &:hover {
+    color: ${({ theme }) => theme.backgroundColor.orange};
+    transform: scale(1.02);
+  }
 
   &::after {
     content: "";
@@ -210,8 +218,9 @@ export const ArrowToTop = styled.div`
   background-size: 10px 16px;
   position: absolute;
   right: 0;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  border-radius: 4px;
 
   &:hover {
     background: ${({ theme }) => theme.backgroundColor.orange};
@@ -269,6 +278,8 @@ export const ArrowToTop = styled.div`
 export const Copyright = styled.div`
   padding-top: 2rem;
   color: #8c8c8c;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding-top: 0.85rem;

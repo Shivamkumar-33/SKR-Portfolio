@@ -23,6 +23,9 @@ export const StyledNavbar = styled.nav`
     background-color: ${({ theme }) => theme.backgroundColor.dark};
     height: 5.32875rem;
     z-index: 999;
+    backdrop-filter: blur(12px);
+    background-color: rgba(13, 14, 14, 0.85);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.md}) {

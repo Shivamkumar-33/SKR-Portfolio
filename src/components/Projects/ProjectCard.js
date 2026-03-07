@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import {
   ProjectCard,
+  ProjectImageWrap,
   ProjectCardImage,
   ProjectCardContent,
   ProjectTags,
@@ -25,13 +26,15 @@ const ProjectCardComponent = ({
   return (
     <IconContext.Provider value={{ size: "1.25rem" }}>
       <ProjectCard>
-        <ProjectCardImage 
-          src={image} 
-          alt={title} 
-          width="320" 
-          height="200" 
-          loading="lazy" 
-        />
+        <ProjectImageWrap>
+          <ProjectCardImage 
+            src={image} 
+            alt={title} 
+            width="320" 
+            height="200" 
+            loading="lazy" 
+          />
+        </ProjectImageWrap>
         <ProjectCardContent>
           {tags && tags.length > 0 && (
             <ProjectTags>

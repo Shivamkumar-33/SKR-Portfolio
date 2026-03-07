@@ -24,6 +24,13 @@ export const Icon = styled.div`
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
 `;
 
 export const CloseIcon = styled(closeIcon)`
