@@ -1,0 +1,368 @@
+.change-text::before {
+  content: "design";
+  animation: change infinite 5s;
+}
+
+@keyframes change {
+  0% {
+    content: "design";
+  }
+  50% {
+    content: "create";
+  }
+
+  100% {
+    transform: translateX(-50%);
+    content: "design";
+  }
+}
+
+/* * glitch  */
+.responsive {
+  display: inline-block;
+  animation: stretch 5s cubic-bezier(0.4, 1.4, 0.75, 0.9) infinite;
+  transform-origin: center;
+}
+
+.responsive:nth-of-type(1) {
+  animation-delay: 3s;
+}
+
+.responsive:nth-of-type(2) {
+  animation-delay: 0.8s;
+}
+
+.responsive:nth-of-type(3) {
+  animation-delay: 4.8s;
+}
+
+.responsive:nth-of-type(4) {
+  animation-delay: 2s;
+}
+
+.responsive:nth-of-type(5) {
+  animation-delay: 1.2s;
+}
+
+.responsive:nth-of-type(6) {
+  animation-delay: 3.6s;
+}
+
+.responsive:nth-of-type(7) {
+  animation-delay: 2.4s;
+}
+
+.responsive:nth-of-type(8) {
+  animation-delay: 3.2s;
+}
+
+.responsive:nth-of-type(9) {
+  animation-delay: 4s;
+}
+
+.responsive:nth-of-type(10) {
+  animation-delay: 1.6s;
+}
+
+@keyframes stretch {
+  5% {
+    transform: scaleX(10);
+    opacity: 0.1;
+  }
+
+  15% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* COBE Globe Panel */
+.globe-panel {
+  position: absolute;
+  right: 10rem;
+  top: 25%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 480px;
+  pointer-events: none;
+}
+
+.globe-panel canvas,
+.globe-tab,
+.globe-panel a {
+  pointer-events: auto;
+}
+
+.globe-card {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 1.75rem;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.globe-card-header {
+  position: relative;
+  z-index: 2;
+}
+
+.globe-card-subtitle {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.globe-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.globe-canvas-wrap {
+  position: absolute;
+  left: -37px;
+  bottom: -30px;
+  width: 400px;
+  height: 400px;
+  z-index: 1;
+}
+
+.globe-canvas-wrap canvas {
+  display: block;
+}
+
+.globe-card-right {
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex: 1;
+  padding-top: 3rem;
+}
+
+.globe-country-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.globe-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #2a2a2a;
+  background: rgba(20, 20, 20, 0.9);
+  color: #999;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  min-width: 100px;
+}
+
+.globe-tab:hover {
+  color: #fa2904;
+}
+
+.globe-tab-code {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+
+.globe-tab-code.active-code {
+  opacity: 1;
+}
+
+.globe-remote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  margin-top: auto;
+}
+
+.globe-remote-icon {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.1rem;
+}
+
+.globe-remote-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: #666;
+  font-weight: 600;
+}
+
+.globe-remote-location {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f0f0f0;
+}
+
+@media all and (max-width: 75rem) {
+  .globe-panel {
+    width: 420px;
+    right: 2rem;
+  }
+
+  .globe-canvas-wrap {
+    width: 340px;
+    height: 340px;
+    left: -40px;
+    bottom: -60px;
+  }
+}
+
+@media all and (max-width: 64rem) {
+  .globe-panel {
+    position: static;
+    transform: none;
+    width: min(100%, 380px);
+    max-width: 380px;
+    margin: 1rem auto 0 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .globe-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    min-height: auto;
+    padding: 0.75rem;
+    gap: 1rem;
+    overflow: visible;
+  }
+
+  .globe-card-header {
+    text-align: left;
+  }
+
+  .globe-card-subtitle {
+    margin-bottom: 0;
+  }
+
+  .globe-canvas-wrap {
+    position: relative;
+    width: min(100%, 312px);
+    max-width: 312px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0;
+    left: auto;
+    bottom: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    transform: none;
+  }
+
+  .globe-canvas-wrap canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .globe-card-right {
+    margin-left: 0;
+    width: 100%;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding-top: 0;
+    flex: 0;
+  }
+
+  .globe-country-tabs {
+    width: 100%;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .globe-tab {
+    width: 100%;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.85rem;
+    border-radius: 0.625rem;
+  }
+
+  .globe-remote {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  .globe-card-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media all and (max-width: 58.125rem) {
+  .globe-panel {
+    max-width: 360px;
+  }
+
+  .globe-canvas-wrap {
+    width: min(100%, 298px);
+    max-width: 298px;
+  }
+
+  .globe-tab {
+    font-size: 0.8rem;
+  }
+}
+
+@media all and (max-width: 31.25rem) {
+  .globe-card {
+    min-height: auto;
+    padding: 0.625rem;
+  }
+
+  .globe-canvas-wrap {
+    width: min(100%, 286px);
+    max-width: 286px;
+  }
+
+  .globe-panel {
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0 0;
+  }
+
+  .globe-tab {
+    min-height: 44px;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.625rem;
+    gap: 0.35rem;
+  }
+
+  .globe-tab-code {
+    font-size: 0.65rem;
+  }
+}
