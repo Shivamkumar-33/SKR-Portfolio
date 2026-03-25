@@ -32,6 +32,9 @@ const MobileMenu = ({ isOpen, toggle, closeMenu }) => {
         <MobileMenuLink to="playground" onClick={closeMenu} aria-label="View Playground projects">
           Playground
         </MobileMenuLink>
+        <MobileMenuLink to="contact" onClick={closeMenu} aria-label="Contact Me">
+          Contact
+        </MobileMenuLink>
         <MobileButton
           href="mailto:shivamjmp2@gmail.com"
           target="_blank"

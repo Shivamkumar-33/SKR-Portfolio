@@ -1,10 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import GlobalStyles from "./components/styles/Global";
 import { ThemeProvider } from "styled-components";
 import { darkTheme } from "./components/styles/Theme";
-import { BrowserRouter as Router } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { AnimatePresence } from "framer-motion";
 
@@ -36,36 +35,36 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(
-      "%cThank you for checking up of my portfolio. Wishing you the best for every step in your journey!🎉",
-      "color: white; font-weight: 500; font-size:16px"
-    );
-    console.log(
-      "%cYou can check the code here https://github.com/Shivamkumar-33/portfolio",
-      "color: white; font-weight: 500; font-size:16px"
-    );
-  }
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(
+        "%cThank you for checking up of my portfolio. Wishing you the best for every step in your journey!🎉",
+        "color: white; font-weight: 500; font-size:16px"
+      );
+      console.log(
+        "%cYou can check the code here https://github.com/Shivamkumar-33/portfolio",
+        "color: white; font-weight: 500; font-size:16px"
+      );
+    }
+  }, []);
 
   return (
     <ErrorBoundary>
-      <Router>
-        <ThemeProvider theme={darkTheme}>
-          <AnimatePresence mode="wait">
-            <GlobalStyles />
-            <Navbar />
-            <Home />
-            <Suspense fallback={<LoadingFallback />}>
-              <Projects />
-              <About />
-              <ParallaxComponent />
-              <Technologies />
-              <Playground />
-              <Footer />
-            </Suspense>
-          </AnimatePresence>
-        </ThemeProvider>
-      </Router>
+      <ThemeProvider theme={darkTheme}>
+        <AnimatePresence mode="wait">
+          <GlobalStyles />
+          <Navbar />
+          <Home />
+          <Suspense fallback={<LoadingFallback />}>
+            <Projects />
+            <About />
+            <ParallaxComponent />
+            <Technologies />
+            <Playground />
+            <Footer />
+          </Suspense>
+        </AnimatePresence>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

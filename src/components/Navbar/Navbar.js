@@ -217,6 +217,21 @@ const Navbar = () => {
             Playground
           </StyledNavLinks>
         </NavList>
+        <NavList>
+          <StyledNavLinks
+            to="contact"
+            smooth={true}
+            duration={0}
+            delay={0}
+            spy={true}
+            spyThrottle={0}
+            exact="true"
+            offset={-85.26}
+            aria-label="Contact Me"
+          >
+            Contact
+          </StyledNavLinks>
+        </NavList>
       </NavMenuList>
       <StyledCTA
         href="mailto:shivamjmp2@gmail.com"

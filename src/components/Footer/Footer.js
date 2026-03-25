@@ -18,6 +18,7 @@ import {
   StyledFooter,
 } from "../styles/Footer.styled";
 import { animateScroll as scroll } from "react-scroll";
+import Contact from "../Contact/Contact";
 
 const toTop = () => {
   scroll.scrollToTop({ delay: 0, duration: 0 });
@@ -81,6 +82,9 @@ const Footer = () => {
           Need a developer?
         </FooterBigLink>
       </FooterBigLinkContainer>
+      
+      <Contact />
+
       <FooterContacts as={motion.div} variants={containerVariants}>
         <FooterContact as={motion.div} variants={itemVariants}>
           <ContactHeader>Call me</ContactHeader>
