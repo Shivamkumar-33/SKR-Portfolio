@@ -27,10 +27,10 @@ export const StyledHome = styled.section`
   /* Tablet follows mobile layout to prevent overlap with floating hero elements */
   @media all and (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: auto;
-    min-height: 100vh;
+    min-height: auto;
     align-items: center;
     justify-content: flex-start;
-    padding: 8rem 1rem 4rem 1rem;
+    padding: 8rem 1rem 2rem 1rem;
     text-align: center;
     overflow-x: clip;
     overflow-y: visible;
