@@ -29,14 +29,16 @@ const Works = () => {
     });
 
     gsap.from("#project", {
-      y: 100,
+      y: 24,
       opacity: 0,
-      delay: 0.5,
-      duration: 1,
-      stagger: 0.3,
-      ease: "back.out",
+      duration: 0.4,
+      stagger: 0.1,
+      ease: "power2.out",
+      immediateRender: false,
       scrollTrigger: {
         trigger: "#project",
+        start: "top 96%",
+        once: true,
       },
     });
   }, []);
@@ -100,7 +102,7 @@ const Works = () => {
   };
 
   return (
-    <section id="work" className="flex flex-col min-h-screen bg-black text-white">
+    <section id="work" className="flex flex-col bg-black py-16 text-white sm:py-20">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}

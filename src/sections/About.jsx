@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -48,85 +48,12 @@ const About = () => {
   const text = `Passionate about clean architecture and scalable system design.
 Building high-performance applications that grow from prototype to production.`;
 
-  const sectionRef = useRef(null);
-  const imgRef = useRef(null);
-  const imgWrapperRef = useRef(null);
-  const actionBarRef = useRef(null);
-  const socialRefs = useRef([]);
-  const resumeBtnRef = useRef(null);
-  const dividerRef = useRef(null);
   
   // Container for split text animation
   const textBlocksContainerRef = useRef(null);
 
-  // Magnetic tilt handler for photo
-  const handleMouseMove = useCallback((e) => {
-    if (!imgWrapperRef.current || window.innerWidth < 768) return;
-    const rect = imgWrapperRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
-    gsap.to(imgWrapperRef.current, {
-      rotateY: x,
-      rotateX: y,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-    gsap.to(imgRef.current, {
-      rotateY: x * 0.5,
-      rotateX: y * 0.5,
-      duration: 0.8,
-      ease: "power3.out",
-    });
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    if (!imgWrapperRef.current) return;
-    gsap.to([imgWrapperRef.current, imgRef.current], {
-      rotateY: 0,
-      rotateX: 0,
-      duration: 0.8,
-      ease: "elastic.out(1, 0.5)",
-    });
-  }, []);
-
   useGSAP(() => {
-    // 1. Section scale-down on scroll past
-    gsap.to("#about", {
-      scale: 0.95,
-      scrollTrigger: {
-        trigger: "#about",
-        start: "bottom 80%",
-        end: "bottom 20%",
-        scrub: true,
-        markers: false,
-      },
-      ease: "power1.inOut",
-    });
-
-    // 2. Photo clip-path reveal
-    gsap.set(imgRef.current, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
-    });
-    gsap.to(imgRef.current, {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      duration: 2,
-      ease: "power4.out",
-      scrollTrigger: { trigger: imgRef.current },
-    });
-
-    // 3. Photo parallax
-    gsap.to(imgRef.current, {
-      yPercent: -12,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 0.5,
-      },
-    });
-
-    // 4. SplitType + GSAP line reveal animation for headline text
+    // SplitType + GSAP line reveal animation for headline text
     const splitInstances = [];
     const animateTargets = gsap.utils.toArray(
       "[data-animate]",
@@ -143,87 +70,31 @@ Building high-performance applications that grow from prototype to production.`;
       const lines = target.querySelectorAll(".line");
       gsap.set(lines, { overflow: "hidden", display: "block" });
 
-      gsap.from(lines, {
+      gsap.fromTo(lines, {
         y: "100%",
         opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
         duration: 0.4,
         ease: "sine.inOut",
-        stagger: 0.15,
+        stagger: 0.1,
+        immediateRender: false,
         scrollTrigger: {
           trigger: target,
-          start: "top center",
+          start: "top 96%",
+          once: true,
         },
       });
     });
 
-    // 5. Vertical and Horizontal divider line draw animations
-    const dividers = document.querySelectorAll(".about-divider");
-    dividers.forEach((divider) => {
-      const isVertical = divider.classList.contains('h-full');
-      gsap.fromTo(divider, 
-        { 
-          scaleY: isVertical ? 0 : 1, 
-          scaleX: isVertical ? 1 : 0, 
-          transformOrigin: isVertical ? "top center" : "left center" 
-        },
-        {
-          scaleY: 1,
-          scaleX: 1,
-          duration: 1.5,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: divider,
-            start: "top 90%",
-          }
-        }
-      );
-    });
-
-    // 6. Social link items stagger in
-    const validSocials = socialRefs.current.filter(Boolean);
-    if (validSocials.length > 0) {
-      gsap.fromTo(
-        validSocials,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: actionBarRef.current,
-            start: "top 95%",
-          },
-        }
-      );
-    }
-
-    // 7. Resume button slide in
-    if (resumeBtnRef.current) {
-      gsap.fromTo(
-        resumeBtnRef.current,
-        { x: 60, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: actionBarRef.current,
-            start: "top 95%",
-          },
-        }
-      );
-    }
-
     return () => {
       splitInstances.forEach((instance) => instance.revert());
     };
-  });
+  }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="min-h-screen bg-black flex flex-col">
+    <section id="about" className="bg-black py-16 sm:py-20">
       <AnimatedHeaderSection
         subTitle={"Code with purpose, built to scale"}
         title={"About"}
@@ -232,7 +103,7 @@ Building high-performance applications that grow from prototype to production.`;
         withScrollTrigger={true}
       />
 
-      <div className="flex-1 flex flex-col items-center justify-start pt-6 pb-6 px-6 sm:px-10">
+      <div className="flex flex-col items-center justify-start pt-2 pb-6 px-6 sm:px-10">
         {/* Main layout container */}
         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-0 lg:py-4 relative">
           
@@ -243,22 +114,14 @@ Building high-performance applications that grow from prototype to production.`;
           <div className="w-full lg:w-[45%] flex justify-center lg:justify-end lg:pr-12">
             <div
               className="relative w-full max-w-sm group"
-              style={{ perspective: "800px" }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
             >
-              {/* Optional: Add a subtle cyan border to match the design reference without heavy glow */}
               <div
-                ref={imgWrapperRef}
                 className="relative rounded-[20px] overflow-hidden border border-cyan-500/20"
-                style={{ transformStyle: "preserve-3d" }}
               >
                 <img
-                  ref={imgRef}
                   src="images/man.jpg"
                   alt="Shivam Kumar"
                   className="relative w-full h-auto object-cover"
-                  style={{ transformStyle: "preserve-3d" }}
                 />
               </div>
             </div>
@@ -318,7 +181,6 @@ Building high-performance applications that grow from prototype to production.`;
 
       {/* Action Bar: Social Links + Resume Download */}
       <div
-        ref={actionBarRef}
         className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-7 px-6 sm:px-10 py-5 sm:py-6 pb-8 w-full max-w-7xl mx-auto"
       >
         {/* Social Media Links */}
@@ -328,7 +190,6 @@ Building high-performance applications that grow from prototype to production.`;
             return (
               <a
                 key={social.name}
-                ref={(el) => (socialRefs.current[index] = el)}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -350,7 +211,6 @@ Building high-performance applications that grow from prototype to production.`;
 
         {/* Resume Download Button */}
         <a
-          ref={resumeBtnRef}
           href="/resume.pdf"
           download
           className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/10 bg-white/5 p-[1px] shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-500 hover:border-white/20"
