@@ -97,8 +97,8 @@
   --color-3: #45f0d1;
   --color-4: #3db1ff;
   --color-5: #86f255;
-  --font-amiamie: "Amiamie", sans-serif;
-  --font-amiamie-round: "Amiamie-Round", sans-serif;
+  --font-amiamie: "Times New Roman", Georgia, serif;
+  --font-amiamie-round: "Times New Roman", Georgia, serif;
 
   --animate-marquee: marquee 40s infinite linear;
   --animate-rainbow: rainbow 7s linear infinite;
@@ -165,6 +165,19 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: var(--font-amiamie);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-amiamie);
+}
+
+.font-serif,
+.font-sans {
+  font-family: var(--font-amiamie) !important;
 }
 
 @utility clip-path {
