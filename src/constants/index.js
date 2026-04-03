@@ -62,6 +62,16 @@ export const socials = [
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/shivam-kumar-34471224b",
+    icon: "mdi:linkedin",
   },
-  { name: "GitHub", href: "https://github.com/Shivamkumar-33" },
+  {
+    name: "GitHub",
+    href: "https://github.com/Shivamkumar-33",
+    icon: "mdi:github",
+  },
+  {
+    name: "Twitter",
+    href: "https://x.com/",
+    icon: "ri:twitter-x-fill",
+  },
 ];

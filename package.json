@@ -19,6 +19,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scroll": "^1.9.3",
+    "split-type": "^0.3.4",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {

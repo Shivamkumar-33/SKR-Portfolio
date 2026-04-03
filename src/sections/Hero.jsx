@@ -128,6 +128,14 @@ const Hero = () => {
         <div className="absolute -right-24 bottom-16 h-72 w-72 rounded-full bg-blue-500/[0.08] blur-3xl" />
       </div>
 
+      <div className="absolute left-5 top-5 z-20 sm:left-7 sm:top-6 md:left-10 md:top-8">
+        <img
+          src="/images/logo.svg?v=3"
+          alt="Shivam logo"
+          className="h-10 w-auto sm:h-12 md:h-14"
+        />
+      </div>
+
       <div className="flex flex-col items-center text-center flex-1 justify-center z-10 w-full mb-12 sm:mb-16 md:mb-20">
         <div className="hero-subtitle mb-4 sm:mb-5 md:mb-6">
           <RainbowButton
