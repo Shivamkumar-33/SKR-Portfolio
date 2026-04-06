@@ -15,18 +15,29 @@ const Hero = () => {
 
   const handleCopyEmail = async () => {
     try {
+      let copySucceeded = false;
+
       if (navigator?.clipboard?.writeText) {
         await navigator.clipboard.writeText(emailAddress);
+        copySucceeded = true;
       } else {
         const textArea = document.createElement("textarea");
         textArea.value = emailAddress;
         textArea.setAttribute("readonly", "");
         textArea.style.position = "absolute";
         textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
+
+        try {
+          document.body.appendChild(textArea);
+          textArea.select();
+          copySucceeded = Boolean(document.execCommand("copy"));
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+
+      if (!copySucceeded) {
+        throw new Error("Unable to copy email to clipboard");
       }
 
       setIsCopied(true);
