@@ -102,12 +102,12 @@ const Works = () => {
   };
 
   return (
-    <section id="work" className="flex flex-col bg-black py-16 text-white sm:py-20">
+    <section id="work" className="flex flex-col bg-transparent py-16 text-white sm:py-20 relative z-10">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}
         text={text}
-        textColor={"text-white"}
+        textColor={"text-primary"}
         withScrollTrigger={true}
       />
       <div

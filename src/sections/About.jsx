@@ -48,7 +48,7 @@ const About = () => {
   const text = `Passionate about clean architecture and scalable system design.
 Building high-performance applications that grow from prototype to production.`;
 
-  
+
   // Container for split text animation
   const textBlocksContainerRef = useRef(null);
 
@@ -94,52 +94,44 @@ Building high-performance applications that grow from prototype to production.`;
   }, []);
 
   return (
-    <section id="about" className="bg-black py-16 sm:py-20">
+    <section id="about" className="bg-transparent py-16 sm:py-20 relative z-10">
       <AnimatedHeaderSection
         subTitle={"Code with purpose, built to scale"}
         title={"About"}
         text={text}
-        textColor={"text-white"}
+        textColor={"text-primary"}
         withScrollTrigger={true}
       />
 
       <div className="flex flex-col items-center justify-start pt-2 pb-6 px-6 sm:px-10">
         {/* Main layout container */}
         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-0 lg:py-4 relative">
-          
-          {/* Top Divider (Visible mainly on desktop as frame boundary, or hide on mobile) */}
-          <div className="about-divider hidden lg:block absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
-          
+
           {/* Left: Photo */}
           <div className="w-full lg:w-[45%] flex justify-center lg:justify-end lg:pr-12">
             <div
               className="relative w-full max-w-sm group"
             >
               <div
-                className="relative rounded-[20px] overflow-hidden border border-cyan-500/20"
+                className="bento-card bento-glow relative p-2 overflow-hidden"
               >
                 <img
                   src="images/man.jpg"
                   alt="Shivam Kumar"
-                  className="relative w-full h-auto object-cover"
+                  className="relative w-full h-auto object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700"
                 />
               </div>
             </div>
           </div>
 
-          {/* Center Vertical Divider - hidden on mobile */}
-          <div className="hidden lg:flex items-center justify-center w-[10%]">
-             <div className="about-divider h-full w-px bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent" />
-          </div>
-
           {/* Right: Typography Text Blocks */}
-          <div 
+          <div
             ref={textBlocksContainerRef}
             className="w-full lg:w-[45%] flex flex-col justify-center gap-8 sm:gap-12 lg:pl-12"
           >
             {/* Block 1 */}
             <div data-animate className="flex flex-col uppercase font-bold tracking-tight">
-              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight">
+              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight text-glow-cyan">
                 DEBUGGING ACROSS THE STACK
               </span>
               <span className="text-white/40 text-xl sm:text-2xl lg:text-[28px] leading-tight mt-1">
@@ -149,7 +141,7 @@ Building high-performance applications that grow from prototype to production.`;
 
             {/* Block 2 */}
             <div data-animate className="flex flex-col uppercase font-bold tracking-tight">
-              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight">
+              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight text-glow-cyan">
                 TURNING COFFEE INTO
               </span>
               <span className="text-white/40 text-xl sm:text-2xl lg:text-[28px] leading-tight mt-1">
@@ -159,7 +151,7 @@ Building high-performance applications that grow from prototype to production.`;
 
             {/* Block 3 */}
             <div data-animate className="flex flex-col uppercase font-bold tracking-tight">
-              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight">
+              <span className="text-white text-3xl sm:text-4xl lg:text-[40px] leading-tight text-glow-cyan">
                 LATE-NIGHT CODING FUELED
               </span>
               <span className="text-white/40 text-xl sm:text-2xl lg:text-[28px] leading-tight mt-1">
@@ -167,7 +159,7 @@ Building high-performance applications that grow from prototype to production.`;
               </span>
             </div>
           </div>
-          
+
           {/* Bottom Divider */}
           <div className="about-divider hidden lg:block absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
 
@@ -194,10 +186,10 @@ Building high-performance applications that grow from prototype to production.`;
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="group relative flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-white/[0.2] hover:bg-white/[0.06]"
+                className="group relative flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bento-card bento-glow overflow-hidden transition-all duration-500 hover:border-white/[0.2] hover:bg-white/[0.06]"
               >
                 {/* Top accent line on hover */}
-                <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="relative z-10 text-white/50 group-hover:text-white transition-colors duration-300">
                   <IconComponent />
                 </span>

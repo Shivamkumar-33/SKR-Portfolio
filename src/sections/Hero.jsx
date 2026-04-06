@@ -129,14 +129,12 @@ const Hero = () => {
     <section 
       id="home" 
       ref={container}
-      className="relative flex flex-col items-center justify-center min-h-screen bg-black text-white w-full overflow-hidden px-5 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-14"
+      className="relative flex flex-col items-center justify-center min-h-screen bg-transparent text-white w-full overflow-hidden px-5 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-14"
     >
-      <div className="hero-atmosphere pointer-events-none absolute inset-0 -z-10 bg-black">
+      <div className="hero-atmosphere pointer-events-none absolute inset-0 z-0">
         {/* Grain overlay */}
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }} />
-        <div className="absolute left-1/2 top-[16%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-white/[0.045] blur-3xl" />
-        <div className="absolute -left-28 top-2/3 h-72 w-72 rounded-full bg-cyan-500/[0.08] blur-3xl" />
-        <div className="absolute -right-24 bottom-16 h-72 w-72 rounded-full bg-blue-500/[0.08] blur-3xl" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }} />
+        <div className="absolute left-1/2 top-[16%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-white/[0.015] blur-[120px]" />
       </div>
 
       <div className="absolute left-5 top-5 z-20 sm:left-7 sm:top-6 md:left-10 md:top-8">

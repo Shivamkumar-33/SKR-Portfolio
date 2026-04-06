@@ -32,14 +32,14 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex flex-col justify-between bg-black px-6 py-16 sm:px-10 sm:py-20"
+      className="flex flex-col justify-between bg-transparent px-6 py-16 sm:px-10 sm:py-20 relative z-10"
     >
       <div>
         <AnimatedHeaderSection
           subTitle={"You Dream It, I Code it"}
           title={"Contact"}
           text={text}
-          textColor={"text-white"}
+          textColor={"text-primary"}
           withScrollTrigger={true}
         />
         <div className="flex px-0 font-light text-white uppercase lg:text-[32px] text-[26px] leading-none mb-8">

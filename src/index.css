@@ -60,7 +60,7 @@
   font-display: swap;
 }
 
-/* Amiamie-Round Variants (if needed separately) */
+/* Amiamie-Round Variants */
 @font-face {
   font-family: "Amiamie-Round";
   src: url("/fonts/amiamie/otf/Amiamie-RegularRound.otf") format("opentype"),
@@ -87,6 +87,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @theme {
   --color-primary: #e5e5e0;
   --color-DarkLava: #393632;
@@ -107,81 +108,71 @@
   --animate-shiny-text: shiny-text 8s infinite;
 
   @keyframes rainbow {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 200% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   @keyframes rainbow-float {
-    0%,
-    100% {
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      transform: translateY(-2px) scale(1.01);
-    }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-2px) scale(1.01); }
   }
 
   @keyframes rainbow-orbit {
-    0%,
-    100% {
-      opacity: 0.2;
-      transform: translateX(-50%) scale(0.9);
-    }
-    50% {
-      opacity: 0.55;
-      transform: translateX(-50%) scale(1.1);
-    }
+    0%, 100% { opacity: 0.2; transform: translateX(-50%) scale(0.9); }
+    50% { opacity: 0.55; transform: translateX(-50%) scale(1.1); }
   }
 
   @keyframes shiny-text {
-    0%,
-    90%,
-    100% {
-      background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-    30%,
-    60% {
-      background-position: calc(100% + var(--shiny-width)) 0;
-    }
+    0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width)) 0; }
+    30%, 60% { background-position: calc(100% + var(--shiny-width)) 0; }
   }
 
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
   }
 }
 
 body {
-  background: #111111;
+  background: #000000;
   color: var(--color-primary);
   scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: var(--font-amiamie);
 }
 
-body,
-button,
-input,
-textarea,
-select {
+body, button, input, textarea, select {
   font-family: var(--font-amiamie);
 }
 
-.font-serif,
-.font-sans {
+.font-serif, .font-sans {
   font-family: var(--font-amiamie) !important;
 }
 
 @utility clip-path {
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+@utility aceternity-grid {
+  /* Aceternity style moving dot matrix / grid */
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, white 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000 30%, transparent 100%);
+}
+
+@utility bento-card {
+  @apply relative overflow-hidden bg-[#0A0A0A] border border-white/10 rounded-3xl transition-colors duration-500 hover:border-white/20;
+}
+
+@utility bento-glow {
+  @apply before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(ellipse_at_center,rgba(61,177,255,0.15)_0%,transparent_70%)] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
+}
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
 }
 
 @utility banner-text-responsive {
@@ -199,4 +190,3 @@ select {
 @utility contact-text-responsive {
   @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
 }
-
