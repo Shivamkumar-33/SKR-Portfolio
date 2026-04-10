@@ -5,6 +5,7 @@ import About from "./sections/About";
 import Works from "./sections/Works";
 import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
 import Spotlight from "./components/Spotlight"; // We will create this
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Works />
         <ContactSummary />
         <Contact />
+        <Footer />
       </div>
     </ReactLenis>
   );

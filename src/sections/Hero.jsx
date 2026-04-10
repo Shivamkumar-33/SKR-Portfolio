@@ -139,7 +139,7 @@ const Hero = () => {
 
       <div className="absolute left-5 top-5 z-20 sm:left-7 sm:top-6 md:left-10 md:top-8">
         <img
-          src="/images/logo.svg?v=3"
+          src="/images/logo.svg"
           alt="Shivam logo"
           className="h-10 w-auto sm:h-12 md:h-14"
         />
