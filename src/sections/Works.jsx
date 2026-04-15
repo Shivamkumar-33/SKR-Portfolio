@@ -28,17 +28,15 @@ const Works = () => {
       ease: "power3.out",
     });
 
-    gsap.from("#project", {
-      y: 24,
+    gsap.from(".project-row", {
+      y: 100,
       opacity: 0,
-      duration: 0.4,
-      stagger: 0.1,
-      ease: "power2.out",
-      immediateRender: false,
+      delay: 0.5,
+      duration: 1,
+      stagger: 0.3,
+      ease: "back.out",
       scrollTrigger: {
-        trigger: "#project",
-        start: "top 96%",
-        once: true,
+        trigger: ".project-row",
       },
     });
   }, []);
@@ -102,12 +100,12 @@ const Works = () => {
   };
 
   return (
-    <section id="work" className="flex flex-col bg-transparent py-16 text-white sm:py-20 relative z-10">
+    <section id="work" className="flex min-h-screen flex-col bg-black">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}
         text={text}
-        textColor={"text-primary"}
+        textColor={"text-white"}
         withScrollTrigger={true}
       />
       <div
@@ -117,8 +115,7 @@ const Works = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            id="project"
-            className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
+            className="project-row group relative flex cursor-pointer flex-col gap-1 py-4 md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
           >
@@ -127,11 +124,11 @@ const Works = () => {
               ref={(el) => {
                 overlayRefs.current[index] = el;
               }}
-              className="absolute inset-0 hidden md:block duration-200 bg-white/5 -z-10 clip-path"
+              className="clip-path absolute inset-0 -z-10 hidden bg-white duration-200 md:block"
             />
 
             {/* title */}
-            <div className="flex justify-between px-10 text-white/70 transition-all duration-500 md:group-hover:px-12 md:group-hover:text-white">
+            <div className="flex justify-between px-10 text-white transition-all duration-500 md:group-hover:px-12 md:group-hover:text-black">
               <h2 className="lg:text-[32px] text-[26px] leading-none">
                 {project.name}
               </h2>
@@ -140,19 +137,19 @@ const Works = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open ${project.name}`}
-                className="hover:text-white transition-colors"
+                className="transition-colors duration-300 md:group-hover:text-black"
               >
                 <Icon icon="lucide:arrow-up-right" className="md:size-6 size-5" />
               </a>
             </div>
             {/* divider */}
-            <div className="w-full h-0.5 bg-white/20" />
+            <div className="h-0.5 w-full bg-white/80" />
             {/* framework */}
-            <div className="flex px-10 text-xs leading-loose uppercase transtion-all duration-500 md:text-sm gap-x-5 md:group-hover:px-12">
+            <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12">
               {project.frameworks.map((framework) => (
                 <p
                   key={framework.id}
-                  className="text-white/50 transition-colors duration-500 md:group-hover:text-white"
+                  className="text-white transition-colors duration-500 md:group-hover:text-black"
                 >
                   {framework.name}
                 </p>
@@ -176,7 +173,7 @@ const Works = () => {
         {/* desktop Flaoting preview image */}
         <div
           ref={previewRef}
-          className="fixed -top-2/6 left-0 z-50 overflow-hidden border-8 border-white/50 pointer-events-none w-[960px] md:block hidden opacity-0"
+          className="fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden border-8 border-white/25 pointer-events-none opacity-0 md:block"
         >
           {currentIndex !== null && (
             <img

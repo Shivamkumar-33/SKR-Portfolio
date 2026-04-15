@@ -6,13 +6,11 @@ import Works from "./sections/Works";
 import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
-import Spotlight from "./components/Spotlight"; // We will create this
 
 const App = () => {
   return (
-    <ReactLenis root className="relative w-screen min-h-screen overflow-x-hidden bg-black text-white selection:bg-cyan-500/30 aceternity-grid">
-      <Spotlight />
-      <div className="relative z-10 w-full mb-10 overflow-hidden mix-blend-screen">
+    <ReactLenis root className="relative w-screen min-h-screen overflow-x-hidden bg-black text-white selection:bg-gold/30">
+      <div className="relative z-10 w-full overflow-hidden">
         <Navbar />
         <Hero />
         <About />

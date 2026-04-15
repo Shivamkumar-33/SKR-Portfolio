@@ -134,18 +134,18 @@ const LiveLocation = () => {
 
   return (
     <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-      <div className="mb-2 flex items-center gap-2 text-emerald-400">
+      <div className="mb-2 flex items-center gap-2 text-gold">
         <span className="relative inline-flex size-3 items-center justify-center">
-          <span className="absolute inline-flex size-3 rounded-full bg-emerald-400" />
+          <span className="absolute inline-flex size-3 rounded-full bg-gold" />
           {!reduceMotion && (
             <Motion.span
-              className="absolute inline-flex size-3 rounded-full bg-emerald-400"
+              className="absolute inline-flex size-3 rounded-full bg-gold"
               animate={{ scale: [1, 2.6], opacity: [0.7, 0] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
             />
           )}
         </span>
-        <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300/90">
+        <span className="text-[10px] uppercase tracking-[0.22em] text-gold/90">
           Live
         </span>
       </div>
@@ -154,10 +154,10 @@ const LiveLocation = () => {
         initial={reduceMotion ? false : { opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reduceMotion ? 0.1 : 0.45, ease: "easeOut" }}
-        className="flex flex-col"
+        className="flex flex-col text-white/85"
       >
-        <span className="text-white uppercase font-bold">{line1}</span>
-        {line2 ? <span>{line2}</span> : null}
+        <span className="uppercase font-bold text-white">{line1}</span>
+        {line2 ? <span className="text-white/65">{line2}</span> : null}
       </Motion.div>
     </div>
   );

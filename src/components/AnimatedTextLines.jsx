@@ -7,21 +7,18 @@ export const AnimatedTextLines = ({ text, className }) => {
   const containerRef = useRef(null);
   const lineRefs = useRef([]);
   const lines = text.split("\n").filter((line) => line.trim() !== "");
+
   useGSAP(() => {
     if (lineRefs.current.length > 0) {
-      gsap.fromTo(lineRefs.current, {
-        y: 20,
+      gsap.from(lineRefs.current, {
+        y: 100,
         opacity: 0,
-      }, {
-        y: 0,
-        opacity: 1,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.out",
-        immediateRender: false,
+        duration: 1,
+        stagger: 0.25,
+        ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 96%",
+          start: "top 92%",
           once: true,
         },
       });

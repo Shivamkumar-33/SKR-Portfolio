@@ -21,9 +21,9 @@ const LocalTime = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-2 mt-1 sm:mt-1.5 text-white/50 font-mono tracking-widest text-[9px] sm:text-[10px]">
-      <div className="size-1.5 rounded-full bg-white/20" />
-      <span>LOCAL TIME • {time || "..."}</span>
+    <div className="flex items-center gap-2 mt-1 sm:mt-1.5 text-slate-500 font-mono tracking-widest text-[9px] sm:text-[10px]">
+      <div className="size-1.5 rounded-full bg-slate-700/50" />
+      <span className="text-slate-400">LOCAL TIME • {time || "..."}</span>
     </div>
   );
 };

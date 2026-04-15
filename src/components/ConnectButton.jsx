@@ -81,22 +81,22 @@ const ConnectButton = () => {
     <a
       href="#contact"
       ref={buttonRef}
-      className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/10 bg-white/5 p-[1px] shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)] backdrop-blur-xl transition-colors duration-500 hover:border-white/20"
+      className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-white/5 p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] backdrop-blur-xl transition-colors duration-500 hover:border-gold/60"
       style={{ isolation: "isolate" }}
     >
       {/* The trailing mouse flair effect */}
       <div
         ref={flairRef}
-        className="pointer-events-none absolute z-[-1] left-[-25%] top-[-25%] h-[150%] w-[150%] origin-center scale-0 rounded-full bg-blue-400/60 blur-[24px] pointer-events-none"
+        className="pointer-events-none absolute z-[-1] left-[-25%] top-[-25%] h-[150%] w-[150%] origin-center scale-0 rounded-full bg-gold/50 blur-[24px] pointer-events-none"
       />
 
       {/* Inner span containing text */}
-      <div className="relative z-10 flex w-full items-center justify-between rounded-full bg-black/90 px-1.5 py-1.5 sm:py-2 transition-colors duration-500 group-hover:bg-black/70">
-        <span className="relative z-20 pl-4 pr-5 text-sm sm:text-base font-semibold tracking-wide text-white/90 group-hover:text-white">
+      <div className="relative z-10 flex w-full items-center justify-between rounded-full bg-black px-1.5 py-1.5 sm:py-2 transition-colors duration-500 group-hover:bg-black/80">
+        <span className="relative z-20 pl-4 pr-5 text-sm sm:text-base font-semibold tracking-wide text-white/85 group-hover:text-white">
           Let's Connect
         </span>
         
-        <span className="relative z-20 flex size-9 sm:size-10 items-center justify-center rounded-full bg-white text-black overflow-hidden transition-transform duration-500 group-hover:bg-blue-500 group-hover:text-white">
+        <span className="relative z-20 flex size-9 sm:size-10 items-center justify-center rounded-full bg-white text-black overflow-hidden transition-transform duration-500 group-hover:bg-gold group-hover:text-black">
           {/* Default arrow */}
           <svg
             className="absolute h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-[150%] group-hover:-translate-y-[150%]"

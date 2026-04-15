@@ -99,14 +99,14 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-between w-full h-full px-10 uppercase bg-black border-l border-white/10 text-white/80 py-28 gap-y-10 md:w-1/2 md:left-1/2"
+        className="fixed z-50 flex h-full w-full flex-col justify-between gap-y-10 bg-black px-10 py-28 uppercase text-white/80 md:left-1/2 md:w-1/2"
       >
         <div className="flex flex-col text-5xl gap-y-2 md:text-6xl lg:text-8xl">
           {["home", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
                 <Link
-                  className="transition-all duration-300 cursor-pointer hover:text-white hover:text-glow-cyan"
+                  className="cursor-pointer transition-all duration-300 hover:text-white"
                   to={`${section}`}
                   smooth
                   offset={0}
@@ -135,7 +135,7 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="text-sm leading-loose tracking-widest uppercase hover:text-cyan-400 transition-colors duration-300"
+                  className="text-sm leading-loose tracking-widest uppercase transition-colors duration-300 hover:text-white"
                 >
                   {"{ "}
                   {social.name}
@@ -147,7 +147,7 @@ const Navbar = () => {
         </div>
       </nav>
       <div
-        className="fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 bg-black border border-white/10 hover:border-cyan-500/50 rounded-full cursor-pointer w-14 h-14 md:w-20 md:h-20 top-4 right-10"
+        className="fixed z-50 flex h-14 w-14 cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-black transition-all duration-300 md:h-20 md:w-20 top-4 right-10"
         onClick={toggleMenu}
         style={
           showBurger
@@ -157,11 +157,11 @@ const Navbar = () => {
       >
         <span
           ref={topLineRef}
-          className="block w-8 h-0.5 bg-white rounded-full origin-center"
+          className="block h-0.5 w-8 origin-center rounded-full bg-white"
         ></span>
         <span
           ref={bottomLineRef}
-          className="block w-8 h-0.5 bg-white rounded-full origin-center"
+          className="block h-0.5 w-8 origin-center rounded-full bg-white"
         ></span>
       </div>
     </>

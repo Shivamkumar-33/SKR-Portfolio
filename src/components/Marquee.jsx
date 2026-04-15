@@ -118,41 +118,63 @@ const Marquee = ({
   }
 
   useEffect(() => {
-    const tl = horizontalLoop(itemsRef.current, {
-      repeat: -1,
-      paddingRight: 30,
-      reversed: reverse,
-    });
+    let tl;
+    let observer;
 
-    Observer.create({
-      onChangeY(self) {
-        let factor = 2.5;
-        if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
-          factor *= -1;
-        }
-        gsap
-          .timeline({
-            defaults: {
-              ease: "none",
-            },
-          })
-          .to(tl, { timeScale: factor * 2.5, duration: 0.2, overwrite: true })
-          .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
-      },
-    });
-    return () => tl.kill();
+    const initLoop = () => {
+      const activeItems = itemsRef.current.filter(Boolean);
+      if (!activeItems.length) return;
+
+      tl = horizontalLoop(activeItems, {
+        repeat: -1,
+        paddingRight: 80,
+        reversed: reverse,
+      });
+
+      observer = Observer.create({
+        onChangeY(self) {
+          let factor = 2.5;
+          if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
+            factor *= -1;
+          }
+          gsap
+            .timeline({
+              defaults: {
+                ease: "none",
+              },
+            })
+            .to(tl, {
+              timeScale: factor * 2.5,
+              duration: 0.2,
+              overwrite: true,
+            })
+            .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
+        },
+      });
+    };
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(initLoop);
+    } else {
+      initLoop();
+    }
+
+    return () => {
+      observer?.kill();
+      tl?.kill();
+    };
   }, [items, reverse]);
   return (
     <div
       ref={containerRef}
       className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase whitespace-nowrap ${className}`}
     >
-      <div className="flex">
+      <div className="flex flex-nowrap">
         {items.map((text, index) => (
           <span
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
-            className="flex items-center px-16 gap-x-32"
+            className="flex shrink-0 items-center gap-x-32 whitespace-nowrap px-16"
           >
             {text} <Icon icon={icon} className={iconClassName} />
           </span>
