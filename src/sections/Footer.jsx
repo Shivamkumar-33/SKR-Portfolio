@@ -4,7 +4,7 @@ import { socials } from "../constants";
 
 const Footer = () => {
   return (
-    <footer className="mt-6 w-full border-t border-white/20 bg-black px-4 py-5 text-white/65 md:px-8">
+    <footer className="w-full border-t border-white/20 bg-black px-4 py-5 text-white/65 md:px-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-xs tracking-widest uppercase">
           © 2026 SHIVAM KUMAR. ALL RIGHTS RESERVED.

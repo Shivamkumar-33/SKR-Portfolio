@@ -122,12 +122,13 @@ const Marquee = ({
     let observer;
 
     const initLoop = () => {
-      const activeItems = itemsRef.current.filter(Boolean);
+      // Create a fresh array of valid current items to avoid detached DOM nodes from React Strict Mode
+      const activeItems = itemsRef.current.slice(0, items.length * 3).filter(Boolean);
       if (!activeItems.length) return;
 
       tl = horizontalLoop(activeItems, {
         repeat: -1,
-        paddingRight: 80,
+        paddingRight: 0, // removed arbitrary 80 padding because span already has px-16
         reversed: reverse,
       });
 
@@ -148,7 +149,10 @@ const Marquee = ({
               duration: 0.2,
               overwrite: true,
             })
-            .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
+            .to(tl, { 
+              timeScale: 1, 
+              duration: 1 
+            }, "+=0.3");
         },
       });
     };
@@ -170,7 +174,7 @@ const Marquee = ({
       className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase whitespace-nowrap ${className}`}
     >
       <div className="flex flex-nowrap">
-        {items.map((text, index) => (
+        {[...items, ...items, ...items].map((text, index) => (
           <span
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
