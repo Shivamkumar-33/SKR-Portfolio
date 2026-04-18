@@ -173,7 +173,7 @@ const Hero = () => {
         <div className="absolute left-1/2 top-[16%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]" />
       </div>
 
-      <div className="absolute left-5 top-5 z-20 sm:left-7 sm:top-6 md:left-10 md:top-8">
+      <div className="absolute left-5 top-5 z-20 hidden lg:block sm:left-7 sm:top-6 md:left-10 md:top-8">
         <img
           src="/images/logo.svg"
           alt="System Core Logo"

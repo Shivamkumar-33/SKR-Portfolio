@@ -38,8 +38,10 @@ export const NavBody = ({ children, className, visible }) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: "none",
+        backdropFilter: visible ? "blur(20px)" : "blur(10px)",
+        boxShadow: visible
+          ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)"
+          : "none",
         y: visible ? 8 : 0,
         opacity: visible ? 0.98 : 1,
       }}
@@ -49,7 +51,7 @@ export const NavBody = ({ children, className, visible }) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-4xl flex-row items-center justify-between self-start rounded-3xl border border-white/10 bg-transparent px-3 py-2.5 lg:flex",
+        "navbar-glow relative z-[60] mx-auto hidden w-full max-w-4xl flex-row items-center justify-between self-start rounded-3xl border border-white/[0.08] bg-black/40 px-3 py-2.5 lg:flex",
         className,
       )}
     >
@@ -73,26 +75,43 @@ export const NavItems = ({ items, className, onItemClick, activeLink }) => {
         const isActive = activeLink === item.link;
 
         return (
-          <a
+          /* Improvement 5: Stagger entrance animation for each nav link */
+          <motion.a
+            key={`link-${idx}`}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 + idx * 0.06 }}
             onMouseEnter={() => setHovered(idx)}
             onClick={() => onItemClick?.(item.link)}
             className={`relative inline-flex min-h-9 items-center rounded-full px-4 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors ${
               isActive
-                ? "bg-white text-black font-bold shadow-sm"
+                ? "font-bold"
                 : "text-neutral-400 hover:text-white"
             }`}
-            key={`link-${idx}`}
             href={item.link}
             aria-current={isActive ? "page" : undefined}
           >
+            {/* Improvement 2: Animated active pill slider */}
+            {isActive && (
+              <motion.div
+                layoutId="activeNavPill"
+                className="absolute inset-0 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.12)]"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+
+            {/* Hover background for non-active items */}
             {!isActive && hovered === idx && (
               <motion.div
                 layoutId="hovered"
                 className="absolute inset-0 h-full w-full rounded-full bg-white/10"
               />
             )}
-            <span className="relative z-20">{item.name}</span>
-          </a>
+
+            <span className={`relative z-20 ${isActive ? "text-black" : ""}`}>
+              {item.name}
+            </span>
+          </motion.a>
         );
       })}
     </motion.div>
@@ -103,8 +122,10 @@ export const MobileNav = ({ children, className, visible }) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: "none",
+        backdropFilter: visible ? "blur(20px)" : "blur(10px)",
+        boxShadow: visible
+          ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)"
+          : "none",
         y: visible ? 8 : 0,
         opacity: visible ? 0.98 : 1,
       }}
@@ -114,7 +135,7 @@ export const MobileNav = ({ children, className, visible }) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between rounded-2xl border border-white/10 bg-transparent px-3 py-1.5 lg:hidden",
+        "navbar-glow relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl px-3 py-1.5 lg:hidden",
         className,
       )}
     >
@@ -136,6 +157,7 @@ export const MobileNavHeader = ({ children, className }) => {
   );
 };
 
+/* Improvement 6: Premium Mobile Menu Polish */
 export const MobileNavMenu = ({
   children,
   className,
@@ -148,11 +170,12 @@ export const MobileNavMenu = ({
       {isOpen && (
         <motion.div
           id={menuId}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: -20, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12, scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-xl border border-white/10 bg-neutral-950 px-4 py-6 text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.2)]",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-xl border border-white/[0.08] bg-black/80 backdrop-blur-2xl px-4 py-6 text-white shadow-[0_16px_48px_rgba(0,0,0,0.5)]",
             className,
           )}
         >
@@ -186,11 +209,15 @@ export const MobileNavToggle = ({ isOpen, onClick, controlsId }) => {
   );
 };
 
+/* Improvement 5: Stagger entrance on logo */
 export const NavbarLogo = () => {
   return (
-    <a
+    <motion.a
       href="#home"
       className="relative z-20 mr-0.5 flex items-center px-0.5 py-0.5"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.15 }}
     >
       <img
         src="/images/logo.svg"
@@ -199,7 +226,7 @@ export const NavbarLogo = () => {
         height={42}
         className="h-8 w-auto object-contain"
       />
-    </a>
+    </motion.a>
   );
 };
 

@@ -103,8 +103,13 @@ html {
   --animate-marquee: marquee 40s infinite linear;
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - var(--gap))); }
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
   }
 }
 
@@ -116,12 +121,49 @@ body {
   font-family: var(--font-amiamie);
 }
 
-body, button, input, textarea, select {
+body,
+button,
+input,
+textarea,
+select {
   font-family: var(--font-amiamie);
 }
 
-.font-serif, .font-sans {
+.font-serif,
+.font-sans {
   font-family: var(--font-amiamie) !important;
+}
+
+/* Improvement 1: Gradient border glow for navbar */
+.navbar-glow {
+  position: relative;
+}
+
+.navbar-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(207, 163, 85, 0.25),
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(207, 163, 85, 0.12) 70%,
+      rgba(255, 255, 255, 0.06));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.navbar-glow:hover::before {
+  background: linear-gradient(135deg,
+      rgba(207, 163, 85, 0.35),
+      rgba(255, 255, 255, 0.06) 40%,
+      rgba(207, 163, 85, 0.2) 70%,
+      rgba(255, 255, 255, 0.08));
 }
 
 @utility clip-path {

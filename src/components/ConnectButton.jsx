@@ -81,7 +81,7 @@ const ConnectButton = () => {
     <a
       href="#contact"
       ref={buttonRef}
-      className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-white/5 p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] backdrop-blur-xl transition-colors duration-500 hover:border-gold/60"
+      className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-transparent p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] transition-colors duration-500 hover:border-gold/60"
       style={{ isolation: "isolate" }}
     >
       {/* The trailing mouse flair effect */}
@@ -91,7 +91,7 @@ const ConnectButton = () => {
       />
 
       {/* Inner span containing text */}
-      <div className="relative z-10 flex w-full items-center justify-between rounded-full bg-black px-1.5 py-1.5 sm:py-2 transition-colors duration-500 group-hover:bg-black/80">
+      <div className="relative z-10 flex w-full items-center justify-between rounded-full bg-transparent px-1.5 py-1.5 sm:py-2">
         <span className="relative z-20 pl-4 pr-5 text-sm sm:text-base font-semibold tracking-wide text-white/85 group-hover:text-white">
           Let's Connect
         </span>

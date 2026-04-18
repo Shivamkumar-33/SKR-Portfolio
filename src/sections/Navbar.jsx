@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { Icon } from "@iconify/react";
 import { socials } from "../constants";
 import {
   MobileNav,
@@ -24,6 +26,7 @@ const sectionIds = ["home", "about", "projects", "contact"];
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
   const mobileMenuId = "primary-mobile-nav";
 
   useEffect(() => {
@@ -39,6 +42,7 @@ const Navbar = () => {
       });
 
       setActiveSection((prev) => (prev === current ? prev : current));
+
     };
 
     handleScroll();
@@ -62,7 +66,14 @@ const Navbar = () => {
               onItemClick={handleNavItemClick}
               className="tracking-normal"
             />
-            <div className="relative z-20 flex items-center gap-1">
+
+            {/* CTA with stagger entrance */}
+            <motion.div
+              className="relative z-20 flex items-center gap-1.5"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
               <NavbarButton
                 variant="secondary"
                 href="mailto:shivamjmp2@gmail.com"
@@ -70,16 +81,7 @@ const Navbar = () => {
               >
                 Email
               </NavbarButton>
-              <NavbarButton
-                variant="primary"
-                href={socials[0]?.href || "#"}
-                target="_blank"
-                rel="noreferrer"
-                className="min-w-[86px] px-3"
-              >
-                LinkedIn
-              </NavbarButton>
-            </div>
+            </motion.div>
           </NavBody>
 
           <MobileNav>
@@ -97,12 +99,20 @@ const Navbar = () => {
               menuId={mobileMenuId}
               onClose={() => setIsMobileMenuOpen(false)}
             >
-              {navItems.map((item) => {
+              {/* Improvement 6: Staggered mobile menu items */}
+              {navItems.map((item, i) => {
                 const isActive = activeSection === item.link.replace("#", "");
                 return (
-                  <a
+                  <motion.a
                     key={item.name}
                     href={item.link}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.35,
+                      delay: 0.05 + i * 0.07,
+                      ease: "easeOut",
+                    }}
                     onClick={() => {
                       handleNavItemClick(item.link);
                       setIsMobileMenuOpen(false);
@@ -112,43 +122,58 @@ const Navbar = () => {
                     }`}
                   >
                     <span>{item.name}</span>
-                  </a>
+                  </motion.a>
                 );
               })}
 
-              <div className="w-full border-t border-zinc-800 pt-4">
-                <p className="mb-2 text-xs uppercase tracking-widest text-zinc-400">
+              <motion.div
+                className="w-full border-t border-zinc-800/60 pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.35 }}
+              >
+                <p className="mb-2 text-xs uppercase tracking-widest text-zinc-500">
                   E-mail
                 </p>
                 <a
                   href="mailto:shivamjmp2@gmail.com"
-                  className="text-sm text-neutral-100"
+                  className="text-sm text-neutral-100 transition-colors hover:text-gold"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   shivamjmp2@gmail.com
                 </a>
-              </div>
+              </motion.div>
 
-              <div className="flex w-full flex-col gap-2 border-t border-zinc-800 pt-4">
-                <p className="text-xs uppercase tracking-widest text-zinc-400">
+              <motion.div
+                className="flex w-full flex-col gap-2 border-t border-zinc-800/60 pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.45 }}
+              >
+                <p className="text-xs uppercase tracking-widest text-zinc-500">
                   Social Media
                 </p>
-                {socials.map((social) => (
-                  <NavbarButton
+                {socials.map((social, i) => (
+                  <motion.div
                     key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    variant="secondary"
-                    className="w-full text-left"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.06 }}
                   >
-                    {"{ "}
-                    {social.name}
-                    {" }"}
-                  </NavbarButton>
+                    <NavbarButton
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      variant="secondary"
+                      className="w-full text-left"
+                    >
+                      <Icon icon={social.icon} className="mr-2 h-4 w-4" />
+                      {social.name}
+                    </NavbarButton>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </MobileNavMenu>
           </MobileNav>
         </ResizableNavbar>
