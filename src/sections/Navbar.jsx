@@ -1,170 +1,159 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { socials } from "../constants";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { Link } from "react-scroll";
+import {
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+  NavBody,
+  Navbar as ResizableNavbar,
+  NavbarButton,
+  NavbarLogo,
+  NavItems,
+} from "../components/ui/resizable-navbar";
+
+const navItems = [
+  { name: "Home", link: "#home" },
+  { name: "About", link: "#about" },
+  { name: "Projects", link: "#projects" },
+  { name: "Contact", link: "#contact" },
+];
+
+const sectionIds = ["home", "about", "projects", "contact"];
 
 const Navbar = () => {
-  const navRef = useRef(null);
-  const linksRef = useRef([]);
-  const contactRef = useRef(null);
-  const topLineRef = useRef(null);
-  const bottomLineRef = useRef(null);
-  const tl = useRef(null);
-  const iconTl = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [showBurger, setShowBurger] = useState(true);
-  useGSAP(() => {
-    gsap.set(navRef.current, { xPercent: 100 });
-    gsap.set([linksRef.current, contactRef.current], {
-      autoAlpha: 0,
-      x: -20,
-    });
-
-    tl.current = gsap
-      .timeline({ paused: true })
-      .to(navRef.current, {
-        xPercent: 0,
-        duration: 1,
-        ease: "power3.out",
-      })
-      .to(
-        linksRef.current,
-        {
-          autoAlpha: 1,
-          x: 0,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "<"
-      )
-      .to(
-        contactRef.current,
-        {
-          autoAlpha: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "<+0.2"
-      );
-
-    iconTl.current = gsap
-      .timeline({ paused: true })
-      .to(topLineRef.current, {
-        rotate: 45,
-        y: 3.3,
-        duration: 0.3,
-        ease: "power2.inOut",
-      })
-      .to(
-        bottomLineRef.current,
-        {
-          rotate: -45,
-          y: -3.3,
-          duration: 0.3,
-          ease: "power2.inOut",
-        },
-        "<"
-      );
-  }, []);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const mobileMenuId = "primary-mobile-nav";
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const checkpoint = window.scrollY + window.innerHeight * 0.35;
+      let current = sectionIds[0];
 
-      setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= checkpoint) {
+          current = id;
+        }
+      });
 
-      lastScrollY = currentScrollY;
+      setActiveSection((prev) => (prev === current ? prev : current));
     };
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    if (isOpen) {
-      tl.current.reverse();
-      iconTl.current.reverse();
-    } else {
-      tl.current.play();
-      iconTl.current.play();
-    }
-    setIsOpen(!isOpen);
+  const handleNavItemClick = (link) => {
+    setActiveSection(link.replace("#", ""));
   };
+
   return (
-    <>
-      <nav
-        ref={navRef}
-        className="fixed z-50 flex h-full w-full flex-col justify-between gap-y-10 bg-black px-10 py-28 uppercase text-white/80 md:left-1/2 md:w-1/2"
-      >
-        <div className="flex flex-col text-5xl gap-y-2 md:text-6xl lg:text-8xl">
-          {["home", "about", "work", "contact"].map(
-            (section, index) => (
-              <div key={index} ref={(el) => (linksRef.current[index] = el)}>
-                <Link
-                  className="cursor-pointer transition-all duration-300 hover:text-white"
-                  to={`${section}`}
-                  smooth
-                  offset={0}
-                  duration={2000}
-                >
-                  {section}
-                </Link>
-              </div>
-            )
-          )}
-        </div>
-        <div
-          ref={contactRef}
-          className="flex flex-col flex-wrap justify-between gap-8 md:flex-row"
-        >
-          <div className="font-light">
-            <p className="tracking-wider text-white/50">E-mail</p>
-            <p className="text-xl tracking-widest lowercase text-pretty">
-              shivamjmp2@gmail.com
-            </p>
-          </div>
-          <div className="font-light">
-            <p className="tracking-wider text-white/50">Social Media</p>
-            <div className="flex flex-col flex-wrap md:flex-row gap-x-2">
-              {socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="text-sm leading-loose tracking-widest uppercase transition-colors duration-300 hover:text-white"
-                >
-                  {"{ "}
-                  {social.name}
-                  {" }"}
-                </a>
-              ))}
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-1.5 md:px-8">
+      <div className="pointer-events-auto">
+        <ResizableNavbar className="mx-auto max-w-4xl">
+          <NavBody className="px-2 md:px-3">
+            <NavbarLogo />
+            <NavItems
+              items={navItems}
+              activeLink={`#${activeSection}`}
+              onItemClick={handleNavItemClick}
+              className="tracking-normal"
+            />
+            <div className="relative z-20 flex items-center gap-1">
+              <NavbarButton
+                variant="secondary"
+                href="mailto:shivamjmp2@gmail.com"
+                className="min-w-[72px] px-3"
+              >
+                Email
+              </NavbarButton>
+              <NavbarButton
+                variant="primary"
+                href={socials[0]?.href || "#"}
+                target="_blank"
+                rel="noreferrer"
+                className="min-w-[86px] px-3"
+              >
+                LinkedIn
+              </NavbarButton>
             </div>
-          </div>
-        </div>
-      </nav>
-      <div
-        className="fixed z-50 flex h-14 w-14 cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-black transition-all duration-300 md:h-20 md:w-20 top-4 right-10"
-        onClick={toggleMenu}
-        style={
-          showBurger
-            ? { clipPath: "circle(50% at 50% 50%)" }
-            : { clipPath: "circle(0% at 50% 50%)" }
-        }
-      >
-        <span
-          ref={topLineRef}
-          className="block h-0.5 w-8 origin-center rounded-full bg-white"
-        ></span>
-        <span
-          ref={bottomLineRef}
-          className="block h-0.5 w-8 origin-center rounded-full bg-white"
-        ></span>
+          </NavBody>
+
+          <MobileNav>
+            <MobileNavHeader>
+              <NavbarLogo />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                controlsId={mobileMenuId}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </MobileNavHeader>
+
+            <MobileNavMenu
+              isOpen={isMobileMenuOpen}
+              menuId={mobileMenuId}
+              onClose={() => setIsMobileMenuOpen(false)}
+            >
+              {navItems.map((item) => {
+                const isActive = activeSection === item.link.replace("#", "");
+                return (
+                  <a
+                    key={item.name}
+                    href={item.link}
+                    onClick={() => {
+                      handleNavItemClick(item.link);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`relative flex w-full items-center rounded-xl p-3 text-sm font-semibold transition-colors ${
+                      isActive ? "bg-white text-black" : "text-neutral-400 hover:bg-white/10"
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                  </a>
+                );
+              })}
+
+              <div className="w-full border-t border-zinc-800 pt-4">
+                <p className="mb-2 text-xs uppercase tracking-widest text-zinc-400">
+                  E-mail
+                </p>
+                <a
+                  href="mailto:shivamjmp2@gmail.com"
+                  className="text-sm text-neutral-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  shivamjmp2@gmail.com
+                </a>
+              </div>
+
+              <div className="flex w-full flex-col gap-2 border-t border-zinc-800 pt-4">
+                <p className="text-xs uppercase tracking-widest text-zinc-400">
+                  Social Media
+                </p>
+                {socials.map((social) => (
+                  <NavbarButton
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    variant="secondary"
+                    className="w-full text-left"
+                  >
+                    {"{ "}
+                    {social.name}
+                    {" }"}
+                  </NavbarButton>
+                ))}
+              </div>
+            </MobileNavMenu>
+          </MobileNav>
+        </ResizableNavbar>
       </div>
-    </>
+    </div>
   );
 };
 

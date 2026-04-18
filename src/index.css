@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Amiamie Regular */
 @font-face {
   font-family: "Amiamie";
