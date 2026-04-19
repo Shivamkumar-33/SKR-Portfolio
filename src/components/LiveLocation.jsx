@@ -154,10 +154,10 @@ const LiveLocation = () => {
         initial={reduceMotion ? false : { opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reduceMotion ? 0.1 : 0.45, ease: "easeOut" }}
-        className="flex flex-col text-white/85"
+        className="live-location-copy flex flex-col"
       >
-        <span className="uppercase font-bold text-white">{line1}</span>
-        {line2 ? <span className="text-white/65">{line2}</span> : null}
+        <span className="live-location-primary uppercase font-bold">{line1}</span>
+        {line2 ? <span className="live-location-secondary">{line2}</span> : null}
       </Motion.div>
     </div>
   );

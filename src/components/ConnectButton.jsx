@@ -81,7 +81,7 @@ const ConnectButton = () => {
     <a
       href="#contact"
       ref={buttonRef}
-      className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-transparent p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] transition-colors duration-500 hover:border-gold/60"
+      className="connect-btn group relative inline-flex items-center overflow-hidden rounded-full border bg-transparent p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] transition-colors duration-500 hover:border-gold/60"
       style={{ isolation: "isolate" }}
     >
       {/* The trailing mouse flair effect */}
@@ -92,11 +92,11 @@ const ConnectButton = () => {
 
       {/* Inner span containing text */}
       <div className="relative z-10 flex w-full items-center justify-between rounded-full bg-transparent px-1.5 py-1.5 sm:py-2">
-        <span className="relative z-20 pl-4 pr-5 text-sm sm:text-base font-semibold tracking-wide text-white/85 group-hover:text-white">
+        <span className="connect-btn-label relative z-20 pl-4 pr-5 text-sm sm:text-base font-semibold tracking-wide">
           Let's Connect
         </span>
         
-        <span className="relative z-20 flex size-9 sm:size-10 items-center justify-center rounded-full bg-white text-black overflow-hidden transition-transform duration-500 group-hover:bg-gold group-hover:text-black">
+        <span className="connect-btn-icon relative z-20 flex size-9 sm:size-10 items-center justify-center rounded-full overflow-hidden transition-transform duration-500 group-hover:bg-gold group-hover:text-black">
           {/* Default arrow */}
           <svg
             className="absolute h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-[150%] group-hover:-translate-y-[150%]"

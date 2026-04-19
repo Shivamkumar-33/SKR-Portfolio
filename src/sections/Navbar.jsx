@@ -23,7 +23,7 @@ const navItems = [
 
 const sectionIds = ["home", "about", "projects", "contact"];
 
-const Navbar = () => {
+const Navbar = ({ theme = "dark", onToggleTheme }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -57,13 +57,14 @@ const Navbar = () => {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-1.5 md:px-8">
       <div className="pointer-events-auto">
-        <ResizableNavbar className="mx-auto max-w-4xl">
+        <ResizableNavbar className="mx-auto max-w-4xl" theme={theme}>
           <NavBody className="px-2 md:px-3">
-            <NavbarLogo />
+            <NavbarLogo theme={theme} />
             <NavItems
               items={navItems}
               activeLink={`#${activeSection}`}
               onItemClick={handleNavItemClick}
+              theme={theme}
               className="tracking-normal"
             />
 
@@ -74,8 +75,21 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.55 }}
             >
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                className="theme-toggle-btn"
+              >
+                <Icon
+                  icon={theme === "dark" ? "ph:sun-dim-bold" : "ph:moon-stars-bold"}
+                  className="h-4 w-4"
+                />
+              </button>
+
               <NavbarButton
-                variant="secondary"
+                variant={theme === "dark" ? "secondary" : "dark"}
                 href="mailto:shivamjmp2@gmail.com"
                 className="min-w-[72px] px-3"
               >
@@ -86,17 +100,32 @@ const Navbar = () => {
 
           <MobileNav>
             <MobileNavHeader>
-              <NavbarLogo />
-              <MobileNavToggle
-                isOpen={isMobileMenuOpen}
-                controlsId={mobileMenuId}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
+              <NavbarLogo theme={theme} />
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={onToggleTheme}
+                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                  className="theme-toggle-btn"
+                >
+                  <Icon
+                    icon={theme === "dark" ? "ph:sun-dim-bold" : "ph:moon-stars-bold"}
+                    className="h-4 w-4"
+                  />
+                </button>
+                <MobileNavToggle
+                  isOpen={isMobileMenuOpen}
+                  controlsId={mobileMenuId}
+                  theme={theme}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                />
+              </div>
             </MobileNavHeader>
 
             <MobileNavMenu
               isOpen={isMobileMenuOpen}
               menuId={mobileMenuId}
+              theme={theme}
               onClose={() => setIsMobileMenuOpen(false)}
             >
               {/* Improvement 6: Staggered mobile menu items */}
@@ -118,7 +147,13 @@ const Navbar = () => {
                       setIsMobileMenuOpen(false);
                     }}
                     className={`relative flex w-full items-center rounded-xl p-3 text-sm font-semibold transition-colors ${
-                      isActive ? "bg-white text-black" : "text-neutral-400 hover:bg-white/10"
+                      isActive
+                        ? theme === "dark"
+                          ? "bg-white text-black"
+                          : "bg-[#17130f] text-[#f7f2e9]"
+                        : theme === "dark"
+                          ? "text-neutral-400 hover:bg-white/10"
+                          : "text-[#4f473b] hover:bg-black/[0.08]"
                     }`}
                   >
                     <span>{item.name}</span>
@@ -127,17 +162,17 @@ const Navbar = () => {
               })}
 
               <motion.div
-                className="w-full border-t border-zinc-800/60 pt-4"
+                className={`w-full border-t pt-4 ${theme === "dark" ? "border-zinc-800/60" : "border-black/12"}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.35 }}
               >
-                <p className="mb-2 text-xs uppercase tracking-widest text-zinc-500">
+                <p className={`mb-2 text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-[#7a7062]"}`}>
                   E-mail
                 </p>
                 <a
                   href="mailto:shivamjmp2@gmail.com"
-                  className="text-sm text-neutral-100 transition-colors hover:text-gold"
+                  className={`text-sm transition-colors hover:text-gold ${theme === "dark" ? "text-neutral-100" : "text-[#15120f]"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   shivamjmp2@gmail.com
@@ -145,12 +180,12 @@ const Navbar = () => {
               </motion.div>
 
               <motion.div
-                className="flex w-full flex-col gap-2 border-t border-zinc-800/60 pt-4"
+                className={`flex w-full flex-col gap-2 border-t pt-4 ${theme === "dark" ? "border-zinc-800/60" : "border-black/12"}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
               >
-                <p className="text-xs uppercase tracking-widest text-zinc-500">
+                <p className={`text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-[#7a7062]"}`}>
                   Social Media
                 </p>
                 {socials.map((social, i) => (
@@ -165,7 +200,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      variant="secondary"
+                      variant={theme === "dark" ? "secondary" : "dark"}
                       className="w-full text-left"
                     >
                       <Icon icon={social.icon} className="mr-2 h-4 w-4" />

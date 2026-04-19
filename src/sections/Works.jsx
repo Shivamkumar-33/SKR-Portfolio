@@ -100,12 +100,12 @@ const Works = () => {
   };
 
   return (
-    <section id="projects" className="flex min-h-screen flex-col bg-black">
+    <section id="projects" className="theme-section flex min-h-screen flex-col">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}
         text={text}
-        textColor={"text-white"}
+        textColor={"theme-text-primary"}
         withScrollTrigger={true}
       />
       <div
@@ -124,11 +124,11 @@ const Works = () => {
               ref={(el) => {
                 overlayRefs.current[index] = el;
               }}
-              className="clip-path absolute inset-0 -z-10 hidden bg-white duration-200 md:block"
+              className="project-overlay clip-path absolute inset-0 -z-10 hidden duration-200 md:block"
             />
 
             {/* title */}
-            <div className="flex justify-between px-10 text-white transition-all duration-500 md:group-hover:px-12 md:group-hover:text-black">
+            <div className="project-row-content flex justify-between px-10 transition-all duration-500 md:group-hover:px-12">
               <h2 className="lg:text-[32px] text-[26px] leading-none">
                 {project.name}
               </h2>
@@ -137,19 +137,19 @@ const Works = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open ${project.name}`}
-                className="transition-colors duration-300 md:group-hover:text-black"
+                className="project-row-link transition-colors duration-300"
               >
                 <Icon icon="lucide:arrow-up-right" className="md:size-6 size-5" />
               </a>
             </div>
             {/* divider */}
-            <div className="h-0.5 w-full bg-white/80" />
+            <div className="project-divider h-0.5 w-full" />
             {/* framework */}
             <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12">
               {project.frameworks.map((framework) => (
                 <p
                   key={framework.id}
-                  className="text-white transition-colors duration-500 md:group-hover:text-black"
+                  className="project-framework-item transition-colors duration-500"
                 >
                   {framework.name}
                 </p>
@@ -160,7 +160,7 @@ const Works = () => {
               <img
                 src={project.bgImage}
                 alt={`${project.name}-bg-image`}
-                className="object-cover w-full h-full rounded-md brightness-50"
+                className="project-mobile-bg object-cover w-full h-full rounded-md"
               />
               <img
                 src={project.image}
@@ -173,7 +173,7 @@ const Works = () => {
         {/* desktop Flaoting preview image */}
         <div
           ref={previewRef}
-          className="fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden border-8 border-white/25 pointer-events-none opacity-0 md:block"
+          className="project-preview-frame fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden border-8 pointer-events-none opacity-0 md:block"
         >
           {currentIndex !== null && (
             <img

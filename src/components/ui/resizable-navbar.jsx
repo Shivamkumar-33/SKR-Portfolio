@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
   AnimatePresence,
@@ -8,33 +8,42 @@ import {
 } from "motion/react";
 import { cn } from "../../lib/utils";
 
-export const Navbar = ({ children, className }) => {
-  const ref = useRef(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+export const Navbar = ({ children, className, theme = "dark" }) => {
+  const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setVisible(latest > 100);
   });
 
+  useEffect(() => {
+    const updateVisible = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      setVisible((prev) => {
+        const next = y > 100;
+        return prev === next ? prev : next;
+      });
+    };
+
+    updateVisible();
+    window.addEventListener("scroll", updateVisible, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisible);
+  }, []);
+
   return (
     <motion.div
-      ref={ref}
       className={cn("sticky inset-x-0 top-2 z-50 w-full", className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(child, { visible })
+          ? React.cloneElement(child, { visible, theme })
           : child,
       )}
     </motion.div>
   );
 };
 
-export const NavBody = ({ children, className, visible }) => {
+export const NavBody = ({ children, className, visible, theme = "dark" }) => {
   return (
     <motion.div
       animate={{
@@ -42,6 +51,8 @@ export const NavBody = ({ children, className, visible }) => {
         boxShadow: visible
           ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)"
           : "none",
+        width: visible ? "92%" : "100%",
+        scale: visible ? 0.95 : 1,
         y: visible ? 8 : 0,
         opacity: visible ? 0.98 : 1,
       }}
@@ -51,7 +62,10 @@ export const NavBody = ({ children, className, visible }) => {
         damping: 50,
       }}
       className={cn(
-        "navbar-glow relative z-[60] mx-auto hidden w-full max-w-4xl flex-row items-center justify-between self-start rounded-3xl border border-white/[0.08] bg-black/40 px-3 py-2.5 lg:flex",
+        "navbar-glow relative z-[60] mx-auto hidden w-full max-w-4xl origin-top flex-row items-center justify-between self-start rounded-3xl px-3 py-2.5 lg:flex",
+        theme === "dark"
+          ? "border border-white/[0.08] bg-black/40 text-white"
+          : "border border-black/10 bg-[#fbfaf7]/80 text-[#12100d]",
         className,
       )}
     >
@@ -60,14 +74,15 @@ export const NavBody = ({ children, className, visible }) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick, activeLink }) => {
+export const NavItems = ({ items, className, onItemClick, activeLink, theme = "dark" }) => {
   const [hovered, setHovered] = useState(null);
 
   return (
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "relative z-10 hidden flex-1 flex-row items-center justify-center space-x-0.5 text-sm font-semibold text-zinc-200 transition duration-200 lg:flex lg:space-x-0.5",
+        "relative z-10 hidden flex-1 flex-row items-center justify-center space-x-0.5 text-sm font-semibold transition duration-200 lg:flex lg:space-x-0.5",
+        theme === "dark" ? "text-zinc-200" : "text-[#2f2a23]",
         className,
       )}
     >
@@ -86,7 +101,9 @@ export const NavItems = ({ items, className, onItemClick, activeLink }) => {
             className={`relative inline-flex min-h-9 items-center rounded-full px-4 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors ${
               isActive
                 ? "font-bold"
-                : "text-neutral-400 hover:text-white"
+                : theme === "dark"
+                  ? "text-neutral-400 hover:text-white"
+                  : "text-[#5c5448] hover:text-[#16120e]"
             }`}
             href={item.link}
             aria-current={isActive ? "page" : undefined}
@@ -95,7 +112,12 @@ export const NavItems = ({ items, className, onItemClick, activeLink }) => {
             {isActive && (
               <motion.div
                 layoutId="activeNavPill"
-                className="absolute inset-0 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.12)]"
+                className={cn(
+                  "absolute inset-0 rounded-full",
+                  theme === "dark"
+                    ? "bg-white shadow-[0_0_12px_rgba(255,255,255,0.12)]"
+                    : "bg-[#17130f] shadow-[0_0_10px_rgba(23,19,15,0.2)]"
+                )}
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
@@ -104,11 +126,14 @@ export const NavItems = ({ items, className, onItemClick, activeLink }) => {
             {!isActive && hovered === idx && (
               <motion.div
                 layoutId="hovered"
-                className="absolute inset-0 h-full w-full rounded-full bg-white/10"
+                className={cn(
+                  "absolute inset-0 h-full w-full rounded-full",
+                  theme === "dark" ? "bg-white/10" : "bg-black/[0.08]"
+                )}
               />
             )}
 
-            <span className={`relative z-20 ${isActive ? "text-black" : ""}`}>
+            <span className={`relative z-20 ${isActive ? (theme === "dark" ? "text-black" : "text-[#f7f3eb]") : ""}`}>
               {item.name}
             </span>
           </motion.a>
@@ -118,7 +143,7 @@ export const NavItems = ({ items, className, onItemClick, activeLink }) => {
   );
 };
 
-export const MobileNav = ({ children, className, visible }) => {
+export const MobileNav = ({ children, className, visible, theme = "dark" }) => {
   return (
     <motion.div
       animate={{
@@ -126,6 +151,8 @@ export const MobileNav = ({ children, className, visible }) => {
         boxShadow: visible
           ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)"
           : "none",
+        width: visible ? "94%" : "100%",
+        scale: visible ? 0.97 : 1,
         y: visible ? 8 : 0,
         opacity: visible ? 0.98 : 1,
       }}
@@ -135,7 +162,10 @@ export const MobileNav = ({ children, className, visible }) => {
         damping: 50,
       }}
       className={cn(
-        "navbar-glow relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl px-3 py-1.5 lg:hidden",
+        "navbar-glow relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] origin-top flex-col items-center justify-between rounded-2xl backdrop-blur-xl px-3 py-1.5 lg:hidden",
+        theme === "dark"
+          ? "border border-white/[0.08] bg-black/40 text-white"
+          : "border border-black/10 bg-[#fbfaf7]/85 text-[#12100d]",
         className,
       )}
     >
@@ -164,6 +194,7 @@ export const MobileNavMenu = ({
   isOpen,
   onClose,
   menuId,
+  theme = "dark",
 }) => {
   return (
     <AnimatePresence>
@@ -175,7 +206,10 @@ export const MobileNavMenu = ({
           exit={{ opacity: 0, y: -12, scale: 0.98 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-xl border border-white/[0.08] bg-black/80 backdrop-blur-2xl px-4 py-6 text-white shadow-[0_16px_48px_rgba(0,0,0,0.5)]",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-xl backdrop-blur-2xl px-4 py-6 shadow-[0_16px_48px_rgba(0,0,0,0.5)]",
+            theme === "dark"
+              ? "border border-white/[0.08] bg-black/80 text-white"
+              : "border border-black/10 bg-[#f8f6f1]/95 text-[#18140f]",
             className,
           )}
         >
@@ -194,7 +228,7 @@ export const MobileNavMenu = ({
   );
 };
 
-export const MobileNavToggle = ({ isOpen, onClick, controlsId }) => {
+export const MobileNavToggle = ({ isOpen, onClick, controlsId, theme = "dark" }) => {
   return (
     <button
       type="button"
@@ -202,7 +236,10 @@ export const MobileNavToggle = ({ isOpen, onClick, controlsId }) => {
       aria-expanded={isOpen}
       aria-controls={controlsId}
       aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-md text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+      className={cn(
+        "inline-flex h-10 w-10 items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60",
+        theme === "dark" ? "text-white" : "text-[#17130f]"
+      )}
     >
       {isOpen ? <IconX className="h-5 w-5" /> : <IconMenu2 className="h-5 w-5" />}
     </button>
@@ -210,7 +247,7 @@ export const MobileNavToggle = ({ isOpen, onClick, controlsId }) => {
 };
 
 /* Improvement 5: Stagger entrance on logo */
-export const NavbarLogo = () => {
+export const NavbarLogo = ({ theme = "dark" }) => {
   return (
     <motion.a
       href="#home"
@@ -224,7 +261,10 @@ export const NavbarLogo = () => {
         alt="SK logo"
         width={56}
         height={42}
-        className="h-8 w-auto object-contain"
+        className={cn(
+          "h-8 w-auto object-contain",
+          theme === "light" && "[filter:brightness(0)_saturate(100%)] opacity-80"
+        )}
       />
     </motion.a>
   );

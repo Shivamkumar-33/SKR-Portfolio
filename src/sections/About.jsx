@@ -1,26 +1,41 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import createGlobe from "cobe";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import { socials } from "../constants";
+import AboutLogoTimeline, { fullStackLogos } from "../components/AboutLogoTimeline";
+import GitHubHeatmap from "../components/GitHubHeatmap";
+import VinylIntroCard from "../components/VinylIntroCard";
 
-const aboutBlocks = [
-  {
-    primary: "Debugging across\nthe stack",
-    secondary: "Frontend to backend",
-  },
-  {
-    primary: "Turning coffee into",
-    secondary: "Production-ready code",
-  },
-  {
-    primary: "Late-night coding\nfueled",
-    secondary: "By curiosity and creativity",
-  },
+const pulseMarkers = [
+  { id: "pulse-india", location: [28.61, 77.21], delay: 0 },
+  { id: "pulse-london", location: [51.51, -0.13], delay: 0 },
+  { id: "pulse-newyork", location: [40.71, -74.01], delay: 0.5 },
+  { id: "pulse-tokyo", location: [35.68, 139.65], delay: 1 },
+  { id: "pulse-sydney", location: [-33.87, 151.21], delay: 1.5 },
 ];
 
-const About = () => {
-  const imageFrameRef = useRef(null);
+const globeMarkers = [
+  { id: "india", label: "India", location: [28.61, 77.21], size: 0.03 },
+  { id: "london", label: "London", location: [51.51, -0.13], size: 0.03 },
+  { id: "newyork", label: "New York", location: [40.71, -74.01], size: 0.03 },
+  { id: "tokyo", label: "Tokyo", location: [35.68, 139.65], size: 0.03 },
+  { id: "sydney", label: "Sydney", location: [-33.87, 151.21], size: 0.03 },
+  { id: "sf", label: "San Francisco", location: [37.77, -122.42], size: 0.03 },
+  { id: "saopaulo", label: "Sao Paulo", location: [-23.55, -46.63], size: 0.03 },
+];
+
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+const About = ({ theme = "dark" }) => {
+  const canvasRef = useRef(null);
+  const pointerRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const phiRef = useRef(0);
+  const thetaRef = useRef(0.2);
+  const thetaTargetRef = useRef(0.2);
+  const spinVelocityRef = useRef(0.003);
+  const isDarkTheme = theme === "dark";
 
   const text = `Passionate about clean architecture and scalable system design
 Building high-performance applications that grow from prototype to production`;
@@ -37,79 +52,178 @@ Building high-performance applications that grow from prototype to production`;
       },
       ease: "power1.inOut",
     });
-
-    gsap.set(imageFrameRef.current, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
-    });
-
-    gsap.to(imageFrameRef.current, {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      duration: 2,
-      ease: "power4.out",
-      scrollTrigger: { trigger: imageFrameRef.current },
-    });
   }, []);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
+
+    const width = canvas.offsetWidth;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const globe = createGlobe(canvas, {
+      devicePixelRatio: dpr,
+      width,
+      height: width,
+      phi: 0,
+      theta: 0.2,
+      dark: isDarkTheme ? 1 : 0,
+      diffuse: 1.35,
+      mapSamples: 16000,
+      mapBrightness: 7,
+      baseColor: isDarkTheme ? [0.48, 0.48, 0.48] : [0.74, 0.71, 0.65],
+      markerColor: [0.81, 0.64, 0.33],
+      glowColor: isDarkTheme ? [0.94, 0.93, 0.91] : [0.98, 0.96, 0.9],
+      markerElevation: 0,
+      markers: globeMarkers.map((marker) => ({
+        id: marker.id,
+        location: marker.location,
+        size: marker.size,
+      })),
+      opacity: isDarkTheme ? 0.82 : 0.9,
+    });
+
+    let animationId = 0;
+    const animate = () => {
+      if (!isDraggingRef.current) {
+        const autoSpin = 0.0022;
+        const momentum = spinVelocityRef.current * 0.93;
+        spinVelocityRef.current = Math.abs(momentum) < 0.0002 ? 0 : momentum;
+        phiRef.current += autoSpin + spinVelocityRef.current;
+      }
+
+      thetaRef.current += (thetaTargetRef.current - thetaRef.current) * 0.1;
+      globe.update({ phi: phiRef.current, theta: thetaRef.current });
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    const resizeObserver = new ResizeObserver(() => {
+      const nextSize = canvas.offsetWidth;
+      globe.update({ width: nextSize, height: nextSize });
+    });
+
+    resizeObserver.observe(canvas);
+    canvas.style.opacity = "1";
+
+    return () => {
+      resizeObserver.disconnect();
+      cancelAnimationFrame(animationId);
+      globe.destroy();
+    };
+  }, [isDarkTheme]);
+
+  const onPointerDown = (event) => {
+    pointerRef.current = { x: event.clientX, y: event.clientY };
+    isDraggingRef.current = true;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const onPointerMove = (event) => {
+    const pointer = pointerRef.current;
+    if (!pointer) return;
+
+    const deltaX = event.clientX - pointer.x;
+    const deltaY = event.clientY - pointer.y;
+    pointerRef.current = { x: event.clientX, y: event.clientY };
+
+    const dragRotation = deltaX / 220;
+    phiRef.current += dragRotation;
+    spinVelocityRef.current = dragRotation;
+    thetaTargetRef.current = clamp(thetaTargetRef.current + deltaY / 900, -0.45, 0.45);
+  };
+
+  const onPointerUp = (event) => {
+    pointerRef.current = null;
+    isDraggingRef.current = false;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
   return (
-    <section id="about" className="min-h-screen bg-black rounded-b-4xl">
+    <section id="about" className="theme-section min-h-screen rounded-b-4xl">
       <AnimatedHeaderSection
         subTitle={"Code with purpose, built to scale"}
         title={"About"}
         text={text}
-        textColor={"text-white"}
+        textColor={"theme-text-primary"}
         withScrollTrigger={true}
       />
 
-      <div className="mx-auto flex w-full max-w-[1240px] flex-col items-stretch gap-8 px-6 pb-10 lg:flex-row lg:gap-12 lg:px-10">
-        <div className="mx-auto w-full max-w-[340px] lg:mx-0 lg:max-w-[440px]">
-          <div ref={imageFrameRef} className="rounded-[2rem] border border-white/10 bg-white/[0.02] p-2 shadow-[0_0_0_1px_rgba(255,255,255,0.03)]">
-            <img
-              src="images/man.jpg"
-              alt="Shivam Kumar"
-              className="h-full w-full rounded-[1.7rem] object-cover"
-            />
+      <div className="about-cobe-grid">
+        <article className="about-cobe-card about-cobe-card-intro">
+          <VinylIntroCard />
+        </article>
+
+        <article className="about-cobe-card about-cobe-card-globe">
+          <div className="about-cobe-globe-header">
+            <p className="about-cobe-mono">Flexible with timezones</p>
+            <h3 className="about-cobe-globe-title">Based in India, collaborating globally</h3>
           </div>
-        </div>
 
-        <div className="flex flex-1 flex-col justify-center gap-6 font-light uppercase lg:gap-7">
-          {aboutBlocks.map((block) => (
-            <div
-              key={block.secondary}
-              className="border-b border-white/20 pb-3 last:border-b-0 last:pb-0"
-            >
-              <p className="whitespace-pre-line text-[1.55rem] font-medium leading-[1.08] tracking-[0.015em] text-white md:text-[2.35rem]">
-                {block.primary}
-              </p>
-              <p className="mt-2 text-[1.1rem] font-medium leading-tight tracking-[0.015em] text-white/45 md:text-[1.7rem]">
-                {block.secondary}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+          <div className="about-cobe-globe-shell">
+            <canvas
+              ref={canvasRef}
+              className="about-cobe-globe-canvas"
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerLeave={onPointerUp}
+              onPointerCancel={onPointerUp}
+            />
 
-      <div className="flex flex-col items-center justify-between gap-5 border-t border-white/20 px-10 py-8 sm:flex-row sm:gap-7">
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-white/25 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white/75 transition-colors duration-300 hover:border-gold hover:text-white"
-            >
-              {social.name}
-            </a>
-          ))}
-        </div>
+            {globeMarkers.map((marker) => (
+              <div
+                key={marker.id}
+                className="about-cobe-map-label"
+                style={{
+                  positionAnchor: `--cobe-${marker.id}`,
+                  opacity: `var(--cobe-visible-${marker.id}, 0)`,
+                }}
+              >
+                {marker.label}
+              </div>
+            ))}
 
-        <a
-          href="/resume.pdf"
-          download
-          className="border border-gold bg-gold px-6 py-3 text-xs uppercase tracking-[0.2em] text-black transition-colors duration-300 hover:bg-transparent hover:text-gold"
-        >
-          Download Resume
-        </a>
+            {pulseMarkers.map((marker) => (
+              <div
+                key={marker.id}
+                className="about-cobe-pulse"
+                style={{
+                  positionAnchor: `--cobe-${marker.id.replace("pulse-", "")}`,
+                  opacity: `var(--cobe-visible-${marker.id.replace("pulse-", "")}, 0)`,
+                  filter: `blur(calc((1 - var(--cobe-visible-${marker.id.replace("pulse-", "")}, 0)) * 8px))`,
+                }}
+              >
+                <span
+                  className="about-cobe-pulse-ring"
+                  style={{ animationDelay: `${marker.delay}s` }}
+                />
+                <span
+                  className="about-cobe-pulse-ring"
+                  style={{ animationDelay: `${marker.delay + 0.5}s` }}
+                />
+                <span className="about-cobe-pulse-dot" />
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="about-cobe-card about-cobe-card-map">
+          <GitHubHeatmap />
+        </article>
+
+        <article className="about-cobe-card about-cobe-card-stack">
+          <AboutLogoTimeline
+            items={fullStackLogos}
+            height="100%"
+            iconSize={24}
+            showRowSeparator={true}
+          />
+        </article>
       </div>
     </section>
   );

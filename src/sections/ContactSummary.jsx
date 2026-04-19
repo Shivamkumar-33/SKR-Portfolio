@@ -40,9 +40,9 @@ const ContactSummary = () => {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 mt-8 flex min-h-screen flex-col items-center justify-between gap-8 bg-black px-6 py-12 text-white sm:px-10 sm:py-14"
+      className="theme-section relative z-10 mt-8 flex min-h-screen flex-col items-center justify-between gap-8 px-6 py-12 sm:px-10 sm:py-14"
     >
-      <Marquee items={items} className="text-white bg-black" />
+      <Marquee items={items} className="marquee-surface" />
       <div className="overflow-hidden font-light text-center contact-text-responsive">
         <p>
           “ Let’s build a <br />
@@ -54,7 +54,7 @@ const ContactSummary = () => {
       <Marquee
         items={items2}
         reverse={true}
-        className="text-white bg-transparent border-y-2 border-white/30"
+        className="marquee-surface border-y-2"
         iconClassName="stroke-gold stroke-2 text-gold"
         icon="material-symbols-light:square"
       />
