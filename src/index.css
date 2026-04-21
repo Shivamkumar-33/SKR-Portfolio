@@ -318,15 +318,6 @@ select {
   text-transform: uppercase;
 }
 
-.technical-label::before {
-  content: "[ // ";
-  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
-}
-
-.technical-label::after {
-  content: " ]";
-  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
-}
 
 .technical-label-compact {
   font-family: var(--font-tech-mono);
@@ -335,10 +326,6 @@ select {
   text-transform: uppercase;
 }
 
-.technical-label-compact::before {
-  content: "// ";
-  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
-}
 
 .premium-body-copy {
   color: var(--theme-text-secondary);

@@ -134,7 +134,7 @@ const VinylIntroCard = () => {
       <header className="vinyl-fusion-header vinyl-fusion-fade-in">
 
         <h3 className="vinyl-fusion-name">
-          Shivam <span>Kumar</span>
+          Svam <span>Kumar</span>
         </h3>
         <div className="vinyl-fusion-meta">
           <p className="vinyl-fusion-location">
