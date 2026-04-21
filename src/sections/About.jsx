@@ -160,7 +160,7 @@ Building high-performance applications that grow from prototype to production`;
 
         <article className="about-cobe-card about-cobe-card-globe">
           <div className="about-cobe-globe-header">
-            <p className="about-cobe-mono">Flexible with timezones</p>
+            <p className="about-cobe-mono technical-label">Flexible with timezones</p>
             <h3 className="about-cobe-globe-title">Based in India, collaborating globally</h3>
           </div>
 

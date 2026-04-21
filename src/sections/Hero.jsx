@@ -170,7 +170,14 @@ const Hero = () => {
               "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')",
           }}
         />
-        <div className="absolute left-1/2 top-[16%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]" />
+        <div
+          className="absolute left-1/2 top-[12%] h-[50rem] w-[50rem] -translate-x-1/2"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(207,163,85,0.14) 0%, rgba(207,163,85,0.08) 28%, rgba(207,163,85,0.03) 52%, rgba(207,163,85,0) 78%)",
+            filter: "blur(26px)",
+          }}
+        />
       </div>
 
       <div className="absolute left-5 top-5 z-20 hidden lg:block sm:left-7 sm:top-6 md:left-10 md:top-8">
@@ -182,12 +189,6 @@ const Hero = () => {
       </div>
 
       <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
-        <div className="hero-subtitle mb-4 sm:mb-5 md:mb-6">
-          <div className="theme-chip inline-flex px-5 py-2 text-xs uppercase tracking-[0.12em] sm:text-sm">
-            Portfolio in Progress...! please don't judge yet.
-          </div>
-        </div>
-
         <h1
           className="hero-title theme-text-primary mb-6 flex gap-[0.02em] overflow-hidden py-2 text-[18vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[16vw] md:mb-10 md:text-[15vw]"
           style={{
@@ -202,11 +203,11 @@ const Hero = () => {
           ))}
         </h1>
 
-        <p className="hero-subtitle theme-text-secondary mb-3 text-[11px] font-medium uppercase tracking-[0.18em] sm:mb-4 sm:text-sm sm:tracking-[0.24em] md:text-lg md:tracking-[0.3em]">
+        <p className="hero-subtitle technical-label theme-text-secondary mb-3 sm:mb-4 md:text-lg">
           I BUILD COOL THINGS FOR THE INTERNET
         </p>
 
-        <p className="hero-highlight theme-text-primary text-4xl font-serif italic md:text-7xl md:tracking-wider sm:text-5xl">
+        <p className="hero-highlight accent-line theme-text-primary text-4xl italic md:text-7xl md:tracking-wider sm:text-5xl">
           mostly with React and caffeine.
         </p>
 
@@ -221,7 +222,7 @@ const Hero = () => {
             aria-label="Copy email address"
           >
             {isCopied ? (
-              <span className="font-medium tracking-tight text-gold">
+              <span className="font-medium tracking-tight text-gold font-mono">
                 Copied to clipboard
               </span>
             ) : (
@@ -261,7 +262,7 @@ const Hero = () => {
                     />
                   </svg>
                 )}
-                <span className="font-medium tracking-tight">{emailAddress}</span>
+                <span className="font-medium tracking-tight font-mono">{emailAddress}</span>
               </span>
             )}
           </button>

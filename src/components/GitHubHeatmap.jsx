@@ -228,7 +228,8 @@ const GitHubHeatmap = () => {
       <div ref={containerRef} className="gh-wrap">
         <div className="gh-header">
           <div className="gh-header-left">
-            <span className="gh-label">// Commit History</span>
+            <span className="gh-label technical-label">Commit history</span>
+
             <h4 className="gh-title">
               <span className="gh-count-num gh-loading-pulse">—</span>
             </h4>
@@ -250,7 +251,8 @@ const GitHubHeatmap = () => {
       <div ref={containerRef} className="gh-wrap">
         <div className="gh-header">
           <div className="gh-header-left">
-            <span className="gh-label">// Commit History</span>
+            <span className="gh-label technical-label">Commit history</span>
+
             <h4 className="gh-title">
               <span className="gh-count-num">—</span>
             </h4>
@@ -277,7 +279,8 @@ const GitHubHeatmap = () => {
       {/* header */}
       <div className="gh-header">
         <div className="gh-header-left">
-          <span className="gh-label">// Commit History</span>
+          <span className="gh-label technical-label">Commit history</span>
+
           <h4 className="gh-title">
             <span className="gh-count-num">
               {totalContributions.toLocaleString()}

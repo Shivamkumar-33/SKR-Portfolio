@@ -11,6 +11,7 @@ const AnimatedHeaderSection = ({
 }) => {
   const contextRef = useRef(null);
   const headerRef = useRef(null);
+  const titleRef = useRef(null);
   const shouldSplitTitle = title.includes(" ");
   const titleParts = shouldSplitTitle ? title.split(" ") : [title];
 
@@ -41,6 +42,30 @@ const AnimatedHeaderSection = ({
       },
       "<+0.2"
     );
+
+    if (titleRef.current) {
+      gsap.set(titleRef.current, { "--title-fill": "0%" });
+
+      if (withScrollTrigger) {
+        gsap.to(titleRef.current, {
+          "--title-fill": "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: contextRef.current,
+            start: "top 85%",
+            end: "top 35%",
+            scrub: true,
+          },
+        });
+      } else {
+        gsap.to(titleRef.current, {
+          "--title-fill": "100%",
+          duration: 1.1,
+          ease: "power2.out",
+          delay: 0.45,
+        });
+      }
+    }
   }, []);
 
   return (
@@ -51,13 +76,14 @@ const AnimatedHeaderSection = ({
           className="flex flex-col justify-center gap-8 pt-12 sm:gap-10"
         >
           <p
-            className={`text-sm font-light tracking-[0.5rem] uppercase px-10 ${textColor}`}
+            className={`technical-label px-10 ${textColor}`}
           >
             {subTitle}
           </p>
           <div className="px-10">
             <h1
-              className={`flex flex-col gap-8 uppercase banner-text-responsive sm:gap-10 md:block ${textColor}`}
+              ref={titleRef}
+              className={`section-outline-title flex flex-col gap-8 uppercase banner-text-responsive sm:gap-10 md:block ${textColor}`}
             >
               {titleParts.map((part, index) => (
                 <span key={index}>{part} </span>
@@ -71,7 +97,7 @@ const AnimatedHeaderSection = ({
         <div className="py-8 sm:py-10 text-end">
           <AnimatedTextLines
             text={text}
-            className={`font-light uppercase value-text-responsive ${textColor}`}
+            className={`premium-body-copy value-text-responsive ${textColor}`}
           />
         </div>
       </div>

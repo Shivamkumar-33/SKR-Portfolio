@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;700;900&family=Geist+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap");
 @import "tailwindcss";
 
 html {
@@ -105,8 +106,13 @@ html[data-theme="light"] {
   --color-DarkLava: #393632;
   --color-SageGray: #8b8b73;
   --color-gold: #cfa355;
+  --font-display: "Geist", "Amiamie", sans-serif;
+  --font-body: "Geist", "Amiamie", sans-serif;
+  --font-accent: "Playfair Display", "Times New Roman", serif;
   --font-amiamie: "Amiamie", sans-serif;
   --font-amiamie-round: "Amiamie-Round", sans-serif;
+  --font-tech-mono: "Geist Mono", "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo,
+    Monaco, Consolas, "Liberation Mono", monospace;
 
   --animate-marquee: marquee 40s infinite linear;
 
@@ -126,7 +132,7 @@ body {
   color: var(--app-fg, #ffffff);
   scroll-behavior: smooth;
   overflow-x: hidden;
-  font-family: var(--font-amiamie);
+  font-family: var(--font-body);
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
@@ -135,18 +141,43 @@ button,
 input,
 textarea,
 select {
-  font-family: var(--font-amiamie);
+  font-family: var(--font-body);
 }
 
-.font-serif,
 .font-sans {
-  font-family: var(--font-amiamie) !important;
+  font-family: var(--font-body) !important;
+}
+
+.font-serif {
+  font-family: var(--font-accent) !important;
+}
+
+.font-mono {
+  font-family: var(--font-tech-mono) !important;
 }
 
 .app-root {
   background: var(--app-bg, #000000);
   color: var(--app-fg, #ffffff);
   transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.app-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.65) 0.45px, transparent 0.45px),
+    radial-gradient(rgba(255, 255, 255, 0.35) 0.35px, transparent 0.35px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 1px;
+}
+
+[data-theme="light"] .app-root::before {
+  opacity: 0.032;
 }
 
 :root,
@@ -270,6 +301,99 @@ select {
 
 .hero-status-meta {
   color: var(--theme-text-tertiary);
+  font-family: var(--font-tech-mono);
+}
+
+.accent-line {
+  font-family: var(--font-accent);
+  font-style: italic;
+}
+
+.technical-label {
+  color: color-mix(in srgb, var(--color-gold) 82%, white 8%);
+  font-family: var(--font-tech-mono);
+  font-size: clamp(9px, 0.7vw, 10px);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.technical-label::before {
+  content: "[ // ";
+  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+}
+
+.technical-label::after {
+  content: " ]";
+  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+}
+
+.technical-label-compact {
+  font-family: var(--font-tech-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.technical-label-compact::before {
+  content: "// ";
+  color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+}
+
+.premium-body-copy {
+  color: var(--theme-text-secondary);
+  font-family: var(--font-body);
+  line-height: 1.8;
+}
+
+.premium-body-copy em,
+.premium-body-copy i {
+  color: var(--theme-text-primary);
+  font-family: var(--font-accent);
+  font-style: italic;
+}
+
+.section-outline-title {
+  color: transparent;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--theme-text-primary) 24%, transparent);
+  background-image: linear-gradient(90deg, var(--theme-text-primary), var(--theme-text-primary));
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: var(--title-fill, 0%) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-size 0.4s ease;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-row.group:hover .project-title {
+  letter-spacing: 0.1em;
+  color: #ffb800;
+  transform: translateX(10px);
+}
+
+@supports not (-webkit-text-stroke: 1px rgba(255, 255, 255, 0.2)) {
+  .section-outline-title {
+    color: var(--theme-text-primary);
+    background: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-title {
+    transition: none;
+  }
+
+  .project-row.group:hover .project-title {
+    transform: none;
+  }
 }
 
 .project-overlay {
@@ -344,6 +468,7 @@ select {
 
 .local-time-wrap {
   color: var(--theme-text-tertiary);
+  font-family: var(--font-tech-mono);
 }
 
 .local-time-dot {
@@ -356,6 +481,8 @@ select {
 
 .live-location-copy {
   color: var(--theme-text-secondary);
+  font-family: var(--font-tech-mono);
+  letter-spacing: 0.08em;
 }
 
 .live-location-primary {
@@ -443,7 +570,7 @@ select {
 }
 
 @utility banner-text-responsive {
-  @apply text-[68px] sm:text-[118px] md:text-[126px] lg:text-[152px] leading-9 sm:leading-16 lg:leading-20;
+  @apply text-[22vw] sm:text-[16vw] md:text-[12vw] leading-[0.82] tracking-[-0.045em];
 }
 
 @utility value-text-responsive {
@@ -584,6 +711,7 @@ select {
   font-weight: 500;
   font-style: italic;
   color: rgba(229, 208, 168, 0.9);
+  font-family: var(--font-accent);
 }
 
 .vinyl-fusion-location {
@@ -596,7 +724,7 @@ select {
   letter-spacing: 0.12em;
   font-size: 0.66rem;
   font-weight: 700;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .vinyl-fusion-bullet {
@@ -614,7 +742,7 @@ select {
   text-transform: uppercase;
   font-size: 0.62rem;
   font-weight: 600;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .vinyl-fusion-status-dot {
@@ -698,7 +826,7 @@ select {
   letter-spacing: 0.13em;
   font-size: 0.58rem;
   font-weight: 700;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .vinyl-fusion-track-title {
@@ -723,7 +851,7 @@ select {
   justify-content: space-between;
   color: rgba(232, 225, 212, 0.84);
   font-size: 0.8rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .vinyl-fusion-progress {
@@ -945,7 +1073,7 @@ select {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .about-cobe-globe-title {
@@ -1141,7 +1269,7 @@ select {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
 }
 
 .gh-title {
@@ -1214,7 +1342,7 @@ select {
 
 .gh-month-cell {
   font-size: 0.48rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
   color: rgba(255, 255, 255, 0.25);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1239,7 +1367,7 @@ select {
 
 .gh-day {
   font-size: 0.48rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
   color: rgba(255, 255, 255, 0.22);
   letter-spacing: 0.04em;
   min-width: 1.4rem;
@@ -1307,7 +1435,7 @@ select {
 .gh-legend-label {
   font-size: 0.46rem;
   color: rgba(255, 255, 255, 0.22);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0 0.2rem;
@@ -1343,7 +1471,7 @@ select {
   text-transform: uppercase;
   color: rgba(235, 220, 191, 0.7);
   font-weight: 600;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-tech-mono);
   background: linear-gradient(180deg, rgba(207, 163, 85, 0.04), transparent);
   transition: all 0.3s ease;
 }

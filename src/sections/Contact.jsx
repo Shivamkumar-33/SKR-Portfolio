@@ -48,16 +48,16 @@ Let’s connect and build something impactful.`;
           
           {/* Left Column */}
           <div className="flex w-full flex-col gap-6 lg:w-3/5 lg:pr-10">
-            <h2 className="theme-text-primary text-3xl sm:text-4xl lg:text-[42px] font-serif leading-tight social-link">
+            <h2 className="theme-text-primary text-3xl sm:text-4xl lg:text-[42px] font-sans leading-tight social-link">
               Ready to work together?
             </h2>
-            <p className="theme-text-secondary text-base sm:text-[17px] font-sans leading-relaxed social-link mb-2 md:mb-4">
+            <p className="theme-text-secondary premium-body-copy text-base sm:text-[17px] font-sans leading-relaxed social-link mb-2 md:mb-4">
               Send me an email or drop a message via WhatsApp, and let's explore how I can help you build your project better.
             </p>
             
             <div className="flex flex-col gap-4 social-link">
               <div className="contact-detail-card flex flex-col sm:flex-row sm:items-center border border-l-[#D4AF37] border-l-[3px] py-5 px-6 lg:px-8 gap-3 sm:gap-6">
-                <span className="theme-text-tertiary w-28 shrink-0 text-xs font-semibold tracking-[0.2em] uppercase">
+                <span className="theme-text-tertiary technical-label-compact w-28 shrink-0 text-xs font-semibold uppercase">
                   Email
                 </span>
                 <a href="mailto:shivamjmp2@gmail.com" className="theme-link transition-colors truncate text-sm sm:text-base tracking-wide">
@@ -66,7 +66,7 @@ Let’s connect and build something impactful.`;
               </div>
               
               <div className="contact-detail-card flex flex-col sm:flex-row sm:items-center border border-l-[#D4AF37] border-l-[3px] py-5 px-6 lg:px-8 gap-3 sm:gap-6">
-                <span className="theme-text-tertiary w-28 shrink-0 text-xs font-semibold tracking-[0.2em] uppercase">
+                <span className="theme-text-tertiary technical-label-compact w-28 shrink-0 text-xs font-semibold uppercase">
                   Phone
                 </span>
                 <a href="tel:+917362006858" className="theme-link transition-colors truncate text-sm sm:text-base tracking-wide">
@@ -78,14 +78,14 @@ Let’s connect and build something impactful.`;
 
           {/* Right Column */}
           <div className="flex w-full flex-col gap-6 lg:w-2/5 mt-4 lg:mt-0 lg:pl-4">
-            <h3 className="theme-text-primary text-2xl sm:text-[32px] font-serif social-link mb-2 md:mb-4">
+            <h3 className="theme-text-primary text-2xl sm:text-[32px] font-sans social-link mb-2 md:mb-4">
               Find me on social
             </h3>
             
             <div className="flex flex-col gap-4 social-link">
               {socials.map((social, index) => (
                 <div key={index} className="contact-social-card flex flex-col sm:flex-row sm:items-center bg-transparent border transition-colors py-5 px-6 lg:px-8 gap-3 sm:gap-6">
-                  <span className="theme-text-tertiary w-28 shrink-0 text-xs font-semibold tracking-[0.2em] uppercase">
+                  <span className="theme-text-tertiary technical-label-compact w-28 shrink-0 text-xs font-semibold uppercase">
                     {social.name}
                   </span>
                   <a href={social.href} target="_blank" rel="noreferrer" className="theme-link transition-colors truncate text-sm sm:text-base tracking-wide">

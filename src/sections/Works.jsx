@@ -129,7 +129,7 @@ const Works = () => {
 
             {/* title */}
             <div className="project-row-content flex justify-between px-10 transition-all duration-500 md:group-hover:px-12">
-              <h2 className="lg:text-[32px] text-[26px] leading-none">
+              <h2 className="project-title lg:text-[32px] text-[26px] leading-none">
                 {project.name}
               </h2>
               <a
@@ -145,7 +145,7 @@ const Works = () => {
             {/* divider */}
             <div className="project-divider h-0.5 w-full" />
             {/* framework */}
-            <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12">
+            <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12 font-mono tracking-[0.2em]">
               {project.frameworks.map((framework) => (
                 <p
                   key={framework.id}
