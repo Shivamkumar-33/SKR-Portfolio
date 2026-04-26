@@ -1,6 +1,6 @@
 import React from "react";
-import { Icon } from "@iconify/react";
 import { socials } from "../constants";
+import FramerSocialIcon from "../components/FramerSocialIcon";
 
 const Footer = () => {
   return (
@@ -12,19 +12,13 @@ const Footer = () => {
         
         <div className="flex items-center gap-4">
           {socials.map((social) => (
-            <a
+            <FramerSocialIcon
               key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.name}
-              className="theme-text-tertiary transition-colors duration-300 hover:text-gold"
-            >
-              <Icon
-                icon={social.icon}
-                className={social.name === "Twitter" ? "w-4 h-4" : "w-5 h-5"}
-              />
-            </a>
+              hef={social.href}
+              icon={social.icon}
+              name={social.name}
+              containerSize={36}
+            />
           ))}
         </div>
       </div>
