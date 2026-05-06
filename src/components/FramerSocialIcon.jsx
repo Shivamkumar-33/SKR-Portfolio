@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
+import MagneticWrap from "./MagneticWrap";
 
 const fallbackIconByName = {
   LinkedIn: "mdi:linkedin",
@@ -28,7 +29,9 @@ const resolveIcon = (icon, name) => {
 const FramerSocialIcon = ({
   containerSize = 36,
   borderRadius = 999,
-  hef = "https://x.com/",
+  href = "https://x.com/",
+  // Keep backwards compat with legacy "hef" prop
+  hef,
   icon = "X",
   name = "Social",
   openInNew = true,
@@ -37,29 +40,34 @@ const FramerSocialIcon = ({
 }) => {
   const iconPx = Math.max(14, Math.round(containerSize * 0.5));
   const iconName = resolveIcon(icon, name);
+  const resolvedHref = href || hef || "#";
 
   return (
-    <motion.a
-      href={hef}
-      aria-label={name}
-      className={`framer-social-icon ${className}`.trim()}
-      style={{
-        width: containerSize,
-        height: containerSize,
-        borderRadius,
-      }}
-      whileHover={{
-        scale: hoverLift ? 1.08 : 1,
-        y: hoverLift ? -3 : 0,
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      target={openInNew ? "_blank" : undefined}
-      rel={openInNew ? "noopener noreferrer" : undefined}
-    >
-      <Icon icon={iconName} style={{ fontSize: iconPx }} />
-    </motion.a>
+    <MagneticWrap strength={8}>
+      <motion.a
+        href={resolvedHref}
+        aria-label={name}
+        className={`framer-social-icon ${className}`.trim()}
+        style={{
+          width: containerSize,
+          height: containerSize,
+          borderRadius,
+        }}
+        whileHover={{
+          scale: hoverLift ? 1.08 : 1,
+          y: hoverLift ? -3 : 0,
+          boxShadow: "0 0 16px rgba(207, 163, 85, 0.15)",
+        }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        target={openInNew ? "_blank" : undefined}
+        rel={openInNew ? "noopener noreferrer" : undefined}
+      >
+        <Icon icon={iconName} style={{ fontSize: iconPx }} />
+      </motion.a>
+    </MagneticWrap>
   );
 };
 
 export default FramerSocialIcon;
+

@@ -190,14 +190,14 @@ const Hero = () => {
 
       <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
         <h1
-          className="hero-title theme-text-primary mb-6 flex gap-[0.02em] overflow-hidden py-2 text-[18vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[16vw] md:mb-10 md:text-[15vw]"
+          className="hero-title theme-text-primary mb-6 flex gap-[0.02em]  py-2 text-[18vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[16vw] md:mb-10 md:text-[15vw] premium-header"
           style={{
             fontFamily: "var(--font-amiamie-round)",
             textShadow: "0 0 28px rgba(207, 163, 85, 0.24)",
           }}
         >
           {"SHIVAM".split("").map((char, i) => (
-            <span key={i} className="hero-title-char inline-block origin-bottom-left">
+            <span key={i} className="hero-title-char inline-block origin-bottom-left ">
               {char}
             </span>
           ))}

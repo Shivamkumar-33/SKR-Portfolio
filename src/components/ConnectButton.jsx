@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import MagneticWrap from "./MagneticWrap";
 
 const ConnectButton = () => {
   const buttonRef = useRef(null);
@@ -78,6 +79,7 @@ const ConnectButton = () => {
   }, []);
 
   return (
+    <MagneticWrap strength={14}>
     <a
       href="#contact"
       ref={buttonRef}
@@ -131,6 +133,7 @@ const ConnectButton = () => {
         </span>
       </div>
     </a>
+    </MagneticWrap>
   );
 };
 

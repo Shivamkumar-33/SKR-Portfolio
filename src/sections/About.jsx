@@ -54,6 +54,8 @@ Building high-performance applications that grow from prototype to production`;
     });
   }, []);
 
+  const isVisibleRef = useRef(false);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
@@ -85,6 +87,12 @@ Building high-performance applications that grow from prototype to production`;
 
     let animationId = 0;
     const animate = () => {
+      // Only run the animation when the globe is visible in the viewport
+      if (!isVisibleRef.current) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+
       if (!isDraggingRef.current) {
         const autoSpin = 0.0022;
         const momentum = spinVelocityRef.current * 0.93;
@@ -99,6 +107,15 @@ Building high-performance applications that grow from prototype to production`;
 
     animate();
 
+    // IntersectionObserver — pause globe rendering when off-screen
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 },
+    );
+    visibilityObserver.observe(canvas);
+
     const resizeObserver = new ResizeObserver(() => {
       const nextSize = canvas.offsetWidth;
       globe.update({ width: nextSize, height: nextSize });
@@ -108,6 +125,7 @@ Building high-performance applications that grow from prototype to production`;
     canvas.style.opacity = "1";
 
     return () => {
+      visibilityObserver.disconnect();
       resizeObserver.disconnect();
       cancelAnimationFrame(animationId);
       globe.destroy();
