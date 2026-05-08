@@ -72,18 +72,6 @@ const Hero = () => {
         duration: reduceMotion ? 0.4 : 1,
       })
         .from(
-          ".hero-title-char",
-          {
-            yPercent: reduceMotion ? 0 : 120,
-            opacity: reduceMotion ? 0 : 1,
-            rotationZ: reduceMotion ? 0 : 8,
-            stagger: 0.08,
-            duration: 0.8,
-            ease: "power4.out",
-          },
-          "-=0.3"
-        )
-        .from(
           ".hero-subtitle",
           {
             y: reduceMotion ? 0 : 16,
@@ -190,17 +178,13 @@ const Hero = () => {
 
       <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
         <h1
-          className="hero-title theme-text-primary mb-6 flex gap-[0.02em]  py-2 text-[18vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[16vw] md:mb-10 md:text-[15vw] premium-header"
+          className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] premium-header"
           style={{
-            fontFamily: "var(--font-amiamie-round)",
+            fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
             textShadow: "0 0 28px rgba(207, 163, 85, 0.24)",
           }}
         >
-          {"SHIVAM".split("").map((char, i) => (
-            <span key={i} className="hero-title-char inline-block origin-bottom-left ">
-              {char}
-            </span>
-          ))}
+          SHIVAM
         </h1>
 
         <p className="hero-subtitle technical-label theme-text-secondary mb-3 sm:mb-4 md:text-lg">
