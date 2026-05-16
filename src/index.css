@@ -120,8 +120,6 @@ html[data-theme="light"] {
   --font-display: "Clash Display", "Amiamie", sans-serif;
   --font-body: "Satoshi", "Geist", sans-serif;
   --font-accent: "Playfair Display", "Times New Roman", serif;
-  --font-amiamie: "Amiamie", sans-serif;
-  --font-amiamie-round: "Amiamie-Round", sans-serif;
   --font-tech-mono: "Geist Mono", monospace, "JetBrains Mono", "SFMono-Regular", Menlo,
     Monaco, Consolas, "Liberation Mono", monospace;
 

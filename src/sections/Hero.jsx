@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { Icon } from "@iconify/react";
 import LiveLocation from "../components/LiveLocation";
 import ConnectButton from "../components/ConnectButton";
 import LocalTime from "../components/LocalTime";
@@ -8,9 +9,7 @@ const Hero = () => {
   const container = useRef(null);
   const copyResetRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
-  const [copyIconMissing, setCopyIconMissing] = useState(false);
   const emailAddress = "shivamjmp2@gmail.com";
-  const copyIconSrc = "/images/copy-icon.png";
 
   const handleCopyEmail = async () => {
     try {
@@ -211,41 +210,7 @@ const Hero = () => {
               </span>
             ) : (
               <span className="theme-text-secondary hover:theme-text-primary inline-flex items-center gap-2 transition-colors">
-                {!copyIconMissing ? (
-                  <img
-                    src={copyIconSrc}
-                    alt="copy"
-                    className="copy-email-icon h-5 w-5 object-contain opacity-90"
-                    onError={() => setCopyIconMissing(true)}
-                  />
-                ) : (
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="9"
-                      y="9"
-                      width="10"
-                      height="10"
-                      rx="2"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                    />
-                    <rect
-                      x="5"
-                      y="5"
-                      width="10"
-                      height="10"
-                      rx="2"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      opacity="0.72"
-                    />
-                  </svg>
-                )}
+                <Icon icon="lucide:copy" className="h-5 w-5" />
                 <span className="font-medium tracking-tight font-mono">{emailAddress}</span>
               </span>
             )}
