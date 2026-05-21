@@ -3,9 +3,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import createGlobe from "cobe";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import AboutLogoTimeline, { fullStackLogos } from "../components/AboutLogoTimeline";
+import AboutLogoTimeline from "../components/AboutLogoTimeline";
 import GitHubHeatmap from "../components/GitHubHeatmap";
 import VinylIntroCard from "../components/VinylIntroCard";
+import { fullStackLogos } from "../constants";
 
 const pulseMarkers = [
   { id: "pulse-india", location: [28.61, 77.21], delay: 0 },

@@ -90,7 +90,6 @@ export const NavItems = ({ items, className, onItemClick, activeLink, theme = "d
         const isActive = activeLink === item.link;
 
         return (
-          /* Improvement 5: Stagger entrance animation for each nav link */
           <motion.a
             key={`link-${idx}`}
             initial={{ opacity: 0, y: -8 }}
@@ -108,7 +107,6 @@ export const NavItems = ({ items, className, onItemClick, activeLink, theme = "d
             href={item.link}
             aria-current={isActive ? "page" : undefined}
           >
-            {/* Improvement 2: Animated active pill slider */}
             {isActive && (
               <motion.div
                 layoutId="activeNavPill"
@@ -187,7 +185,6 @@ export const MobileNavHeader = ({ children, className }) => {
   );
 };
 
-/* Improvement 6: Premium Mobile Menu Polish */
 export const MobileNavMenu = ({
   children,
   className,
@@ -246,7 +243,6 @@ export const MobileNavToggle = ({ isOpen, onClick, controlsId, theme = "dark" })
   );
 };
 
-/* Improvement 5: Stagger entrance on logo */
 export const NavbarLogo = ({ theme = "dark" }) => {
   return (
     <motion.a

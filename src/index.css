@@ -572,7 +572,7 @@ select {
   color: #8a5b1f;
 }
 
-/* Improvement 1: Gradient border glow for navbar */
+/* Navbar border glow */
 .navbar-glow {
   position: relative;
 }
@@ -2063,4 +2063,4 @@ a.gh-stat-pill {
   display: inline-flex;
   position: relative;
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-}
+}

@@ -75,3 +75,29 @@ export const socials = [
     icon: "ri:twitter-x-fill",
   },
 ];
+
+export const fullStackLogos = [
+  { label: "HTML5", icon: "html", color: "#E34F26", animationDelay: -48, animationDuration: 48, row: 1 },
+  { label: "CSS3", icon: "css", color: "#1572B6", animationDelay: -36, animationDuration: 48, row: 1 },
+  { label: "JavaScript", icon: "js", color: "#F7DF1E", animationDelay: -24, animationDuration: 48, row: 1 },
+  { label: "TypeScript", icon: "ts", color: "#3178C6", animationDelay: -12, animationDuration: 48, row: 1 },
+  { label: "React", icon: "react", color: "#61DAFB", animationDelay: 0, animationDuration: 48, row: 1 },
+
+  { label: "Next.js", icon: "next", color: "#FFFFFF", animationDelay: -54, animationDuration: 54, row: 2 },
+  { label: "Tailwind", icon: "tailwind", color: "#06B6D4", animationDelay: -43, animationDuration: 54, row: 2 },
+  { label: "Redux", icon: "redux", color: "#764ABC", animationDelay: -32, animationDuration: 54, row: 2 },
+  { label: "Vite", icon: "vite", color: "#646CFF", animationDelay: -21, animationDuration: 54, row: 2 },
+  { label: "GraphQL", icon: "graphql", color: "#E10098", animationDelay: -10, animationDuration: 54, row: 2 },
+
+  { label: "Node.js", icon: "node", color: "#339933", animationDelay: -58, animationDuration: 58, row: 3 },
+  { label: "Express", icon: "express", color: "#FFFFFF", animationDelay: -46, animationDuration: 58, row: 3 },
+  { label: "NestJS", icon: "nest", color: "#E0234E", animationDelay: -34, animationDuration: 58, row: 3 },
+  { label: "PostgreSQL", icon: "postgres", color: "#4169E1", animationDelay: -22, animationDuration: 58, row: 3 },
+  { label: "MongoDB", icon: "mongo", color: "#47A248", animationDelay: -10, animationDuration: 58, row: 3 },
+
+  { label: "Redis", icon: "redis", color: "#DC382D", animationDelay: -52, animationDuration: 52, row: 4 },
+  { label: "Docker", icon: "docker", color: "#2496ED", animationDelay: -41, animationDuration: 52, row: 4 },
+  { label: "AWS", icon: "aws", color: "#FF9900", animationDelay: -30, animationDuration: 52, row: 4 },
+  { label: "Git", icon: "git", color: "#F05032", animationDelay: -19, animationDuration: 52, row: 4 },
+  { label: "GitHub", icon: "github", color: "#FFFFFF", animationDelay: -8, animationDuration: 52, row: 4 },
+];

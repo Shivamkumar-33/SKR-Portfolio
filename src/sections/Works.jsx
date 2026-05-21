@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { projects } from "../constants";
 import { useRef, useState } from "react";
@@ -170,7 +170,7 @@ const Works = () => {
             </div>
           </div>
         ))}
-        {/* desktop Flaoting preview image */}
+        {/* desktop Floating preview image */}
         <div
           ref={previewRef}
           className="project-preview-frame fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden border-8 pointer-events-none opacity-0 md:block"

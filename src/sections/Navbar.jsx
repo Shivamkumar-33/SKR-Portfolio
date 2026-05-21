@@ -128,7 +128,6 @@ const Navbar = ({ theme = "dark", onToggleTheme }) => {
               theme={theme}
               onClose={() => setIsMobileMenuOpen(false)}
             >
-              {/* Improvement 6: Staggered mobile menu items */}
               {navItems.map((item, i) => {
                 const isActive = activeSection === item.link.replace("#", "");
                 return (

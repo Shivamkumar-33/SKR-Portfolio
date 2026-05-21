@@ -125,7 +125,6 @@ const GitHubHeatmap = () => {
       } catch (err) {
         if (err.name !== "AbortError") {
           setError(err.message);
-          console.warn("GitHub data fetch failed:", err);
         }
       } finally {
         setIsLoading(false);

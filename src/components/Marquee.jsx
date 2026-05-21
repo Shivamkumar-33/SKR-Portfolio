@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import gsap from "gsap";
 import { Observer } from "gsap/all";
 import { useEffect, useRef } from "react";
