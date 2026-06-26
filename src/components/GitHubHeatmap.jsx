@@ -10,11 +10,11 @@ const CONTRIBUTIONS_API = `https://github-contributions-api.jogruber.de/v4/${GIT
 const USER_API = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
 const LEVEL_COLORS = [
-  "rgba(207,163,85,0.04)",  // 0 — empty
-  "rgba(207,163,85,0.18)",  // 1
-  "rgba(207,163,85,0.38)",  // 2
-  "rgba(207,163,85,0.62)",  // 3
-  "#cfa355",                // 4 — max
+  "rgba(191,161,129,0.04)",  // 0 — empty
+  "rgba(191,161,129,0.18)",  // 1
+  "rgba(191,161,129,0.38)",  // 2
+  "rgba(191,161,129,0.62)",  // 3
+  "#BFA181",                // 4 — max
 ];
 
 const MONTH_NAMES = [

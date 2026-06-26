@@ -149,7 +149,7 @@ const Hero = () => {
       className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-5 pb-8 pt-20 sm:px-6 sm:pb-10 sm:pt-24 md:pt-28"
     >
       <div className="hero-atmosphere pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(207,163,85,0.14),transparent_45%),radial-gradient(circle_at_70%_80%,rgba(207,163,85,0.06),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(191,161,129,0.14),transparent_45%),radial-gradient(circle_at_70%_80%,rgba(191,161,129,0.06),transparent_55%)]" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -161,7 +161,7 @@ const Hero = () => {
           className="absolute left-1/2 top-[12%] h-[50rem] w-[50rem] -translate-x-1/2"
           style={{
             background:
-              "radial-gradient(circle, rgba(207,163,85,0.14) 0%, rgba(207,163,85,0.08) 28%, rgba(207,163,85,0.03) 52%, rgba(207,163,85,0) 78%)",
+              "radial-gradient(circle, rgba(191,161,129,0.14) 0%, rgba(191,161,129,0.08) 28%, rgba(191,161,129,0.03) 52%, rgba(191,161,129,0) 78%)",
             filter: "blur(26px)",
           }}
         />
@@ -180,7 +180,7 @@ const Hero = () => {
           className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
-            textShadow: "0 0 28px rgba(207, 163, 85, 0.24)",
+            textShadow: "0 0 28px rgba(191, 161, 129, 0.24)",
           }}
         >
           SHIVAM

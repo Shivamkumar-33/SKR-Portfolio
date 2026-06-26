@@ -56,7 +56,7 @@ const FramerSocialIcon = ({
         whileHover={{
           scale: hoverLift ? 1.08 : 1,
           y: hoverLift ? -3 : 0,
-          boxShadow: "0 0 16px rgba(207, 163, 85, 0.15)",
+          boxShadow: "0 0 16px rgba(191, 161, 129, 0.15)",
         }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}

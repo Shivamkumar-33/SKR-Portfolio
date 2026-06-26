@@ -83,7 +83,7 @@ const ConnectButton = () => {
     <a
       href="#contact"
       ref={buttonRef}
-      className="connect-btn group relative inline-flex items-center overflow-hidden rounded-full border bg-transparent p-[1px] shadow-[0_0_20px_-5px_rgba(207,163,85,0.15)] transition-colors duration-500 hover:border-gold/60"
+      className="connect-btn group relative inline-flex items-center overflow-hidden rounded-full border bg-transparent p-[1px] shadow-[0_0_20px_-5px_rgba(191,161,129,0.15)] transition-colors duration-500 hover:border-gold/60"
       style={{ isolation: "isolate" }}
     >
       {/* The trailing mouse flair effect */}
