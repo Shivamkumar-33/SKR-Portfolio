@@ -2067,3 +2067,14 @@ a.gh-stat-pill {
   position: relative;
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
+ / *   C o m m a n d   P a l e t t e   S t y l e s   * / 
+ . c m d k - i t e m [ a r i a - s e l e c t e d = \  
+ t r u e \ ]   { 
+     b a c k g r o u n d - c o l o r :   r g b a ( 1 9 1 ,   1 6 1 ,   1 2 9 ,   0 . 1 5 ) ; 
+     c o l o r :   # B F A 1 8 1 ; 
+ } 
+ . c m d k - i t e m [ a r i a - s e l e c t e d = \ t r u e \ ]   s v g   { 
+     o p a c i t y :   1 ; 
+ } 
+  
+ 
