@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 html {
@@ -11,94 +11,6 @@ html[data-theme="dark"] {
 
 html[data-theme="light"] {
   color-scheme: light;
-}
-
-/* Amiamie Regular */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-Regular.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Amiamie Regular Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-Italic.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Amiamie Light */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-Light.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Amiamie Light Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-LightItalic.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Amiamie Black */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-Black.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Amiamie Black Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/amiamie/otf/Amiamie-BlackItalic.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Amiamie-Round Variants */
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/amiamie/otf/Amiamie-RegularRound.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-RegularRound.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/amiamie/otf/Amiamie-BlackRound.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-BlackRound.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/amiamie/otf/Amiamie-BlackItalicRound.otf") format("opentype"),
-    url("/fonts/amiamie/ttf/Amiamie-BlackItalicRound.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
 }
 
 @theme {
@@ -302,13 +214,6 @@ select {
   opacity: 0.75;
 }
 
-.copy-email-icon {
-  filter: brightness(0) invert(1);
-}
-
-[data-theme="light"] .copy-email-icon {
-  filter: brightness(0) saturate(100%);
-}
 
 .hero-status-chip {
   border-color: var(--theme-border-soft);
@@ -1066,60 +971,6 @@ select {
   }
 }
 
-.about-cobe-mini-title {
-  color: rgba(191, 161, 129, 0.82);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-.about-cobe-intro-title {
-  color: #ffffff;
-  font-size: clamp(1.2rem, 1.6vw, 1.8rem);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  max-width: 19ch;
-}
-
-.about-cobe-intro-list {
-  width: 100%;
-  margin-top: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.about-cobe-intro-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 0.85rem;
-}
-
-.about-cobe-intro-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.about-cobe-intro-primary {
-  white-space: pre-line;
-  color: rgba(246, 248, 255, 0.97);
-  font-size: clamp(1.2rem, 1.95vw, 2.1rem);
-  line-height: 1.08;
-  font-weight: 500;
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
-}
-
-.about-cobe-intro-secondary {
-  margin-top: 0.5rem;
-  color: rgba(255, 255, 255, 0.48);
-  font-size: clamp(0.95rem, 1.25vw, 1.55rem);
-  line-height: 1.2;
-  font-weight: 500;
-  text-transform: uppercase;
-}
 
 .about-cobe-card-globe {
   grid-column: 2 / 4;
@@ -1211,20 +1062,6 @@ select {
   z-index: 4;
 }
 
-.about-cobe-arc-label {
-  position: absolute;
-  bottom: anchor(top);
-  left: anchor(center);
-  translate: -50% -0.4rem;
-  color: rgba(239, 222, 182, 0.95);
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: opacity 0.3s ease;
-  z-index: 4;
-}
 
 .about-cobe-pulse {
   position: absolute;
@@ -1268,47 +1105,6 @@ select {
   gap: 1rem;
 }
 
-.about-cobe-map-visual {
-  width: 100%;
-  height: 88px;
-  border-radius: 12px;
-  border: 1px solid rgba(191, 161, 129, 0.25);
-  background:
-    radial-gradient(circle at 72% 40%, rgba(191, 161, 129, 0.36), transparent 58%),
-    repeating-linear-gradient(90deg, rgba(191, 161, 129, 0.14) 0px, rgba(191, 161, 129, 0.14) 1px, transparent 1px, transparent 9px),
-    repeating-linear-gradient(180deg, rgba(191, 161, 129, 0.08) 0px, rgba(191, 161, 129, 0.08) 1px, transparent 1px, transparent 8px),
-    linear-gradient(180deg, rgba(16, 12, 8, 0.82), rgba(8, 6, 4, 0.9));
-}
-
-.about-cobe-map-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.about-cobe-map-title {
-  font-size: clamp(0.92rem, 1.1vw, 1.1rem);
-  line-height: 1.3;
-  color: rgba(239, 228, 207, 0.92);
-}
-
-.about-cobe-map-metrics {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.about-cobe-map-metrics span {
-  border: 1px solid rgba(191, 161, 129, 0.3);
-  border-radius: 999px;
-  padding: 0.28rem 0.62rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(235, 220, 191, 0.9);
-  font-weight: 600;
-}
 
 /* ── GitHub Heatmap Card (Professional) ── */
 
@@ -2067,14 +1863,3 @@ a.gh-stat-pill {
   position: relative;
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
- / *   C o m m a n d   P a l e t t e   S t y l e s   * / 
- . c m d k - i t e m [ a r i a - s e l e c t e d = \  
- t r u e \ ]   { 
-     b a c k g r o u n d - c o l o r :   r g b a ( 1 9 1 ,   1 6 1 ,   1 2 9 ,   0 . 1 5 ) ; 
-     c o l o r :   # B F A 1 8 1 ; 
- } 
- . c m d k - i t e m [ a r i a - s e l e c t e d = \ t r u e \ ]   s v g   { 
-     o p a c i t y :   1 ; 
- } 
-  
- 
