@@ -65,18 +65,12 @@ const Hero = () => {
         },
       });
 
-      tl.from(".hero-atmosphere", {
-        opacity: 0,
-        scale: reduceMotion ? 1 : 1.08,
-        duration: reduceMotion ? 0.4 : 1,
-      })
-        .from(
+      tl.from(
           ".hero-subtitle",
           {
             y: reduceMotion ? 0 : 16,
             opacity: 0,
-          },
-          "-=0.6"
+          }
         )
         .from(
           ".hero-highlight",
@@ -148,32 +142,9 @@ const Hero = () => {
       ref={container}
       className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-5 pb-8 pt-20 sm:px-6 sm:pb-10 sm:pt-24 md:pt-28"
     >
-      <div className="hero-atmosphere pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(191,161,129,0.14),transparent_45%),radial-gradient(circle_at_70%_80%,rgba(191,161,129,0.06),transparent_55%)]" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')",
-          }}
-        />
-        <div
-          className="absolute left-1/2 top-[12%] h-[50rem] w-[50rem] -translate-x-1/2"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(191,161,129,0.14) 0%, rgba(191,161,129,0.08) 28%, rgba(191,161,129,0.03) 52%, rgba(191,161,129,0) 78%)",
-            filter: "blur(26px)",
-          }}
-        />
-      </div>
 
-      <div className="absolute left-5 top-5 z-20 hidden lg:block sm:left-7 sm:top-6 md:left-10 md:top-8">
-        <img
-          src="/images/logo.svg"
-          alt="System Core Logo"
-          className="hero-corner-logo h-10 w-auto opacity-85 hover:opacity-100 sm:h-12 md:h-14"
-        />
-      </div>
+
+
 
       <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
         <h1
