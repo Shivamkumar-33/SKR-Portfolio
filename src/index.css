@@ -260,7 +260,7 @@ select {
 
 .project-row.group:hover .project-title {
   letter-spacing: 0.1em;
-  color: #BFA181;
+  color: var(--theme-project-hover-fg);
   transform: translateX(10px);
 }
 
