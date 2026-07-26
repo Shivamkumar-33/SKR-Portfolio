@@ -4,7 +4,7 @@ import gsap from "gsap";
 import createGlobe from "cobe";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import AboutLogoTimeline from "../components/AboutLogoTimeline";
-import GitHubHeatmap from "../components/GitHubHeatmap";
+import ReactionTimeTest from "../components/ReactionTimeTest";
 import VinylIntroCard from "../components/VinylIntroCard";
 import { fullStackLogos } from "../constants";
 
@@ -232,7 +232,7 @@ Building high-performance applications that grow from prototype to production`;
         </article>
 
         <article className="about-cobe-card about-cobe-card-map">
-          <GitHubHeatmap />
+          <ReactionTimeTest />
         </article>
 
         <article className="about-cobe-card about-cobe-card-stack">
