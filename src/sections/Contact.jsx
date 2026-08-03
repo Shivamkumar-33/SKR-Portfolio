@@ -24,14 +24,14 @@ const quickLinks = [
     label: "GitHub",
     value: "github.com/Shivamkumar-33",
     href: socials.find((s) => s.name === "GitHub")?.href || "#",
-    icon: "mdi:github",
+    icon: "ph:github-logo-duotone",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
-    value: "linkedin.com/in/shivam-kumar",
+    value: "linkedin.com/in/shivam-kumar-3827b1352",
     href: socials.find((s) => s.name === "LinkedIn")?.href || "#",
-    icon: "mdi:linkedin",
+    icon: "ph:linkedin-logo-duotone",
   },
 ];
 

@@ -519,22 +519,6 @@ select {
 }
 
 
-.framer-social-icon {
-  color: var(--theme-text-tertiary);
-  border: 1px solid var(--theme-border-soft);
-  background: color-mix(in srgb, var(--theme-card-bg) 68%, transparent);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
-}
-
-.framer-social-icon:hover {
-  color: #BFA181;
-  border-color: var(--theme-border-strong);
-  background: color-mix(in srgb, var(--theme-card-bg) 88%, transparent);
-}
-
 .local-time-wrap {
   color: var(--theme-text-tertiary);
   font-family: var(--font-tech-mono);
@@ -790,13 +774,15 @@ select {
   font-size: clamp(1.5rem, 2.4vw, 2.45rem);
   line-height: 1;
   font-weight: 700;
+  font-family: var(--font-body);
 }
 
 .vinyl-fusion-name span {
   font-weight: 500;
   font-style: italic;
-  color: rgba(229, 208, 168, 0.9);
+  color: rgba(229, 208, 168, 0.92);
   font-family: var(--font-accent);
+  letter-spacing: -0.025em;
 }
 
 .vinyl-fusion-location {
@@ -902,10 +888,11 @@ select {
 
 .vinyl-fusion-label {
   position: absolute;
-  inset: 47%;
+  inset: 38%;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
 .vinyl-fusion-spinning {
@@ -918,7 +905,10 @@ select {
 }
 
 .vinyl-fusion-now {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
   margin-bottom: 0.38rem;
   color: rgba(191, 161, 129, 0.86);
   text-transform: uppercase;
@@ -996,6 +986,13 @@ select {
   justify-content: center;
 }
 
+.vinyl-fusion-mini-btn:disabled,
+.vinyl-fusion-play-btn:disabled {
+  opacity: 0.45;
+  cursor: wait;
+  transform: none;
+}
+
 .vinyl-fusion-play-btn {
   width: 52px;
   height: 52px;
@@ -1051,6 +1048,28 @@ select {
   border-color: rgba(191, 161, 129, 0.5);
   background: rgba(191, 161, 129, 0.08);
   transform: translateY(-2px);
+}
+
+.vinyl-fusion-download {
+  color: #BFA181;
+  border-color: rgba(191, 161, 129, 0.35);
+}
+
+.vinyl-fusion-yt-host {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 320px;
+  height: 180px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vinyl-fusion-track-count {
+  margin-left: 0.35rem;
+  opacity: 0.65;
+  letter-spacing: 0.08em;
 }
 
 .vinyl-fusion-fade-in {
@@ -1965,11 +1984,4 @@ select {
   color: var(--color-gold);
   border-color: var(--theme-border-strong);
   transform: translateY(-2px);
-}
-
-/* ── Magnetic cursor interaction utility ── */
-.magnetic-wrap {
-  display: inline-flex;
-  position: relative;
-  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }

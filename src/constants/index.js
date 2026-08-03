@@ -61,18 +61,18 @@ export const projects = [
 export const socials = [
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/shivam-kumar-34471224b",
-    icon: "mdi:linkedin",
+    href: "https://www.linkedin.com/in/shivam-kumar-3827b1352",
+    icon: "ph:linkedin-logo-duotone",
   },
   {
     name: "GitHub",
     href: "https://github.com/Shivamkumar-33",
-    icon: "mdi:github",
+    icon: "ph:github-logo-duotone",
   },
   {
     name: "Twitter",
-    href: "https://x.com/",
-    icon: "ri:twitter-x-fill",
+    href: "https://x.com/ShivamKumarRud1",
+    icon: "ph:x-logo-duotone",
   },
 ];
 
