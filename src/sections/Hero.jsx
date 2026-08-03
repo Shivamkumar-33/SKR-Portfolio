@@ -148,7 +148,7 @@ const Hero = () => {
 
       <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
         <h1
-          className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] premium-header"
+          className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] tracking-[-0.04em] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
             textShadow: "0 0 28px rgba(191, 161, 129, 0.24)",

@@ -104,7 +104,7 @@ Let’s connect and build something impactful.`;
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 lg:items-stretch">
           {/* LEFT */}
           <div className="contact-reveal flex flex-col">
-            <h2 className="font-sans text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-[var(--theme-text-primary)] sm:text-[2.1rem] lg:text-[2.35rem]">
+            <h2 className="font-sans text-[1.85rem] font-semibold leading-[1.12] tracking-[-0.03em] text-[var(--theme-text-primary)] sm:text-[2.1rem] lg:text-[2.35rem]">
               Let&apos;s build{" "}
               <span className="text-[var(--theme-text-tertiary)]">
                 something cool.

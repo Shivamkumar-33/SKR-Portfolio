@@ -114,7 +114,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-6 flex w-full justify-center md:mb-[-0.5%] md:mt-12">
-          <h1 className="footer-watermark pointer-events-none select-none text-center text-[clamp(4.5rem,19.5vw,25rem)] font-extrabold leading-[0.70] tracking-tighter">
+          <h1 className="footer-watermark pointer-events-none select-none text-center font-serif text-[clamp(4.5rem,19.5vw,25rem)] font-extrabold leading-[0.70] tracking-[-0.04em]">
             Shivam
           </h1>
         </div>
