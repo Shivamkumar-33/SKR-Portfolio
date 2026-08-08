@@ -23,7 +23,7 @@ const navItems = [
 
 const sectionIds = ["home", "about", "projects", "contact"];
 
-const Navbar = ({ theme = "dark", onToggleTheme }) => {
+const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -55,8 +55,16 @@ const Navbar = ({ theme = "dark", onToggleTheme }) => {
   };
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-1.5 md:px-8">
-      <div className="pointer-events-auto">
+    <motion.div
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-1.5 md:px-8"
+      initial={false}
+      animate={{
+        opacity: isRevealed ? 1 : 0,
+        y: isRevealed ? 0 : -16,
+      }}
+      transition={{ duration: 0.85, delay: isRevealed ? 0.35 : 0, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className={isRevealed ? "pointer-events-auto" : "pointer-events-none"}>
         <ResizableNavbar className="mx-auto max-w-4xl" theme={theme}>
           <NavBody className="px-2 md:px-3">
             <NavbarLogo theme={theme} />
@@ -212,7 +220,7 @@ const Navbar = ({ theme = "dark", onToggleTheme }) => {
           </MobileNav>
         </ResizableNavbar>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,15 +1,65 @@
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { motion, useReducedMotion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import LiveLocation from "../components/LiveLocation";
 import ConnectButton from "../components/ConnectButton";
 import LocalTime from "../components/LocalTime";
 
-const Hero = () => {
-  const container = useRef(null);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 36, scale: 0.92, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.95,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const titleContainerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.045,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: "0.55em", rotateX: 55, scale: 0.88 },
+  show: {
+    opacity: 1,
+    y: "0em",
+    rotateX: 0,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const Hero = ({ isRevealed = true }) => {
   const copyResetRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
+  const reduceMotion = useReducedMotion();
   const emailAddress = "shivamjmp2@gmail.com";
+  const title = "SHIVAM";
 
   const handleCopyEmail = async () => {
     try {
@@ -53,120 +103,70 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-          duration: reduceMotion ? 0.45 : 0.9,
-        },
-      });
-
-      tl.from(
-          ".hero-subtitle",
-          {
-            y: reduceMotion ? 0 : 16,
-            opacity: 0,
-          }
-        )
-        .from(
-          ".hero-highlight",
-          {
-            y: reduceMotion ? 0 : 18,
-            skewY: reduceMotion ? 0 : 4,
-            opacity: 0,
-          },
-          "-=0.6"
-        )
-        .from(
-          ".hero-ctas",
-          {
-            y: reduceMotion ? 0 : 14,
-            opacity: 0,
-          },
-          "-=0.45"
-        )
-        .from(
-          ".hero-scroll-cue",
-          {
-            y: reduceMotion ? 0 : 10,
-            opacity: 0,
-          },
-          "-=0.35"
-        )
-        .from(
-          ".hero-footer",
-          {
-            y: reduceMotion ? 0 : 16,
-            opacity: 0,
-            stagger: 0.12,
-          },
-          "-=0.4"
-        );
-
-      if (!reduceMotion) {
-        tl.from(
-          ".hero-footer-left",
-          {
-            x: -22,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "<"
-        ).from(
-          ".hero-footer-right",
-          {
-            x: 22,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "<"
-        );
-      }
-    }, container);
-
     return () => {
-      ctx.revert();
       if (copyResetRef.current) {
         clearTimeout(copyResetRef.current);
       }
     };
   }, []);
 
+  const motionProps = reduceMotion
+    ? { initial: false, animate: "show" }
+    : {
+        initial: "hidden",
+        animate: isRevealed ? "show" : "hidden",
+      };
+
   return (
     <section
       id="home"
-      ref={container}
       className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-5 pb-8 pt-20 sm:px-6 sm:pb-10 sm:pt-24 md:pt-28"
     >
-
-
-
-
-      <div className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14">
-        <h1
+      <motion.div
+        className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14"
+        variants={containerVariants}
+        {...motionProps}
+      >
+        <motion.h1
+          variants={titleContainerVariants}
           className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] tracking-[-0.04em] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
             textShadow: "0 0 28px rgba(191, 161, 129, 0.24)",
+            perspective: 800,
           }}
+          aria-label="SHIVAM"
         >
-          SHIVAM
-        </h1>
+          {title.split("").map((letter, i) => (
+            <motion.span
+              key={`${letter}-${i}`}
+              variants={letterVariants}
+              className="hero-title-letter"
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </motion.h1>
 
-        <p className="hero-subtitle technical-label theme-text-secondary mb-3 sm:mb-4 md:text-lg">
+        <motion.p
+          variants={itemVariants}
+          className="hero-subtitle technical-label theme-text-secondary mb-3 sm:mb-4 md:text-lg"
+        >
           I BUILD COOL THINGS FOR THE INTERNET
-        </p>
+        </motion.p>
 
-        <p className="hero-highlight accent-line theme-text-primary text-4xl italic md:text-7xl md:tracking-wider sm:text-5xl">
+        <motion.p
+          variants={itemVariants}
+          className="hero-highlight accent-line theme-text-primary text-4xl italic md:text-7xl md:tracking-wider sm:text-5xl"
+        >
           mostly with React and caffeine.
-        </p>
+        </motion.p>
 
-        <div className="hero-ctas mt-6 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-6">
-          <ConnectButton />
+        <motion.div
+          variants={itemVariants}
+          className="hero-ctas mt-6 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-6"
+        >
+          <ConnectButton magnetic />
 
           <button
             type="button"
@@ -186,15 +186,33 @@ const Hero = () => {
               </span>
             )}
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="hero-scroll-cue theme-text-tertiary absolute bottom-16 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[10px] uppercase tracking-[0.3em] sm:bottom-20 md:flex">
+      <motion.div
+        className="hero-scroll-cue theme-text-tertiary absolute bottom-16 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[10px] uppercase tracking-[0.3em] sm:bottom-20 md:flex"
+        initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.92 }}
+        animate={
+          isRevealed
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 14, scale: 0.92 }
+        }
+        transition={{ duration: 0.8, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
+      >
         <span>Scroll</span>
         <span className="theme-divider block h-7 w-px" />
-      </div>
+      </motion.div>
 
-      <div className="hero-footer-wrapper theme-text-secondary z-10 mt-auto flex w-full items-end justify-between gap-4 px-2 pb-4 text-[10px] font-semibold tracking-[0.12em] sm:px-12 sm:pb-8 sm:text-xs sm:tracking-wider md:text-sm">
+      <motion.div
+        className="hero-footer-wrapper theme-text-secondary z-10 mt-auto flex w-full items-end justify-between gap-4 px-2 pb-4 text-[10px] font-semibold tracking-[0.12em] sm:px-12 sm:pb-8 sm:text-xs sm:tracking-wider md:text-sm"
+        initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.96 }}
+        animate={
+          isRevealed
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 24, scale: 0.96 }
+        }
+        transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="hero-footer hero-footer-left">
           <LiveLocation />
           <LocalTime />
@@ -229,7 +247,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

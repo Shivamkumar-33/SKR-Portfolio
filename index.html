@@ -23,6 +23,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Hard refresh always lands on homepage (top)
+      try {
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        if (location.hash && location.hash !== "#home") {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+        window.scrollTo(0, 0);
+      } catch (_) {}
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import ReactLenis from "lenis/react";
@@ -7,17 +7,45 @@ import Works from "./sections/Works";
 import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import PageRevealLoader from "./components/PageRevealLoader";
+import AmbientBackdrop from "./components/AmbientBackdrop";
 
 const THEME_KEY = "portfolio-theme";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
+  const [showLoader, setShowLoader] = useState(true);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(THEME_KEY);
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const nextTheme = stored === "light" || stored === "dark" ? stored : systemPrefersDark ? "dark" : "light";
+    const nextTheme =
+      stored === "light" || stored === "dark"
+        ? stored
+        : systemPrefersDark
+          ? "dark"
+          : "light";
     setTheme(nextTheme);
+  }, []);
+
+  // Hard refresh / reload → always start at homepage
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    if (window.location.hash && window.location.hash !== "#home") {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   useEffect(() => {
@@ -25,22 +53,40 @@ const App = () => {
     window.localStorage.setItem(THEME_KEY, theme);
   }, [theme]);
 
+  const handleReveal = useCallback(() => {
+    window.scrollTo(0, 0);
+    setIsRevealed(true);
+  }, []);
+
+  const handleLoaderDone = useCallback(() => {
+    window.scrollTo(0, 0);
+    setShowLoader(false);
+  }, []);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
-    <ReactLenis root className="app-root relative w-screen min-h-screen overflow-x-hidden selection:bg-gold/30">
-      <div className="relative z-10 w-full overflow-hidden">
-        <Navbar theme={theme} onToggleTheme={toggleTheme} />
-        <Hero />
-        <About theme={theme} />
-        <Works />
-        <ContactSummary />
-        <Contact />
-        <Footer />
-      </div>
-    </ReactLenis>
+    <>
+      {showLoader && (
+        <PageRevealLoader onReveal={handleReveal} onComplete={handleLoaderDone} />
+      )}
+
+      <ReactLenis root className="app-root relative w-screen min-h-screen overflow-x-hidden selection:bg-gold/30">
+        <AmbientBackdrop active={isRevealed} />
+
+        <div className="page-main relative z-10 w-full overflow-hidden">
+          <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
+          <Hero isRevealed={isRevealed} />
+          <About theme={theme} />
+          <Works />
+          <ContactSummary />
+          <Contact />
+          <Footer />
+        </div>
+      </ReactLenis>
+    </>
   );
 };
 
