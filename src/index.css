@@ -744,6 +744,72 @@ select {
   border-color: var(--theme-border-soft);
 }
 
+.marquee {
+  --marquee-duration: 35s;
+  --marquee-gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.marquee__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  align-items: center;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+}
+
+.marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--marquee-gap);
+  padding-right: var(--marquee-gap);
+}
+
+.marquee__item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--marquee-gap);
+  white-space: nowrap;
+}
+
+.marquee__label {
+  display: inline-block;
+}
+
+.marquee__icon {
+  flex-shrink: 0;
+  font-size: 0.55em;
+  line-height: 1;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}
+
 @keyframes connect-glow-rotate {
   0% {
     transform: rotate(70deg);
