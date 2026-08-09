@@ -322,7 +322,7 @@ const Works = () => {
         withScrollTrigger={true}
       />
 
-      <div ref={listRef} className="project-expand-list relative px-5 pb-20 md:px-10 lg:px-14">
+      <div ref={listRef} className="project-expand-list relative px-3 pb-20 sm:px-5 md:px-8 lg:px-10">
         {projects.map((project, i) => {
           const tech = project.frameworks.map((f) => ({
             label: f.name,

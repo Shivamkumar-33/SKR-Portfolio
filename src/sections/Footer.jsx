@@ -6,7 +6,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="theme-section footer-surface flex w-full flex-col justify-end overflow-hidden px-4 pt-20 sm:px-6 lg:px-8">
+    <footer className="theme-section footer-surface flex w-full flex-col justify-end overflow-hidden px-3 pt-20 sm:px-5 md:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
           <div className="flex w-full flex-col items-start text-left md:w-[45%] lg:w-[35%]">

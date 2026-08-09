@@ -8,6 +8,7 @@ import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import PageRevealLoader from "./components/PageRevealLoader";
+import SideBorders from "./components/SideBorders";
 import { SITE } from "./constants";
 
 const App = () => {
@@ -71,8 +72,9 @@ const App = () => {
         <PageRevealLoader onReveal={handleReveal} onComplete={handleLoaderDone} />
       )}
 
-      <ReactLenis root className="app-root relative w-screen min-h-screen overflow-x-hidden selection:bg-gold/30">
-        <div className="page-main relative z-10 w-full overflow-hidden">
+      <ReactLenis root className="app-root relative w-full min-h-screen overflow-x-hidden selection:bg-gold/30">
+        <SideBorders />
+        <div className="page-main relative z-10 w-full">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
           <Hero isRevealed={isRevealed} />
           <About theme={theme} />

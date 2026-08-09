@@ -87,7 +87,7 @@ Let’s connect and build something impactful.`;
     <section
       id="contact"
       ref={sectionRef}
-      className="theme-section relative z-10 overflow-hidden px-6 pt-10 pb-6 sm:px-10 sm:pt-12 sm:pb-10"
+      className="theme-section relative z-10 overflow-hidden px-3 pt-10 pb-6 sm:px-6 sm:pt-12 sm:pb-10 md:px-8"
     >
       <AnimatedHeaderSection
         subTitle={"You Dream It, I Code it"}

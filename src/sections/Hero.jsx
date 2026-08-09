@@ -121,7 +121,7 @@ const Hero = ({ isRevealed = true }) => {
   return (
     <section
       id="home"
-      className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-5 pb-8 pt-20 sm:px-6 sm:pb-10 sm:pt-24 md:pt-28"
+      className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-3 pb-8 pt-20 sm:px-5 sm:pb-10 sm:pt-24 md:px-6 md:pt-28"
     >
       <motion.div
         className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14"
@@ -130,7 +130,7 @@ const Hero = ({ isRevealed = true }) => {
       >
         <motion.h1
           variants={titleContainerVariants}
-          className="hero-title theme-text-primary mb-6 py-2 text-[14vw] leading-[0.85] font-black uppercase italic sm:mb-8 sm:text-[12vw] md:mb-10 md:text-[11vw] tracking-[-0.04em] premium-header"
+          className="hero-title theme-text-primary mb-6 py-2 text-[clamp(2.75rem,11vw,8.5rem)] leading-[0.85] font-black uppercase italic sm:mb-8 md:mb-10 tracking-[-0.04em] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
             textShadow: "0 0 28px rgba(191, 161, 129, 0.24)",
@@ -205,7 +205,7 @@ const Hero = ({ isRevealed = true }) => {
       </motion.div>
 
       <motion.div
-        className="hero-footer-wrapper z-10 mt-auto flex w-full items-end justify-between gap-6 px-2 pb-5 sm:px-10 sm:pb-8 md:px-14"
+        className="hero-footer-wrapper z-10 mt-auto flex w-full items-end justify-between gap-4 px-1 pb-5 sm:gap-6 sm:px-6 sm:pb-8 md:px-8"
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={
           isRevealed

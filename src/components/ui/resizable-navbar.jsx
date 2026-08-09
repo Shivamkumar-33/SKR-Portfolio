@@ -160,7 +160,7 @@ export const MobileNav = ({ children, className, visible, theme = "dark" }) => {
         damping: 50,
       }}
       className={cn(
-        "navbar-glow relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] origin-top flex-col items-center justify-between rounded-2xl backdrop-blur-xl px-3 py-1.5 lg:hidden",
+        "navbar-glow relative z-50 mx-auto flex w-full max-w-[calc(100%-0.5rem)] origin-top flex-col items-center justify-between rounded-2xl backdrop-blur-xl px-3 py-1.5 lg:hidden",
         theme === "dark"
           ? "border border-white/[0.08] bg-black/40 text-white"
           : "border border-black/10 bg-[#fbfaf7]/85 text-[#12100d]",

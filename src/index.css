@@ -52,6 +52,35 @@ html[data-theme="light"] {
   }
 }
 
+/* Phone → tablet → laptop → desktop side rails */
+:root {
+  --side-border-width: 16px;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --side-border-width: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --side-border-width: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --side-border-width: 56px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --side-border-width: 70px;
+  }
+}
+
 body {
   background: var(--app-bg, #000000);
   color: var(--app-fg, #F4F4F4);
@@ -66,6 +95,10 @@ body {
   letter-spacing: -0.012em;
   line-height: 1.65;
   transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+[data-theme="dark"] body {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
 }
 
 body,
@@ -96,17 +129,184 @@ select {
   background: var(--app-bg, #000000);
   color: var(--app-fg, #F4F4F4);
   transition: background-color 0.35s ease, color 0.35s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+[data-theme="dark"] .app-root {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
 }
 
 .page-main {
   background: var(--app-bg, #000000);
   position: relative;
   z-index: 10;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: var(--side-border-width);
+  overflow-x: clip;
 }
 
-[data-theme="dark"] .page-main,
+[data-theme="dark"] .page-main {
+  background: transparent;
+}
+
+/* Keep sections opaque so content reads cleanly inside the frame */
 [data-theme="dark"] .theme-section {
   background: #000000;
+}
+
+/* ── Fixed Parthh-style side borders (entire site) ── */
+.side-borders {
+  pointer-events: none;
+}
+
+.side-border {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  height: 100dvh;
+  width: var(--side-border-width);
+  z-index: 40;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.side-border--left {
+  left: 0;
+}
+
+.side-border--right {
+  right: 0;
+}
+
+.side-border__fill {
+  position: absolute;
+  inset: 0;
+  background: #050505;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.side-border--right .side-border__fill {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.side-border__pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1px);
+  background-size: 10px 10px;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.side-border__line {
+  position: relative;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 12%,
+    rgba(191, 161, 129, 0.75) 50%,
+    rgba(255, 255, 255, 0.15) 88%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px rgba(191, 161, 129, 0.35),
+    0 0 28px rgba(255, 255, 255, 0.12);
+}
+
+.side-border__edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(191, 161, 129, 0.45),
+    transparent
+  );
+}
+
+.side-border--left .side-border__edge {
+  right: 0;
+}
+
+.side-border--right .side-border__edge {
+  left: 0;
+}
+
+/* Light mode — slightly darker rails so the frame reads clearly */
+[data-theme="light"] .side-border__fill {
+  background: #e8e6e2;
+  border-color: rgba(28, 28, 28, 0.1);
+}
+
+[data-theme="light"] .side-border__pattern {
+  background-image: radial-gradient(circle, rgba(28, 28, 28, 0.9) 1px, transparent 1px);
+  opacity: 0.18;
+}
+
+[data-theme="light"] .side-border__line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(28, 28, 28, 0.18) 12%,
+    rgba(140, 110, 70, 0.7) 50%,
+    rgba(28, 28, 28, 0.18) 88%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(191, 161, 129, 0.28),
+    0 0 22px rgba(28, 28, 28, 0.08);
+}
+
+[data-theme="light"] .side-border__edge {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(28, 28, 28, 0.28),
+    transparent
+  );
+}
+
+/* Tighter pattern on narrow mobile rails */
+@media (max-width: 767px) {
+  .side-border__pattern {
+    background-size: 8px 8px;
+    opacity: 0.28;
+  }
+
+  [data-theme="light"] .side-border__pattern {
+    opacity: 0.22;
+  }
+
+  .side-border__line {
+    box-shadow:
+      0 0 8px rgba(191, 161, 129, 0.4),
+      0 0 16px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Navbar stays inside the side rails on every breakpoint */
+.navbar-fixed-shell {
+  left: var(--side-border-width);
+  right: var(--side-border-width);
+  width: auto;
+  padding-inline: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-fixed-shell {
+    padding-inline: 0.75rem;
+  }
 }
 
 
@@ -791,7 +991,8 @@ select {
 }
 
 @utility banner-text-responsive {
-  @apply text-[22vw] sm:text-[16vw] md:text-[12vw] leading-[0.82] tracking-[-0.045em];
+  /* Sized to content frame (side rails already reserved), not raw viewport */
+  @apply text-[clamp(2.6rem,11vw,9.5rem)] leading-[0.82] tracking-[-0.045em];
 }
 
 @utility value-text-responsive {
@@ -820,7 +1021,7 @@ select {
 .about-cobe-grid {
   width: min(1240px, 100%);
   margin: 0 auto;
-  padding: 0 1.5rem 2.5rem;
+  padding: 0 clamp(0.75rem, 2.5vw, 1.5rem) 2.5rem;
   min-height: calc(100vh - 2rem);
   display: grid;
   grid-template-columns: 1.06fr 1fr 1fr;

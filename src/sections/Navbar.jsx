@@ -47,7 +47,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-1.5 md:px-8"
+      className="navbar-fixed-shell pointer-events-none fixed top-0 z-50 py-1.5"
       initial={false}
       animate={{
         opacity: isRevealed ? 1 : 0,

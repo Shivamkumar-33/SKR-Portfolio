@@ -82,11 +82,11 @@ const AnimatedHeaderSection = ({
           className="flex flex-col justify-center gap-8 pt-12 sm:gap-10"
         >
           <p
-            className={`technical-label px-10 ${textColor}`}
+            className={`technical-label px-4 sm:px-8 md:px-10 ${textColor}`}
           >
             {subTitle}
           </p>
-          <div className="px-10">
+          <div className="px-4 sm:px-8 md:px-10">
             <h1
               ref={titleRef}
               className={`section-outline-title flex flex-col gap-8 uppercase banner-text-responsive sm:gap-10 md:block ${textColor}`}
@@ -98,7 +98,7 @@ const AnimatedHeaderSection = ({
           </div>
         </div>
       </div>
-      <div className={`relative px-10 ${textColor}`}>
+      <div className={`relative px-4 sm:px-8 md:px-10 ${textColor}`}>
         <div className="absolute inset-x-0 border-t-2 border-current/60" />
         <div className="py-8 sm:py-10 text-end">
           <AnimatedTextLines
