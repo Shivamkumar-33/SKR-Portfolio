@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import LiveLocation from "../components/LiveLocation";
 import HeroRole from "../components/HeroRole";
 import ConnectButton from "../components/ConnectButton";
+import { SITE } from "../constants";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,7 +59,7 @@ const Hero = ({ isRevealed = true }) => {
   const copyResetRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
   const reduceMotion = useReducedMotion();
-  const emailAddress = "shivamjmp2@gmail.com";
+  const emailAddress = SITE.email;
   const title = "SHIVAM";
 
   const handleCopyEmail = async () => {

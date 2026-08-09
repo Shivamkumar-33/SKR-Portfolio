@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
-import { socials } from "../constants";
+import { SITE, navItems, sectionIds, socials } from "../constants";
 import {
   MobileNav,
   MobileNavHeader,
@@ -13,15 +13,6 @@ import {
   NavbarLogo,
   NavItems,
 } from "../components/ui/resizable-navbar";
-
-const navItems = [
-  { name: "Home", link: "#home" },
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "Contact", link: "#contact" },
-];
-
-const sectionIds = ["home", "about", "projects", "contact"];
 
 const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -98,7 +89,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
 
               <NavbarButton
                 variant={theme === "dark" ? "secondary" : "dark"}
-                href="mailto:shivamjmp2@gmail.com"
+                href={`mailto:${SITE.email}`}
                 className="min-w-[72px] px-3"
               >
                 Email
@@ -178,11 +169,11 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                   E-mail
                 </p>
                 <a
-                  href="mailto:shivamjmp2@gmail.com"
+                  href={`mailto:${SITE.email}`}
                   className={`text-sm transition-colors hover:text-gold ${theme === "dark" ? "text-neutral-100" : "text-[#15120f]"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  shivamjmp2@gmail.com
+                  {SITE.email}
                 </a>
               </motion.div>
 

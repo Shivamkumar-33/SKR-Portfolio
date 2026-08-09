@@ -8,9 +8,7 @@ import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import PageRevealLoader from "./components/PageRevealLoader";
-import AmbientBackdrop from "./components/AmbientBackdrop";
-
-const THEME_KEY = "portfolio-theme";
+import { SITE } from "./constants";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
@@ -18,7 +16,7 @@ const App = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(THEME_KEY);
+    const stored = window.localStorage.getItem(SITE.themeKey);
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const nextTheme =
       stored === "light" || stored === "dark"
@@ -50,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(THEME_KEY, theme);
+    window.localStorage.setItem(SITE.themeKey, theme);
   }, [theme]);
 
   const handleReveal = useCallback(() => {
@@ -74,8 +72,6 @@ const App = () => {
       )}
 
       <ReactLenis root className="app-root relative w-screen min-h-screen overflow-x-hidden selection:bg-gold/30">
-        <AmbientBackdrop active={isRevealed} />
-
         <div className="page-main relative z-10 w-full overflow-hidden">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
           <Hero isRevealed={isRevealed} />

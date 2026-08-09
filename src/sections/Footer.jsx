@@ -1,11 +1,4 @@
-import { socials } from "../constants";
-
-const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
-];
+import { SITE, navItems, socials } from "../constants";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -26,15 +19,14 @@ const Footer = () => {
             </a>
             <div className="footer-brand-rule mt-8 h-0.5 w-full max-w-52" />
             <p className="theme-text-tertiary mt-6 max-w-[350px] text-sm leading-relaxed">
-              Full Stack Engineer — crafting high-performance web experiences with
-              clean architecture and scalable design.
+              {SITE.tagline}
             </p>
           </div>
 
           <div className="flex w-[45%] flex-col items-start text-left md:w-[45%] lg:w-[15%]">
             <h3 className="theme-text-primary text-sm font-medium">Important Links</h3>
             <div className="mt-6 flex flex-col gap-2">
-              {navLinks.map((link) => (
+              {navItems.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
@@ -67,10 +59,10 @@ const Footer = () => {
             <h3 className="theme-text-primary text-sm font-medium">Get in touch</h3>
             <div className="footer-email-pill mt-4 flex h-13 w-full max-w-80 items-center gap-2 overflow-hidden rounded-full border border-[var(--theme-border-soft)]">
               <span className="theme-text-tertiary w-full truncate pl-6 text-xs sm:text-sm">
-                shivamjmp2@gmail.com
+                {SITE.email}
               </span>
               <a
-                href="mailto:shivamjmp2@gmail.com"
+                href={`mailto:${SITE.email}`}
                 className="footer-email-btn mr-1.5 flex h-10 w-28 shrink-0 items-center justify-center rounded-full text-sm transition hover:opacity-90 active:scale-95 focus:outline-none"
               >
                 Email

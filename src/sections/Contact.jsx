@@ -1,15 +1,12 @@
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { Icon } from "@iconify/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { gsap } from "../lib/gsap";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
-import { socials } from "../constants";
+import { SITE, socials } from "../constants";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const EMAIL = "shivamjmp2@gmail.com";
+const EMAIL = SITE.email;
 
 const quickLinks = [
   {

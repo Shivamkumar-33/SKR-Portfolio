@@ -1,3 +1,20 @@
+export const SITE = {
+  name: "Shivam",
+  email: "shivamjmp2@gmail.com",
+  themeKey: "portfolio-theme",
+  tagline:
+    "Full Stack Engineer — crafting high-performance web experiences with clean architecture and scalable design.",
+};
+
+export const navItems = [
+  { name: "Home", link: "#home", href: "#home", id: "home" },
+  { name: "About", link: "#about", href: "#about", id: "about" },
+  { name: "Projects", link: "#projects", href: "#projects", id: "projects" },
+  { name: "Contact", link: "#contact", href: "#contact", id: "contact" },
+];
+
+export const sectionIds = navItems.map((item) => item.id);
+
 export const projects = [
   {
     id: 1,
@@ -6,7 +23,6 @@ export const projects = [
       "A clinical decision support platform that helps healthcare teams with faster, data-backed medical guidance.",
     href: "https://medicine-recommendation-system-4v7k.vercel.app/",
     image: "/assets/projects/MediAssist.png",
-    bgImage: "/assets/backgrounds/bg1.jpg",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },
@@ -22,7 +38,6 @@ export const projects = [
       "An education workflow system that automates class scheduling and optimization with AI-assisted planning.",
     href: "https://smart-class-room-woad.vercel.app/",
     image: "/assets/projects/Scheduler.png",
-    bgImage: "/assets/backgrounds/bg1.jpg",
     frameworks: [
       { id: 1, name: "MERN Stack" },
       { id: 2, name: "Tailwind CSS" },
@@ -36,7 +51,6 @@ export const projects = [
       "A rental marketplace that helps students and professionals find verified rooms and accommodations quickly.",
     href: "https://easemyroom.daapen.com/index.php",
     image: "/assets/projects/easemyroom.png",
-    bgImage: "/assets/backgrounds/bg1.jpg",
     frameworks: [
       { id: 1, name: "MERN Stack" },
     ],
@@ -48,7 +62,6 @@ export const projects = [
       "A secure real-time messaging application with live conversations, authentication, and scalable socket communication.",
     href: "https://chat-app-gxx1.vercel.app/login",
     image: "/assets/projects/chatapp.png",
-    bgImage: "/assets/backgrounds/bg1.jpg",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Node.js" },
@@ -58,6 +71,7 @@ export const projects = [
     ],
   },
 ];
+
 export const socials = [
   {
     name: "LinkedIn",

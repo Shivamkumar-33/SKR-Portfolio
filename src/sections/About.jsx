@@ -163,7 +163,7 @@ Building high-performance applications that grow from prototype to production`;
   };
 
   return (
-    <section id="about" className="theme-section min-h-screen rounded-b-4xl">
+    <section id="about" className="theme-section min-h-screen">
       <AnimatedHeaderSection
         subTitle={"Code with purpose, built to scale"}
         title={"About"}
