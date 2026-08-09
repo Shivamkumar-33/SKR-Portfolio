@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import LiveLocation from "../components/LiveLocation";
+import HeroRole from "../components/HeroRole";
 import ConnectButton from "../components/ConnectButton";
-import LocalTime from "../components/LocalTime";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -190,62 +190,35 @@ const Hero = ({ isRevealed = true }) => {
       </motion.div>
 
       <motion.div
-        className="hero-scroll-cue theme-text-tertiary absolute bottom-16 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[10px] uppercase tracking-[0.3em] sm:bottom-20 md:flex"
-        initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.92 }}
+        className="hero-scroll-cue theme-text-tertiary absolute bottom-20 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[9px] uppercase tracking-[0.35em] sm:bottom-24 md:flex"
+        initial={reduceMotion ? false : { opacity: 0, y: 14 }}
         animate={
           isRevealed
-            ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 14, scale: 0.92 }
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 14 }
         }
         transition={{ duration: 0.8, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
       >
         <span>Scroll</span>
-        <span className="theme-divider block h-7 w-px" />
+        <span className="hero-scroll-line theme-divider block h-8 w-px origin-top" />
       </motion.div>
 
       <motion.div
-        className="hero-footer-wrapper theme-text-secondary z-10 mt-auto flex w-full items-end justify-between gap-4 px-2 pb-4 text-[10px] font-semibold tracking-[0.12em] sm:px-12 sm:pb-8 sm:text-xs sm:tracking-wider md:text-sm"
-        initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.96 }}
+        className="hero-footer-wrapper z-10 mt-auto flex w-full items-end justify-between gap-6 px-2 pb-5 sm:px-10 sm:pb-8 md:px-14"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={
           isRevealed
-            ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 24, scale: 0.96 }
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 24 }
         }
         transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="hero-footer hero-footer-left">
           <LiveLocation />
-          <LocalTime />
         </div>
 
-        <div className="hero-footer hero-footer-right flex flex-col items-center sm:items-end">
-          <div className="group relative flex cursor-default flex-col items-center gap-2 sm:items-end">
-            <div className="hero-status-chip relative flex items-center gap-4 overflow-hidden rounded-full border px-5 py-2.5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-gold/40">
-              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-
-              <div className="flex items-center gap-2.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-50"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-gold"></span>
-                </span>
-                <span className="hero-status-title text-[10px] font-bold uppercase tracking-[0.25em] sm:text-xs">
-                  Full Stack
-                </span>
-              </div>
-
-              <div className="hero-status-separator h-3.5 w-[1px]"></div>
-
-              <span className="hero-status-subtitle text-[10px] font-light uppercase tracking-[0.2em] sm:text-xs">
-                Engineer
-              </span>
-            </div>
-
-            <div className="hero-status-meta flex items-center space-x-3 text-[8px] uppercase tracking-[0.25em] sm:pr-4 sm:text-[9px]">
-              <span className="transition-colors duration-300 hover:text-gold">UX / UI</span>
-              <span className="theme-divider h-1 w-1 rounded-full"></span>
-              <span className="transition-colors duration-300 hover:text-gold">System Arch</span>
-            </div>
-          </div>
+        <div className="hero-footer hero-footer-right">
+          <HeroRole />
         </div>
       </motion.div>
     </section>

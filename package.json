@@ -10,6 +10,9 @@
     "preview": "node ./node_modules/vite/bin/vite.js preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.3.1",
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^3.5.0",
     "@gsap/react": "^2.1.2",
     "@iconify/react": "^6.0.0",
     "@tabler/icons-react": "^3.41.1",
