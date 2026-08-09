@@ -18,41 +18,46 @@ export const sectionIds = navItems.map((item) => item.id);
 export const projects = [
   {
     id: 1,
-    name: "MediAssist - Medical Decision Support Platform",
+    name: "RankPulse – AI SEO Monitoring Platform",
     description:
-      "A clinical decision support platform that helps healthcare teams with faster, data-backed medical guidance.",
-    href: "https://medicine-recommendation-system-4v7k.vercel.app/",
-    image: "/assets/projects/MediAssist.png",
+      "Built an advanced SEO dashboard for keyword tracking, historical performance analysis, and AI-generated SEO reports powered by Browserbase + Gemini AI.",
+    href: "#",
+    image: "/assets/projects/rankpulse.png",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },
       { id: 3, name: "Node.js" },
       { id: 4, name: "Express" },
-      { id: 5, name: "Supabase" },
+      { id: 5, name: "MongoDB" },
+      { id: 6, name: "Gemini AI" },
     ],
   },
   {
     id: 2,
-    name: "Smart Classroom & AI Timetable Scheduler",
+    name: "Workforce Analytics – HRMS Platform",
     description:
-      "An education workflow system that automates class scheduling and optimization with AI-assisted planning.",
-    href: "https://smart-class-room-woad.vercel.app/",
-    image: "/assets/projects/Scheduler.png",
+      "An enterprise-grade HRMS with invitation-only auth, RBAC with 4 roles & 35+ permissions, and a complete employment lifecycle system with 9 states and audit history.",
+    href: "#",
+    image: "/assets/projects/workforce.png",
     frameworks: [
-      { id: 1, name: "MERN Stack" },
-      { id: 2, name: "Tailwind CSS" },
-      { id: 3, name: "Gemini API" },
+      { id: 1, name: "Next.js" },
+      { id: 2, name: "TypeScript" },
+      { id: 3, name: "Drizzle ORM" },
+      { id: 4, name: "Supabase" },
+      { id: 5, name: "Tailwind CSS" },
     ],
   },
   {
     id: 3,
-    name: "EaseMyRoom - Rental Marketplace",
+    name: "InterviewOS – AI Interview Platform",
     description:
-      "A rental marketplace that helps students and professionals find verified rooms and accommodations quickly.",
-    href: "https://easemyroom.daapen.com/index.php",
-    image: "/assets/projects/easemyroom.png",
+      "Generated 500+ AI-based interview questions using LLaMA 3.3 70B with secure REST APIs, JWT auth, and a modular dashboard featuring sessions, bookmarks, and notes.",
+    href: "#",
+    image: "/assets/projects/interviewos.png",
     frameworks: [
       { id: 1, name: "MERN Stack" },
+      { id: 2, name: "Groq AI" },
+      { id: 3, name: "LLaMA" },
     ],
   },
   {
