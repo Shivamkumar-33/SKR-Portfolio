@@ -1,4 +1,5 @@
 import { SITE, navItems, socials } from "../constants";
+import ButtonWithIcon from "../components/ui/button-with-icon";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -61,12 +62,12 @@ const Footer = () => {
               <span className="theme-text-tertiary w-full truncate pl-6 text-xs sm:text-sm">
                 {SITE.email}
               </span>
-              <a
+              <ButtonWithIcon
                 href={`mailto:${SITE.email}`}
-                className="site-cta site-cta-compact footer-email-btn mr-1.5 shrink-0 focus:outline-none"
+                className="footer-email-btn mr-1.5 shrink-0"
               >
                 Email
-              </a>
+              </ButtonWithIcon>
             </div>
           </div>
         </div>
@@ -82,29 +83,14 @@ const Footer = () => {
               Designed & crafted with precision
             </p>
           </div>
-          <button
+          <ButtonWithIcon
             type="button"
             onClick={scrollToTop}
-            className="site-cta site-cta-compact footer-back-to-top"
+            className="footer-back-to-top"
             aria-label="Back to top"
           >
             Back to top
-            <span className="site-cta-icon site-cta-icon-small">
-              <svg
-                className="h-3.5 w-3.5 rotate-180"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </span>
-          </button>
+          </ButtonWithIcon>
         </div>
 
         <div className="mt-6 flex w-full justify-center md:mb-[-0.5%] md:mt-12">

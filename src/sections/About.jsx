@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { Icon } from "@iconify/react";
 import { gsap } from "../lib/gsap";
 import { SITE, socials } from "../constants";
+import ButtonWithIcon from "../components/ui/button-with-icon";
 
 const socialIcons = {
   LinkedIn: "ph:linkedin-logo",
@@ -49,7 +50,7 @@ const About = () => {
           <div>
             <p className="about-hello">Hi, I&apos;m</p>
             <h2 className="about-profile-name">
-              Shivam <span>Kumar.</span>
+              Shivam <span className="animated-gradient-text">Kumar.</span>
             </h2>
             <p className="about-profile-role">I BUILD DIGITAL SYSTEMS</p>
             <div className="about-short-rule" />
@@ -60,12 +61,9 @@ const About = () => {
             </p>
           </div>
 
-          <a href="#projects" className="site-cta about-work-button">
-            <span>View my work</span>
-            <span className="site-cta-icon">
-              <Icon icon="solar:arrow-right-up-linear" aria-hidden />
-            </span>
-          </a>
+          <ButtonWithIcon href="#projects" className="about-cta-button about-work-button">
+            View my work
+          </ButtonWithIcon>
 
           <div className="about-social-row">
             <span>Find me on</span>
@@ -123,7 +121,7 @@ const About = () => {
 
           <div className="about-contact-heading">
             <h3>Let&apos;s build something</h3>
-            <p className="works-gradient-text">worth building.</p>
+            <p className="animated-gradient-text">worth building.</p>
           </div>
 
           <div className="about-contact-email">
@@ -136,12 +134,9 @@ const About = () => {
             </button>
           </div>
 
-          <a href="#contact" className="site-cta">
-            <span>Connect now</span>
-            <span className="site-cta-icon">
-              <Icon icon="solar:arrow-right-up-linear" />
-            </span>
-          </a>
+          <ButtonWithIcon href="#contact" className="about-cta-button">
+            Connect now
+          </ButtonWithIcon>
         </article>
       </div>
     </section>

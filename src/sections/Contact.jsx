@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { Icon } from "@iconify/react";
 import { gsap } from "../lib/gsap";
 import Marquee from "../components/Marquee";
+import ButtonWithIcon from "../components/ui/button-with-icon";
 import { SITE, socials } from "../constants";
 
 const EMAIL = SITE.email;
@@ -90,7 +91,7 @@ const Contact = () => {
         <p className="contact-hero-eyebrow">You dream it, I code it</p>
         <h2 className="contact-hero-title">
           <span>Let&apos;s,</span>{" "}
-          <span className="contact-hero-gradient">Connect</span>
+          <span className="animated-gradient-text">Connect</span>
         </h2>
         <div className="contact-hero-rule" />
         <p className="contact-hero-copy">
@@ -102,7 +103,8 @@ const Contact = () => {
       <div className="contact-panel contact-reveal">
         <div className="contact-panel-left">
           <h3 className="contact-panel-title">
-            Let&apos;s build <span>something real.</span>
+            Let&apos;s build{" "}
+            <span className="animated-gradient-text">something real.</span>
           </h3>
 
           <p className="contact-panel-copy">
@@ -192,12 +194,13 @@ const Contact = () => {
             <label htmlFor="contact-message">Message</label>
           </div>
 
-          <button type="submit" className="site-cta contact-submit" disabled={sending}>
-            <span>{sending ? "Opening mail…" : "Send message"}</span>
-            <span className="site-cta-icon contact-submit-arrow" aria-hidden>
-              <span>↗</span>
-            </span>
-          </button>
+          <ButtonWithIcon
+            type="submit"
+            className="contact-submit"
+            disabled={sending}
+          >
+            {sending ? "Opening mail…" : "Send message"}
+          </ButtonWithIcon>
         </form>
       </div>
 

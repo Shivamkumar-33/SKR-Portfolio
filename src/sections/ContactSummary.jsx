@@ -58,7 +58,10 @@ const ContactSummary = () => {
         <p className="contact-quote">
           “ Let&apos;s build a <br />
           <span>memorable</span> &amp;{" "}
-          <span className="contact-quote-inspiring">inspiring</span> <br />
+          <span className="contact-quote-inspiring animated-gradient-text">
+            inspiring
+          </span>{" "}
+          <br />
           web application together “
         </p>
       </div>

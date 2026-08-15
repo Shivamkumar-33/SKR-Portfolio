@@ -103,7 +103,7 @@ const Works = () => {
         <p className="works-showcase-eyebrow">Ideas brought to life</p>
         <h2 className="works-showcase-title" aria-label="Vision in motion">
           <span>Vision in</span>{" "}
-          <span className="works-gradient-text">motion</span>
+          <span className="animated-gradient-text">motion</span>
         </h2>
       </header>
 
@@ -130,7 +130,7 @@ const Works = () => {
         <header className="stack-showcase-head">
           <p className="stack-showcase-eyebrow">The stack behind the work</p>
           <h2 id="stack-title" className="stack-showcase-title">
-            Built <span className="works-gradient-text">with</span>
+            Built <span className="animated-gradient-text">with</span>
           </h2>
           <p className="stack-showcase-copy">
             The tools I use to turn ideas into reliable, scalable digital
