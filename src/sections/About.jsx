@@ -1,18 +1,48 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { Icon } from "@iconify/react";
 import { gsap } from "../lib/gsap";
 import { SITE, socials } from "../constants";
 import ButtonWithIcon from "../components/ui/button-with-icon";
+import WorldMap from "../components/ui/world-map";
 
 const socialIcons = {
   LinkedIn: "ph:linkedin-logo",
   GitHub: "ph:github-logo",
 };
 
+const delhi = { lat: 28.6139, lng: 77.209, label: "Delhi" };
+
+const globalLocations = [
+  { lat: 51.5074, lng: -0.1278, label: "London" },
+  { lat: 40.7128, lng: -74.006, label: "New York" },
+  { lat: 35.6762, lng: 139.6503, label: "Tokyo" },
+  { lat: -33.8688, lng: 151.2093, label: "Sydney" },
+];
+
+const routes = globalLocations.map((city) => ({ start: delhi, end: city }));
+
+const getDelhiTime = () =>
+  new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  })
+    .format(new Date())
+    .toUpperCase();
+
 const About = () => {
   const sectionRef = useRef(null);
   const [copied, setCopied] = useState(false);
+  const [delhiTime, setDelhiTime] = useState(getDelhiTime);
+
+  useEffect(() => {
+    const clockTimer = window.setInterval(() => setDelhiTime(getDelhiTime()), 1000);
+
+    return () => window.clearInterval(clockTimer);
+  }, []);
 
   useGSAP(
     () => {
@@ -100,15 +130,20 @@ const About = () => {
           </article>
 
           <article className="about-profile-card about-location-card">
-            <div className="about-location-pin" aria-hidden>
-              <span />
-            </div>
-            <div>
+            <WorldMap
+              dots={routes}
+              lineColor="#b86cff"
+              className="about-location-map"
+            />
+            <div className="about-location-copy">
+              <span className="about-route-status">
+                Delhi → {globalLocations.map((city) => city.label).join(" · ")}
+              </span>
               <h3>Delhi, India</h3>
               <p>28.6139° N, 77.2090° E</p>
               <span className="about-timezone">
                 <Icon icon="solar:clock-circle-linear" />
-                GMT +5:30
+                {delhiTime} IST
               </span>
             </div>
           </article>

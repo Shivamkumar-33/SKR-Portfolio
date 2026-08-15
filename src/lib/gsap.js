@@ -1,16 +1,16 @@
 import gsap from "gsap";
-import { Observer, ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/all";
 
 let registered = false;
 
 export const registerGsapPlugins = () => {
   if (registered) return gsap;
-  gsap.registerPlugin(ScrollTrigger, Observer);
+  gsap.registerPlugin(ScrollTrigger);
   registered = true;
   return gsap;
 };
 
 registerGsapPlugins();
 
-export { gsap, ScrollTrigger, Observer };
+export { gsap, ScrollTrigger };
 export default gsap;

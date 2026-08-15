@@ -77,7 +77,7 @@ const App = () => {
         <div className="page-main relative z-10 w-full">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
           <Hero isRevealed={isRevealed} />
-          <About theme={theme} />
+          <About />
           <Works />
           <ContactSummary />
           <Contact />
