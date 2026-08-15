@@ -1,11 +1,10 @@
 import Marquee from "../components/Marquee";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "../lib/gsap";
+import { gsap } from "../lib/gsap";
 
 const ContactSummary = () => {
   const containerRef = useRef(null);
-  const quoteRef = useRef(null);
 
   const items = [
     "Innovation",
@@ -14,7 +13,7 @@ const ContactSummary = () => {
     "Collaboration",
     "Excellence",
   ];
-  const items2 = ["contact", "contact", "contact", "contact", "contact"];
+  const items2 = ["connect", "connect", "connect", "connect", "connect"];
 
   useGSAP(
     () => {
@@ -36,37 +35,6 @@ const ContactSummary = () => {
         },
       });
 
-      if (reduceMotion) return;
-
-      // ~1s scroll hold, then release so Contact below reveals
-      const holdDistance = () => Math.round(Math.min(window.innerHeight * 0.42, 420));
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "center center",
-          end: () => `+=${holdDistance()}`,
-          pin: true,
-          pinSpacing: true,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.fromTo(
-        quoteRef.current,
-        { scale: 0.97, opacity: 0.88 },
-        { scale: 1, opacity: 1, ease: "none", duration: 1 },
-        0
-      );
-
-      const onRefresh = () => ScrollTrigger.refresh();
-      window.addEventListener("resize", onRefresh);
-
-      return () => {
-        window.removeEventListener("resize", onRefresh);
-      };
     },
     { scope: containerRef }
   );
@@ -74,21 +42,24 @@ const ContactSummary = () => {
   return (
     <section
       ref={containerRef}
-      className="theme-section relative z-10 flex min-h-screen flex-col items-center justify-between gap-8 px-3 py-12 sm:px-6 sm:py-14 md:px-8"
+      className="theme-section site-section-shell contact-summary-section relative z-10 flex flex-col items-center"
     >
       <div className="contact-summary-reveal w-full">
-        <Marquee items={items} className="marquee-surface" speed={40} />
+        <Marquee
+          items={items}
+          className="marquee-surface contact-summary-marquee"
+          speed={38}
+        />
       </div>
 
       <div
-        ref={quoteRef}
         className="contact-summary-reveal overflow-hidden font-light text-center contact-text-responsive will-change-transform"
       >
-        <p>
-          “ Let’s build a <br />
-          <span className="font-normal">memorable</span> &{" "}
-          <span className="italic">inspiring</span> <br />
-          web application <span className="text-gold">together</span> “
+        <p className="contact-quote">
+          “ Let&apos;s build a <br />
+          <span>memorable</span> &amp;{" "}
+          <span className="contact-quote-inspiring">inspiring</span> <br />
+          web application together “
         </p>
       </div>
 
@@ -96,10 +67,8 @@ const ContactSummary = () => {
         <Marquee
           items={items2}
           reverse={true}
-          className="marquee-surface border-y-2"
-          iconClassName="stroke-gold stroke-2 text-gold"
-          icon="material-symbols-light:square"
-          speed={32}
+          className="marquee-surface contact-summary-marquee"
+          speed={38}
         />
       </div>
     </section>

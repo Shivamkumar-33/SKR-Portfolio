@@ -20,10 +20,20 @@
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="module" crossorigin src="/assets/index-BkDXHFBm.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D7tOQg97.css">
+    <script type="module" crossorigin src="/assets/index-Dvd11LLv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-SRFHa1VP.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <script>
+      // Hard refresh always lands on homepage (top)
+      try {
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        if (location.hash && location.hash !== "#home") {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+        window.scrollTo(0, 0);
+      } catch (_) {}
+    </script>
   </body>
 </html>

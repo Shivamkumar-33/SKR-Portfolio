@@ -1,4 +1,7 @@
+import { useRef } from "react";
 import { Icon } from "@iconify/react";
+import { useGSAP } from "@gsap/react";
+import { gsap, ScrollTrigger } from "../lib/gsap";
 
 const MarqueeItem = ({ text, icon, iconClassName }) => (
   <span className="marquee__item">
@@ -15,14 +18,59 @@ const Marquee = ({
   reverse = false,
   speed = 35,
 }) => {
+  const trackRef = useRef(null);
+
+  useGSAP(
+    () => {
+      const track = trackRef.current;
+      if (!track) return;
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const loop = gsap.fromTo(
+        track,
+        { xPercent: reverse ? -50 : 0 },
+        {
+          xPercent: reverse ? 0 : -50,
+          duration: speed,
+          ease: "none",
+          repeat: -1,
+        }
+      );
+
+      const trigger = ScrollTrigger.create({
+        trigger: track,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const boost = gsap.utils.clamp(
+            1,
+            5,
+            1 + Math.abs(self.getVelocity()) / 700
+          );
+
+          gsap.to(loop, {
+            timeScale: boost * self.direction,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: true,
+          });
+        },
+      });
+
+      return () => {
+        trigger.kill();
+        loop.kill();
+      };
+    },
+    { dependencies: [reverse, speed], revertOnUpdate: true }
+  );
+
   return (
     <div
-      className={`marquee overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase ${className}`}
+      className={`marquee flex w-full items-center overflow-hidden font-light uppercase marquee-text-responsive ${className}`}
     >
-      <div
-        className={`marquee__track ${reverse ? "marquee__track--reverse" : ""}`}
-        style={{ "--marquee-duration": `${speed}s` }}
-      >
+      <div ref={trackRef} className="marquee__track">
         <div className="marquee__group">
           {items.map((text, index) => (
             <MarqueeItem

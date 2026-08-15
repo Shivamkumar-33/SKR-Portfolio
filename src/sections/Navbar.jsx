@@ -148,10 +148,10 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                       isActive
                         ? theme === "dark"
                           ? "bg-white text-black"
-                          : "bg-[#17130f] text-[#f7f2e9]"
+                          : "bg-neutral-900 text-white"
                         : theme === "dark"
                           ? "text-neutral-400 hover:bg-white/10"
-                          : "text-[#4f473b] hover:bg-black/[0.08]"
+                          : "text-neutral-600 hover:bg-black/[0.06]"
                     }`}
                   >
                     <span>{item.name}</span>
@@ -165,12 +165,12 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.35 }}
               >
-                <p className={`mb-2 text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-[#7a7062]"}`}>
+                <p className={`mb-2 text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-neutral-500"}`}>
                   E-mail
                 </p>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className={`text-sm transition-colors hover:text-gold ${theme === "dark" ? "text-neutral-100" : "text-[#15120f]"}`}
+                  className={`text-sm transition-colors hover:opacity-70 ${theme === "dark" ? "text-neutral-100" : "text-neutral-900"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {SITE.email}
@@ -183,7 +183,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
               >
-                <p className={`text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-[#7a7062]"}`}>
+                <p className={`text-xs uppercase tracking-widest ${theme === "dark" ? "text-zinc-500" : "text-neutral-500"}`}>
                   Social Media
                 </p>
                 {socials.map((social, i) => (

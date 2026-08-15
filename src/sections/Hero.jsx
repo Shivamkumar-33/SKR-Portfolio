@@ -121,7 +121,7 @@ const Hero = ({ isRevealed = true }) => {
   return (
     <section
       id="home"
-      className="theme-section relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-3 pb-8 pt-20 sm:px-5 sm:pb-10 sm:pt-24 md:px-6 md:pt-28"
+      className="theme-section site-section-shell hero-section-shell relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
     >
       <motion.div
         className="z-10 mb-9 flex w-full flex-1 flex-col items-center justify-center text-center sm:mb-12 md:mb-14"
@@ -144,7 +144,7 @@ const Hero = ({ isRevealed = true }) => {
           className="hero-title theme-text-primary mb-6 py-2 text-[clamp(2.75rem,11vw,8.5rem)] leading-[0.85] font-black uppercase italic sm:mb-8 md:mb-10 tracking-[-0.04em] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
-            textShadow: "0 0 28px rgba(191, 161, 129, 0.24)",
+            textShadow: "0 0 28px rgba(255, 255, 255, 0.18)",
             perspective: 800,
           }}
           aria-label="SHIVAM"
@@ -183,12 +183,12 @@ const Hero = ({ isRevealed = true }) => {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="inline-flex items-center text-sm sm:text-base transition-all duration-300"
+            className="hero-email-action inline-flex items-center text-sm sm:text-base transition-all duration-300"
             aria-live="polite"
             aria-label="Copy email address"
           >
             {isCopied ? (
-              <span className="font-medium tracking-tight text-gold font-mono">
+              <span className="font-medium tracking-tight theme-text-primary font-mono">
                 Copied to clipboard
               </span>
             ) : (

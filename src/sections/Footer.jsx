@@ -6,7 +6,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="theme-section footer-surface flex w-full flex-col justify-end overflow-hidden px-3 pt-20 sm:px-5 md:px-6 lg:px-8">
+    <footer className="theme-section site-section-shell footer-surface flex w-full flex-col justify-end overflow-hidden">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
           <div className="flex w-full flex-col items-start text-left md:w-[45%] lg:w-[35%]">
@@ -63,7 +63,7 @@ const Footer = () => {
               </span>
               <a
                 href={`mailto:${SITE.email}`}
-                className="footer-email-btn mr-1.5 flex h-10 w-28 shrink-0 items-center justify-center rounded-full text-sm transition hover:opacity-90 active:scale-95 focus:outline-none"
+                className="site-cta site-cta-compact footer-email-btn mr-1.5 shrink-0 focus:outline-none"
               >
                 Email
               </a>
@@ -85,23 +85,25 @@ const Footer = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="footer-back-to-top inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em]"
+            className="site-cta site-cta-compact footer-back-to-top"
             aria-label="Back to top"
           >
-            <svg
-              className="h-3.5 w-3.5 rotate-180"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
             Back to top
+            <span className="site-cta-icon site-cta-icon-small">
+              <svg
+                className="h-3.5 w-3.5 rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </span>
           </button>
         </div>
 

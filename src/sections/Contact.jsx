@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { Icon } from "@iconify/react";
 import { gsap } from "../lib/gsap";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
 import { SITE, socials } from "../constants";
 
@@ -37,8 +36,6 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
-  const text = `Have an idea or a challenge in mind?
-Let’s connect and build something impactful.`;
   const items = [
     "just imagine, i code",
     "just imagine, i code",
@@ -87,132 +84,121 @@ Let’s connect and build something impactful.`;
     <section
       id="contact"
       ref={sectionRef}
-      className="theme-section relative z-10 overflow-hidden px-3 pt-10 pb-6 sm:px-6 sm:pt-12 sm:pb-10 md:px-8"
+      className="theme-section site-section-shell relative z-10 overflow-hidden"
     >
-      <AnimatedHeaderSection
-        subTitle={"You Dream It, I Code it"}
-        title={"Contact"}
-        text={text}
-        textColor={"theme-text-primary"}
-        withScrollTrigger={true}
-      />
+      <header className="contact-hero contact-reveal">
+        <p className="contact-hero-eyebrow">You dream it, I code it</p>
+        <h2 className="contact-hero-title">
+          <span>Let&apos;s,</span>{" "}
+          <span className="contact-hero-gradient">Connect</span>
+        </h2>
+        <div className="contact-hero-rule" />
+        <p className="contact-hero-copy">
+          Have something worth building?
+          <span>Let&apos;s turn it into something real.</span>
+        </p>
+      </header>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl pt-4 sm:pt-6">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 lg:items-stretch">
-          {/* LEFT */}
-          <div className="contact-reveal flex flex-col">
-            <h2 className="font-sans text-[1.85rem] font-semibold leading-[1.12] tracking-[-0.03em] text-[var(--theme-text-primary)] sm:text-[2.1rem] lg:text-[2.35rem]">
-              Let&apos;s build{" "}
-              <span className="text-[var(--theme-text-tertiary)]">
-                something cool.
-              </span>
-            </h2>
+      <div className="contact-panel contact-reveal">
+        <div className="contact-panel-left">
+          <h3 className="contact-panel-title">
+            Let&apos;s build <span>something real.</span>
+          </h3>
 
-            <p className="mt-4 max-w-[28rem] text-[0.92rem] leading-relaxed text-[var(--theme-text-secondary)] sm:text-[0.98rem]">
-              Have a project in mind, an internship opportunity, or just want
-              to connect? Drop a message. I&apos;ll get back to you.
-            </p>
+          <p className="contact-panel-copy">
+            Have a project in mind, an opportunity, or simply an idea
+            you&apos;d like to explore? Drop me a message.
+          </p>
 
-            <div className="mt-8 mb-5 flex w-full max-w-xs items-center">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-[var(--color-gold)] ring-1 ring-[var(--theme-border-strong)]" />
-              <span className="h-px flex-1 bg-[var(--theme-divider)]" />
-            </div>
-
-            <div className="flex flex-col gap-3">
-              {quickLinks.map((link) => (
+          <ul className="contact-link-list">
+            {quickLinks.map((link) => (
+              <li key={link.id}>
                 <a
-                  key={link.id}
+                  className="contact-link-row"
                   href={link.href}
                   target={link.id === "email" ? undefined : "_blank"}
                   rel={link.id === "email" ? undefined : "noreferrer"}
-                  className="group flex items-center gap-3.5 rounded-2xl border border-[rgba(255,255,255,0.12)] bg-transparent px-3.5 py-3.5 transition-colors hover:border-[rgba(191,161,129,0.45)] hover:bg-[rgba(191,161,129,0.04)]"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.12)] text-[var(--theme-text-secondary)] transition-colors group-hover:border-[rgba(191,161,129,0.45)] group-hover:text-[var(--color-gold)]">
+                  <span className="contact-link-icon">
                     <Icon icon={link.icon} width={18} height={18} />
                   </span>
 
-                  <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--theme-text-tertiary)]">
-                      {link.label}
-                    </span>
-                    <span className="truncate text-[0.92rem] font-medium text-[var(--theme-text-primary)] sm:text-[0.98rem]">
-                      {link.value}
-                    </span>
+                  <span className="contact-link-text">
+                    <span className="contact-link-label">{link.label}</span>
+                    <span className="contact-link-value">{link.value}</span>
                   </span>
 
-                  <Icon
-                    icon="solar:arrow-right-linear"
-                    width={16}
-                    height={16}
-                    className="shrink-0 text-[var(--theme-text-tertiary)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-gold)]"
-                  />
+                  <span className="contact-link-arrow" aria-hidden>
+                    <Icon icon="solar:arrow-right-linear" width={16} height={16} />
+                  </span>
                 </a>
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT — form card */}
-          <div className="contact-reveal flex">
-            <form
-              onSubmit={handleSubmit}
-              className="flex w-full flex-col rounded-[1.35rem] border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.02)] p-5 sm:p-6"
-            >
-              <div className="mb-5 flex items-center justify-end">
-                <span className="contact-status-chip">
-                  <span className="contact-status-pulse" aria-hidden="true">
-                    <span className="contact-status-pulse-ring" />
-                    <span className="contact-status-pulse-dot" />
-                  </span>
-                  <span className="contact-status-text">
-                    <span className="contact-status-label">Status</span>
-                    <span className="contact-status-value">Available</span>
-                  </span>
-                </span>
-              </div>
-
-              <div className="flex flex-1 flex-col gap-3">
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Name"
-                  required
-                  autoComplete="name"
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.12)] bg-transparent px-4 py-3.5 text-[0.92rem] text-[var(--theme-text-primary)] outline-none placeholder:text-[var(--theme-text-tertiary)] focus:border-[rgba(191,161,129,0.5)]"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Email address"
-                  required
-                  autoComplete="email"
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.12)] bg-transparent px-4 py-3.5 text-[0.92rem] text-[var(--theme-text-primary)] outline-none placeholder:text-[var(--theme-text-tertiary)] focus:border-[rgba(191,161,129,0.5)]"
-                />
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Message"
-                  required
-                  rows={6}
-                  className="min-h-[9rem] w-full flex-1 resize-y rounded-xl border border-[rgba(255,255,255,0.12)] bg-transparent px-4 py-3.5 text-[0.92rem] leading-relaxed text-[var(--theme-text-primary)] outline-none placeholder:text-[var(--theme-text-tertiary)] focus:border-[rgba(191,161,129,0.5)]"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={sending}
-                className="mt-4 inline-flex w-full items-center justify-center gap-2.5 rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-4 py-3.5 text-[0.95rem] font-semibold text-[var(--theme-text-primary)] transition-colors hover:border-[var(--color-gold)] hover:bg-[var(--theme-button-solid-bg)] hover:text-[var(--theme-button-solid-fg)] disabled:cursor-wait disabled:opacity-70"
-              >
-                <span>{sending ? "Opening mail…" : "Send message"}</span>
-                <Icon icon="solar:plain-2-linear" width={16} height={16} />
-              </button>
-            </form>
-          </div>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="contact-form-head">
+            <span className="contact-status-chip">
+              <span className="contact-status-pulse" aria-hidden="true">
+                <span className="contact-status-pulse-ring" />
+                <span className="contact-status-pulse-dot" />
+              </span>
+              <span className="contact-status-text">
+                <span className="contact-status-label">Status</span>
+                <span className="contact-status-value">Available</span>
+              </span>
+            </span>
+          </div>
+
+          <div className="contact-field">
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder=" "
+              required
+              autoComplete="name"
+            />
+            <label htmlFor="contact-name">Name</label>
+          </div>
+
+          <div className="contact-field">
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder=" "
+              required
+              autoComplete="email"
+            />
+            <label htmlFor="contact-email">Email address</label>
+          </div>
+
+          <div className="contact-field contact-field-message">
+            <textarea
+              id="contact-message"
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder=" "
+              required
+              rows={6}
+            />
+            <label htmlFor="contact-message">Message</label>
+          </div>
+
+          <button type="submit" className="site-cta contact-submit" disabled={sending}>
+            <span>{sending ? "Opening mail…" : "Send message"}</span>
+            <span className="site-cta-icon contact-submit-arrow" aria-hidden>
+              <span>↗</span>
+            </span>
+          </button>
+        </form>
       </div>
 
       <div className="mt-12 sm:mt-14">

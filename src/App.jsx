@@ -72,7 +72,7 @@ const App = () => {
         <PageRevealLoader onReveal={handleReveal} onComplete={handleLoaderDone} />
       )}
 
-      <ReactLenis root className="app-root relative w-full min-h-screen overflow-x-hidden selection:bg-gold/30">
+      <ReactLenis root className="app-root relative w-full min-h-screen overflow-x-hidden selection:bg-white/30">
         <SideBorders />
         <div className="page-main relative z-10 w-full">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />

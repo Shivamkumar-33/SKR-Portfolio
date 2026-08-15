@@ -1,417 +1,170 @@
-import { useLayoutEffect, useRef } from "react";
-import { useReducedMotion } from "framer-motion";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import TechBadge from "../components/TechBadge";
-import { projects } from "../constants";
-import { getTechIcon } from "../constants/techIcons";
-import { gsap } from "../lib/gsap";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import StackIcon from "tech-stack-icons";
+import ProjectSplitCard from "../components/ProjectSplitCard";
+import { projects } from "../constants";
+import { gsap, ScrollTrigger } from "../lib/gsap";
 
-const COLLAPSED_HEIGHT = 128;
-const EXPANDED_HEIGHT = 360;
-const SHOT_STAGGER = 0.12;
-
-// Idle: fully hidden. Hover: scaleY expand (no thin gold horizontal band)
-const GOLD_IDLE_STATE = {
-  inset: 0,
-  width: "100%",
-  height: "100%",
-  top: 0,
-  left: 0,
-  scaleY: 0,
-  transformOrigin: "50% 50%",
-  opacity: 0,
-  visibility: "hidden",
-};
-
-const GOLD_COVER_STATE = {
-  inset: 0,
-  width: "100%",
-  height: "100%",
-  top: 0,
-  left: 0,
-  scaleY: 1,
-  transformOrigin: "50% 50%",
-  opacity: 1,
-  visibility: "visible",
-};
+const stackItems = [
+  { name: "react", label: "React" },
+  { name: "nextjs", label: "Next.js", variant: "dark" },
+  { name: "typescript", label: "TypeScript" },
+  { name: "js", label: "JavaScript" },
+  { name: "tailwindcss", label: "Tailwind CSS" },
+  { name: "nodejs", label: "Node.js" },
+  { name: "expressjs", label: "Express", variant: "dark" },
+  { name: "mongodb", label: "MongoDB" },
+  { name: "postgresql", label: "PostgreSQL" },
+  { name: "redis", label: "Redis" },
+  { name: "graphql", label: "GraphQL" },
+  { name: "docker", label: "Docker" },
+  { name: "aws", label: "AWS", variant: "dark" },
+  { name: "github", label: "GitHub", variant: "dark" },
+];
 
 const Works = () => {
-  const listRef = useRef(null);
-  const containerRefs = useRef([]);
-  const contentRefs = useRef([]);
-  const goldRefs = useRef([]);
-  const goldTlRefs = useRef([]);
-  const revealTlRefs = useRef([]);
-  const openIndex = useRef(null);
-  const reduceMotion = useReducedMotion();
-
-  const text = `Featured projects that have been meticulously
-    crafted with passion to drive
-    results and impact.`;
+  const sectionRef = useRef(null);
+  const stackTrackRef = useRef(null);
 
   useGSAP(
     () => {
-      const rows = gsap.utils.toArray(".project-expand-row");
-      gsap.from(rows, {
-        y: 40,
+      gsap.from(".split-project-card", {
+        y: 56,
         opacity: 0,
-        duration: 0.55,
-        stagger: 0.06,
+        duration: 0.75,
+        stagger: 0.1,
         ease: "power3.out",
         clearProps: "transform,opacity",
         scrollTrigger: {
-          trigger: listRef.current,
-          start: "top 82%",
+          trigger: ".split-project-list",
+          start: "top 84%",
           once: true,
         },
       });
-    },
-    { scope: listRef }
-  );
 
-  useLayoutEffect(() => {
-    contentRefs.current.forEach((el) => {
-      const shots = el?.querySelectorAll(".project-gallery-shot");
-      if (!shots?.length) return;
-      gsap.set(shots, { y: 48, opacity: 0, force3D: true });
-    });
-    goldRefs.current.forEach((el) => {
-      if (!el) return;
-      gsap.set(el, GOLD_IDLE_STATE);
-    });
-    containerRefs.current.forEach((el) => {
-      if (!el) return;
-      gsap.set(el, { height: COLLAPSED_HEIGHT });
-    });
-  }, []);
-
-  const isDesktop = () =>
-    typeof window !== "undefined" && window.innerWidth >= 768;
-
-  const getShots = (i) => {
-    const content = contentRefs.current[i];
-    if (!content) return [];
-    return gsap.utils.toArray(content.querySelectorAll(".project-gallery-shot"));
-  };
-
-  const setActiveClass = (i) => {
-    containerRefs.current.forEach((el, idx) => {
-      if (!el) return;
-      el.classList.toggle("is-active", idx === i);
-    });
-  };
-
-  const clearActiveClass = () => {
-    containerRefs.current.forEach((el) => {
-      el?.classList.remove("is-active");
-    });
-  };
-
-  const killGoldTl = (i) => {
-    if (goldTlRefs.current[i]) {
-      goldTlRefs.current[i].kill();
-      goldTlRefs.current[i] = null;
-    }
-    const gold = goldRefs.current[i];
-    if (gold) gsap.killTweensOf(gold);
-  };
-
-  const resetGold = (i) => {
-    const gold = goldRefs.current[i];
-    if (!gold) return;
-    killGoldTl(i);
-    gsap.set(gold, GOLD_IDLE_STATE);
-  };
-
-  // Solid gold cover via scaleY — no thin rectangular gold stripe
-  const revealGold = (i, immediate = false) => {
-    const gold = goldRefs.current[i];
-    if (!gold) return null;
-
-    killGoldTl(i);
-
-    if (immediate || reduceMotion) {
-      gsap.set(gold, GOLD_COVER_STATE);
-      return null;
-    }
-
-    gsap.set(gold, {
-      ...GOLD_IDLE_STATE,
-      opacity: 1,
-      visibility: "visible",
-      scaleY: 0,
-    });
-
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.out", force3D: true },
-    });
-    goldTlRefs.current[i] = tl;
-
-    tl.to(gold, {
-      scaleY: 1,
-      duration: 0.34,
-    });
-
-    return tl;
-  };
-
-  const collapseCard = (i, immediate = false) => {
-    const container = containerRefs.current[i];
-    const shots = getShots(i);
-    const gold = goldRefs.current[i];
-
-    if (revealTlRefs.current[i]) {
-      revealTlRefs.current[i].kill();
-      revealTlRefs.current[i] = null;
-    }
-
-    if (immediate) {
-      if (container) {
-        gsap.killTweensOf(container);
-        gsap.set(container, { height: COLLAPSED_HEIGHT });
-      }
-      if (shots.length) {
-        gsap.killTweensOf(shots);
-        gsap.set(shots, { y: 48, opacity: 0 });
-      }
-      resetGold(i);
-      return;
-    }
-
-    // Keep GOLD COVERING while collapsing — do NOT slide gold away
-    // (that was flashing ambient brown background)
-    killGoldTl(i);
-    if (gold) gsap.set(gold, GOLD_COVER_STATE);
-
-    if (shots.length) {
-      gsap.killTweensOf(shots);
-      gsap.to(shots, {
-        y: 48,
+      gsap.from(".stack-showcase-head, .stack-marquee", {
+        y: 32,
         opacity: 0,
-        duration: reduceMotion ? 0.1 : 0.16,
-        stagger: { each: 0.03, from: "end" },
-        ease: "power2.in",
-        overwrite: true,
-      });
-    }
-
-    if (container) {
-      gsap.killTweensOf(container);
-      gsap.to(container, {
-        height: COLLAPSED_HEIGHT,
-        duration: reduceMotion ? 0.15 : 0.3,
-        ease: "power3.inOut",
-        overwrite: true,
-        onComplete: () => {
-          // Only after card is closed — reset gold (no ambient flash)
-          resetGold(i);
+        duration: 0.75,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".stack-showcase",
+          start: "top 80%",
+          once: true,
         },
       });
-    } else {
-      resetGold(i);
-    }
-  };
 
-  const expandCard = (i) => {
-    const container = containerRefs.current[i];
-    const shots = getShots(i);
+      const track = stackTrackRef.current;
+      if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+        return;
 
-    if (revealTlRefs.current[i]) {
-      revealTlRefs.current[i].kill();
-      revealTlRefs.current[i] = null;
-    }
+      const stackLoop = gsap.fromTo(
+        track,
+        { xPercent: 0 },
+        { xPercent: -50, duration: 42, ease: "none", repeat: -1 }
+      );
 
-    const goldTl = revealGold(i);
+      const stackTrigger = ScrollTrigger.create({
+        trigger: track,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const boost = gsap.utils.clamp(
+            1,
+            5,
+            1 + Math.abs(self.getVelocity()) / 700
+          );
 
-    // Expand height with gold so dark ambient never shows in the open area
-    if (container) {
-      gsap.killTweensOf(container);
-      gsap.to(container, {
-        height: EXPANDED_HEIGHT,
-        duration: reduceMotion ? 0.15 : 0.36,
-        ease: "power3.out",
-        overwrite: true,
+          gsap.to(stackLoop, {
+            timeScale: boost * self.direction,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: true,
+          });
+        },
       });
-    }
 
-    // Photos only after gold cover is mostly filled
-    if (shots.length) {
-      gsap.killTweensOf(shots);
-      gsap.set(shots, { y: 48, opacity: 0, force3D: true });
-
-      const photoDelay = reduceMotion ? 0 : 0.32;
-      const tl = gsap.timeline({ delay: photoDelay });
-      revealTlRefs.current[i] = tl;
-
-      if (goldTl && !reduceMotion) {
-        // If gold finishes earlier, still ok — delay keeps sync
-      }
-
-      shots.forEach((shot, idx) => {
-        tl.to(
-          shot,
-          {
-            y: 0,
-            opacity: 1,
-            duration: reduceMotion ? 0.15 : 0.34,
-            ease: "power3.out",
-            force3D: true,
-          },
-          reduceMotion ? 0 : idx * SHOT_STAGGER
-        );
-      });
-    }
-  };
-
-  const handleEnter = (i) => {
-    if (!isDesktop()) return;
-    if (openIndex.current === i) return;
-
-    if (openIndex.current !== null) {
-      collapseCard(openIndex.current, true);
-      clearActiveClass();
-    }
-
-    openIndex.current = i;
-    setActiveClass(i);
-    expandCard(i);
-  };
-
-  const handleLeave = (i) => {
-    if (!isDesktop()) return;
-    if (openIndex.current !== i) return;
-
-    collapseCard(i);
-    openIndex.current = null;
-    // Clear active styles after short beat so text doesn't flash on dark
-    window.setTimeout(() => {
-      if (openIndex.current === null) clearActiveClass();
-    }, 280);
-  };
-
-  const handleToggle = (i) => {
-    if (isDesktop()) return;
-
-    if (openIndex.current === i) {
-      collapseCard(i);
-      openIndex.current = null;
-      window.setTimeout(() => {
-        if (openIndex.current === null) clearActiveClass();
-      }, 280);
-      return;
-    }
-
-    if (openIndex.current !== null) {
-      collapseCard(openIndex.current, true);
-      clearActiveClass();
-    }
-
-    openIndex.current = i;
-    setActiveClass(i);
-    expandCard(i);
-  };
+      return () => {
+        stackTrigger.kill();
+        stackLoop.kill();
+      };
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section id="projects" className="works-section relative z-10 flex min-h-screen flex-col">
-      <AnimatedHeaderSection
-        subTitle={"Logic meets Aesthetics, Seamlessly"}
-        title={"Works"}
-        text={text}
-        textColor={"theme-text-primary"}
-        withScrollTrigger={true}
-      />
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="works-section relative z-10 flex min-h-screen flex-col"
+    >
+      <header className="works-showcase-header">
+        <p className="works-showcase-eyebrow">Ideas brought to life</p>
+        <h2 className="works-showcase-title" aria-label="Vision in motion">
+          <span>Vision in</span>{" "}
+          <span className="works-gradient-text">motion</span>
+        </h2>
+      </header>
 
-      <div ref={listRef} className="project-expand-list relative px-3 pb-20 sm:px-5 md:px-8 lg:px-10">
-        {projects.map((project, i) => {
-          const tech = project.frameworks.map((f) => ({
-            label: f.name,
-            icon: getTechIcon(f.name),
-          }));
-          // 3 crops of the real project shot — no grainy bgImage flash
-          const gallery = [
-            { src: project.image, position: "object-top" },
-            { src: project.image, position: "object-center" },
-            { src: project.image, position: "object-bottom" },
-          ];
+      <div className="split-project-shell">
+        <div className="split-project-header">
+          <span className="technical-label">Selected work</span>
+          <span>
+            {String(projects.length).padStart(2, "0")} projects
+          </span>
+        </div>
 
-          return (
-            <div
+        <div className="split-project-list">
+          {projects.map((project, index) => (
+            <ProjectSplitCard
               key={project.id}
-              ref={(el) => {
-                containerRefs.current[i] = el;
-              }}
-              onMouseEnter={() => handleEnter(i)}
-              onMouseLeave={() => handleLeave(i)}
-              onClick={() => handleToggle(i)}
-              className="project-expand-row relative cursor-pointer overflow-hidden border-b border-[var(--theme-border-soft)] px-4 md:px-6"
-              style={{ height: COLLAPSED_HEIGHT }}
-            >
-              <div
-                ref={(el) => {
-                  goldRefs.current[i] = el;
-                }}
-                className="project-gold-reveal"
-                aria-hidden
-              />
-
-              <div className="project-row-top relative z-10 flex h-[128px] items-center gap-3 md:gap-4">
-                <h2 className="project-title min-w-0 flex-[1.2] text-lg font-semibold tracking-tight md:text-xl lg:text-[1.65rem]">
-                  {project.name}
-                </h2>
-
-                <p className="project-desc hidden min-w-0 flex-1 text-xs leading-snug md:line-clamp-2 md:block md:text-sm">
-                  {project.description}
-                </p>
-
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="project-view-link shrink-0 text-sm md:text-base"
-                >
-                  View →
-                </a>
-              </div>
-
-              <div className="relative z-10 pb-4">
-                <div className="mb-2 flex flex-wrap gap-2">
-                  {tech.map((t, idx) => (
-                    <TechBadge
-                      key={`${project.id}-tech-${idx}`}
-                      icon={t.icon}
-                      label={t.label}
-                    />
-                  ))}
-                </div>
-
-                <div
-                  ref={(el) => {
-                    contentRefs.current[i] = el;
-                  }}
-                  className="project-gallery flex gap-6"
-                >
-                  {gallery.map((shot, idx) => (
-                    <div
-                      key={`${project.id}-shot-${idx}`}
-                      className="project-gallery-shot overflow-hidden rounded-xl"
-                    >
-                      <img
-                        src={shot.src}
-                        alt={`${project.name} preview ${idx + 1}`}
-                        className={`h-full w-full object-cover ${shot.position}`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+              project={project}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
+
+      <section className="stack-showcase" aria-labelledby="stack-title">
+        <header className="stack-showcase-head">
+          <p className="stack-showcase-eyebrow">The stack behind the work</p>
+          <h2 id="stack-title" className="stack-showcase-title">
+            Built <span className="works-gradient-text">with</span>
+          </h2>
+          <p className="stack-showcase-copy">
+            The tools I use to turn ideas into reliable, scalable digital
+            products.
+          </p>
+        </header>
+
+        <div className="stack-marquee">
+          <div ref={stackTrackRef} className="stack-marquee-track">
+            {[0, 1].map((group) => (
+              <div
+                key={group}
+                className="stack-marquee-group"
+                aria-hidden={group === 1 ? "true" : undefined}
+              >
+                {stackItems.map((item) => (
+                  <figure
+                    key={`${group}-${item.name}`}
+                    className="stack-card"
+                    aria-label={item.label}
+                  >
+                    <StackIcon
+                      name={item.name}
+                      variant={item.variant}
+                      className="stack-card-icon"
+                    />
+                    <figcaption>{item.label}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </section>
   );
 };
