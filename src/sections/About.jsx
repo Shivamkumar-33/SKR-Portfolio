@@ -63,9 +63,13 @@ const About = () => {
   );
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText(SITE.email);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+    try {
+      await navigator.clipboard.writeText(SITE.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard can be denied by the browser; keep UI quiet and generic.
+    }
   };
 
   return (

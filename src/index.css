@@ -1558,6 +1558,15 @@ select {
   flex: 1;
 }
 
+.contact-form-error {
+  margin: 0.15rem 0 0.35rem;
+  color: #ff2d2d;
+  font-family: var(--font-tech-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 .contact-submit {
   margin-top: 0.5rem;
   width: 100%;

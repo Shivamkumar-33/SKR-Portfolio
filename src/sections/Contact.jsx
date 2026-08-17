@@ -8,6 +8,49 @@ import { SITE, socials } from "../constants";
 
 const EMAIL = SITE.email;
 
+const CONTACT_LIMITS = {
+  name: { min: 2, max: 80 },
+  email: { min: 5, max: 120 },
+  message: { min: 10, max: 2000 },
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const sanitizeSingleLine = (value) =>
+  value.replace(/[\r\n\u2028\u2029]/g, " ").replace(/\s+/g, " ").trim();
+
+const validateContactForm = ({ name, email, message }) => {
+  const cleaned = {
+    name: sanitizeSingleLine(name),
+    email: sanitizeSingleLine(email).toLowerCase(),
+    message: message.replace(/\r\n/g, "\n").trim(),
+  };
+
+  if (
+    cleaned.name.length < CONTACT_LIMITS.name.min ||
+    cleaned.name.length > CONTACT_LIMITS.name.max
+  ) {
+    return { ok: false, error: "Please enter a valid name." };
+  }
+
+  if (
+    cleaned.email.length < CONTACT_LIMITS.email.min ||
+    cleaned.email.length > CONTACT_LIMITS.email.max ||
+    !EMAIL_PATTERN.test(cleaned.email)
+  ) {
+    return { ok: false, error: "Please enter a valid email address." };
+  }
+
+  if (
+    cleaned.message.length < CONTACT_LIMITS.message.min ||
+    cleaned.message.length > CONTACT_LIMITS.message.max
+  ) {
+    return { ok: false, error: "Please enter a message between 10 and 2000 characters." };
+  }
+
+  return { ok: true, value: cleaned };
+};
+
 const quickLinks = [
   {
     id: "email",
@@ -36,6 +79,7 @@ const Contact = () => {
   const sectionRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const items = [
     "just imagine, i code",
@@ -65,17 +109,25 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const max = CONTACT_LIMITS[name]?.max;
+    const nextValue = typeof max === "number" ? value.slice(0, max) : value;
+    setForm((prev) => ({ ...prev, [name]: nextValue }));
+    if (formError) setFormError("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    const result = validateContactForm(form);
+    if (!result.ok) {
+      setFormError(result.error);
+      return;
+    }
 
+    setFormError("");
     setSending(true);
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
+    const subject = encodeURIComponent(`Portfolio message from ${result.value.name}`);
     const body = encodeURIComponent(
-      `${form.message}\n\n— ${form.name}\n${form.email}`
+      `${result.value.message}\n\n— ${result.value.name}\n${result.value.email}`
     );
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     window.setTimeout(() => setSending(false), 800);
@@ -162,6 +214,8 @@ const Contact = () => {
               onChange={handleChange}
               placeholder=" "
               required
+              minLength={CONTACT_LIMITS.name.min}
+              maxLength={CONTACT_LIMITS.name.max}
               autoComplete="name"
             />
             <label htmlFor="contact-name">Name</label>
@@ -176,7 +230,10 @@ const Contact = () => {
               onChange={handleChange}
               placeholder=" "
               required
+              minLength={CONTACT_LIMITS.email.min}
+              maxLength={CONTACT_LIMITS.email.max}
               autoComplete="email"
+              inputMode="email"
             />
             <label htmlFor="contact-email">Email address</label>
           </div>
@@ -189,10 +246,18 @@ const Contact = () => {
               onChange={handleChange}
               placeholder=" "
               required
+              minLength={CONTACT_LIMITS.message.min}
+              maxLength={CONTACT_LIMITS.message.max}
               rows={6}
             />
             <label htmlFor="contact-message">Message</label>
           </div>
+
+          {formError ? (
+            <p className="contact-form-error" role="alert">
+              {formError}
+            </p>
+          ) : null}
 
           <ButtonWithIcon
             type="submit"
