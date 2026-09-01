@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPeriscope } from "@fortawesome/free-brands-svg-icons";
-import { motion as Motion, useReducedMotion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "motion/react";
 
 const LiveLocation = () => {
   const reduceMotion = useReducedMotion();

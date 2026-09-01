@@ -1,4 +1,4 @@
-import { motion as Motion, useReducedMotion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "motion/react";
 
 const LayersIcon = () => (
   <svg

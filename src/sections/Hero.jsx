@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@iconify/react";
 import LiveLocation from "../components/LiveLocation";
 import HeroRole from "../components/HeroRole";

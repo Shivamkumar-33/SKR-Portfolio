@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { TbSparkles } from "react-icons/tb";
 import { getTechIcon } from "../constants/techIcons";
 
