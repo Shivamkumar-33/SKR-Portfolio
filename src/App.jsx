@@ -1,15 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import ReactLenis from "lenis/react";
-import About from "./sections/About";
-import Works from "./sections/Works";
-import ContactSummary from "./sections/ContactSummary";
-import Contact from "./sections/Contact";
-import Footer from "./sections/Footer";
 import PageRevealLoader from "./components/PageRevealLoader";
 import SideBorders from "./components/SideBorders";
 import { SITE } from "./constants";
+
+// Lazy-load below-fold sections to reduce initial JS parse/execute time
+const About = lazy(() => import("./sections/About"));
+const Works = lazy(() => import("./sections/Works"));
+const ContactSummary = lazy(() => import("./sections/ContactSummary"));
+const Contact = lazy(() => import("./sections/Contact"));
+const Footer = lazy(() => import("./sections/Footer"));
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
@@ -77,11 +79,13 @@ const App = () => {
         <div className="page-main relative z-10 w-full">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
           <Hero isRevealed={isRevealed} />
-          <About />
-          <Works />
-          <ContactSummary />
-          <Contact />
-          <Footer />
+          <Suspense>
+            <About />
+            <Works />
+            <ContactSummary />
+            <Contact />
+            <Footer />
+          </Suspense>
         </div>
       </ReactLenis>
     </>

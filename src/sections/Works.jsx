@@ -1,26 +1,29 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import StackIcon from "tech-stack-icons";
 import ProjectSplitCard from "../components/ProjectSplitCard";
 import { projects } from "../constants";
 import { gsap, ScrollTrigger } from "../lib/gsap";
 
 const stackItems = [
-  { name: "react", label: "React" },
-  { name: "nextjs", label: "Next.js", variant: "dark" },
-  { name: "typescript", label: "TypeScript" },
-  { name: "js", label: "JavaScript" },
-  { name: "tailwindcss", label: "Tailwind CSS" },
-  { name: "nodejs", label: "Node.js" },
-  { name: "expressjs", label: "Express", variant: "dark" },
-  { name: "mongodb", label: "MongoDB" },
-  { name: "postgresql", label: "PostgreSQL" },
-  { name: "redis", label: "Redis" },
-  { name: "graphql", label: "GraphQL" },
-  { name: "docker", label: "Docker" },
-  { name: "aws", label: "AWS", variant: "dark" },
-  { name: "github", label: "GitHub", variant: "dark" },
+  { name: "react", label: "React", slug: "react" },
+  { name: "nextjs", label: "Next.js", slug: "nextjs", dark: true },
+  { name: "typescript", label: "TypeScript", slug: "typescript" },
+  { name: "js", label: "JavaScript", slug: "javascript" },
+  { name: "tailwindcss", label: "Tailwind CSS", slug: "tailwindcss" },
+  { name: "nodejs", label: "Node.js", slug: "nodejs" },
+  { name: "expressjs", label: "Express", slug: "express", dark: true },
+  { name: "mongodb", label: "MongoDB", slug: "mongodb" },
+  { name: "postgresql", label: "PostgreSQL", slug: "postgresql" },
+  { name: "redis", label: "Redis", slug: "redis" },
+  { name: "graphql", label: "GraphQL", slug: "graphql" },
+  { name: "docker", label: "Docker", slug: "docker" },
+  { name: "aws", label: "AWS", slug: "amazonwebservices", dark: true },
+  { name: "github", label: "GitHub", slug: "github", dark: true },
 ];
+
+// Use devicon CDN for lightweight SVG icons — no JS bundle cost
+const getIconUrl = (slug, dark) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-original${dark ? "-wordmark" : ""}.svg`;
 
 const Works = () => {
   const sectionRef = useRef(null);
@@ -152,9 +155,13 @@ const Works = () => {
                     className="stack-card"
                     aria-label={item.label}
                   >
-                    <StackIcon
-                      name={item.name}
-                      variant={item.variant}
+                    <img
+                      src={getIconUrl(item.slug, item.dark)}
+                      alt={item.label}
+                      width={40}
+                      height={40}
+                      loading="lazy"
+                      decoding="async"
                       className="stack-card-icon"
                     />
                     <figcaption>{item.label}</figcaption>

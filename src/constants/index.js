@@ -31,7 +31,7 @@ export const projects = [
       "Keep audits and reports together in one dashboard",
     ],
     href: "https://rankpulse-seo-analytics-ncp3.vercel.app/",
-    image: "/assets/projects/rankpulse.png",
+    image: "/assets/projects/rankpulse.webp",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "TypeScript" },
@@ -56,7 +56,7 @@ export const projects = [
       "Keep database access type-safe with Drizzle and Supabase",
     ],
     href: "#",
-    image: "/assets/projects/workforce.png",
+    image: "/assets/projects/workforce.webp",
     frameworks: [
       { id: 1, name: "Next.js" },
       { id: 2, name: "TypeScript" },
@@ -80,7 +80,7 @@ export const projects = [
       "Track preparation from a single progress dashboard",
     ],
     href: "https://interviewprep-brown.vercel.app/",
-    image: "/assets/projects/interviewos.png",
+    image: "/assets/projects/interviewos.webp",
     frameworks: [
       { id: 1, name: "MERN Stack" },
       { id: 2, name: "Groq AI" },
@@ -101,7 +101,7 @@ export const projects = [
       "Handle concurrent connections through Socket.io",
     ],
     href: "https://chat-app-gxx1.vercel.app/login",
-    image: "/assets/projects/chatapp.png",
+    image: "/assets/projects/chatapp.webp",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Node.js" },

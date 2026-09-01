@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import {
   AnimatePresence,
@@ -15,20 +15,6 @@ export const Navbar = ({ children, className, theme = "dark" }) => {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setVisible(latest > 100);
   });
-
-  useEffect(() => {
-    const updateVisible = () => {
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      setVisible((prev) => {
-        const next = y > 100;
-        return prev === next ? prev : next;
-      });
-    };
-
-    updateVisible();
-    window.addEventListener("scroll", updateVisible, { passive: true });
-    return () => window.removeEventListener("scroll", updateVisible);
-  }, []);
 
   return (
     <motion.div

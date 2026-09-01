@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Icon } from "@iconify/react";
+import { Sun, Moon } from "lucide-react";
 import { SITE, navItems, sectionIds, socials } from "../constants";
 import {
   MobileNav,
@@ -13,6 +13,7 @@ import {
   NavbarLogo,
   NavItems,
 } from "../components/ui/resizable-navbar";
+import { SocialIcon } from "../constants/socialIcons";
 
 const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,10 +82,11 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                 title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
                 className="theme-toggle-btn"
               >
-                <Icon
-                  icon={theme === "dark" ? "ph:sun-dim-bold" : "ph:moon-stars-bold"}
-                  className="h-4 w-4"
-                />
+                {theme === "dark" ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
               </button>
 
               <NavbarButton
@@ -107,10 +109,11 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                   aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
                   className="theme-toggle-btn"
                 >
-                  <Icon
-                    icon={theme === "dark" ? "ph:sun-dim-bold" : "ph:moon-stars-bold"}
-                    className="h-4 w-4"
-                  />
+                  {theme === "dark" ? (
+                    <Sun className="h-4 w-4" />
+                  ) : (
+                    <Moon className="h-4 w-4" />
+                  )}
                 </button>
                 <MobileNavToggle
                   isOpen={isMobileMenuOpen}
@@ -201,7 +204,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                       variant={theme === "dark" ? "secondary" : "dark"}
                       className="w-full text-left"
                     >
-                      <Icon icon={social.icon} className="mr-2 h-4 w-4" />
+                      <SocialIcon name={social.name} className="mr-2 h-4 w-4" />
                       {social.name}
                     </NavbarButton>
                   </motion.div>

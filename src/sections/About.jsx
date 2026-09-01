@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import { Icon } from "@iconify/react";
+import { Clock, FileText, Mail } from "lucide-react";
 import { gsap } from "../lib/gsap";
 import { SITE, socials } from "../constants";
+import { SocialIcon } from "../constants/socialIcons";
 import ButtonWithIcon from "../components/ui/button-with-icon";
 import WorldMap from "../components/ui/world-map";
-
-const socialIcons = {
-  LinkedIn: "ph:linkedin-logo",
-  GitHub: "ph:github-logo",
-};
 
 const delhi = { lat: 28.6139, lng: 77.209, label: "Delhi" };
 
@@ -109,7 +105,7 @@ const About = () => {
                 rel="noreferrer"
                 aria-label={social.name}
               >
-                <Icon icon={socialIcons[social.name] || social.icon} />
+                <SocialIcon name={social.name} className="h-5 w-5" />
               </a>
             ))}
             <a
@@ -118,7 +114,7 @@ const About = () => {
               rel="noreferrer"
               aria-label="View resume"
             >
-              <Icon icon="solar:document-text-linear" />
+              <FileText size={20} />
             </a>
           </div>
         </article>
@@ -126,9 +122,13 @@ const About = () => {
         <div className="about-profile-center">
           <article className="about-profile-card about-photo-card">
             <img
-              src="/images/myproflle.png"
+              src="/images/myproflle.webp"
               alt="Shivam Kumar"
+              width={800}
+              height={800}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
             />
             <div className="about-photo-glow" aria-hidden />
           </article>
@@ -146,7 +146,7 @@ const About = () => {
               <h3>Delhi, India</h3>
               <p>28.6139° N, 77.2090° E</p>
               <span className="about-timezone">
-                <Icon icon="solar:clock-circle-linear" />
+                <Clock size={14} />
                 {delhiTime} IST
               </span>
             </div>
@@ -165,7 +165,7 @@ const About = () => {
 
           <div className="about-contact-email">
             <div className="about-email-icon">
-              <Icon icon="solar:letter-linear" />
+              <Mail size={20} />
             </div>
             <button type="button" onClick={copyEmail}>
               <strong>{copied ? "Email copied!" : SITE.email}</strong>

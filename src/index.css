@@ -388,6 +388,7 @@ select {
 
 .site-section-shell {
   padding: var(--section-space-y) var(--section-space-x);
+  contain: layout style paint;
 }
 
 .hero-section-shell {

@@ -1,4 +1,4 @@
-import { useId, useMemo } from "react";
+import { memo, useId, useMemo } from "react";
 import DottedMap from "dotted-map";
 import { motion } from "motion/react";
 
@@ -13,18 +13,21 @@ const createCurvedPath = (start, end) => {
   return `M ${start.x} ${start.y} Q ${midpointX} ${midpointY} ${end.x} ${end.y}`;
 };
 
-const WorldMap = ({ dots = [], lineColor = "#b86cff", className = "" }) => {
-  const id = useId().replace(/:/g, "");
-  const mapSvg = useMemo(() => {
-    const map = new DottedMap({ height: 100, grid: "diagonal" });
+// Generate the dotted map SVG once at module level — it never changes
+const mapSvg = (() => {
+  const map = new DottedMap({ height: 100, grid: "diagonal" });
+  return map.getSVG({
+    radius: 0.22,
+    color: "#ffffff42",
+    shape: "circle",
+    backgroundColor: "transparent",
+  });
+})();
 
-    return map.getSVG({
-      radius: 0.22,
-      color: "#ffffff42",
-      shape: "circle",
-      backgroundColor: "transparent",
-    });
-  }, []);
+const mapDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(mapSvg)}`;
+
+const WorldMap = memo(({ dots = [], lineColor = "#b86cff", className = "" }) => {
+  const id = useId().replace(/:/g, "");
 
   const origins = useMemo(() => {
     const unique = new Map();
@@ -39,7 +42,7 @@ const WorldMap = ({ dots = [], lineColor = "#b86cff", className = "" }) => {
   return (
     <div className={`world-map ${className}`.trim()}>
       <img
-        src={`data:image/svg+xml;utf8,${encodeURIComponent(mapSvg)}`}
+        src={mapDataUri}
         alt=""
         aria-hidden="true"
         draggable="false"
@@ -99,6 +102,8 @@ const WorldMap = ({ dots = [], lineColor = "#b86cff", className = "" }) => {
       </svg>
     </div>
   );
-};
+});
+
+WorldMap.displayName = "WorldMap";
 
 export default WorldMap;

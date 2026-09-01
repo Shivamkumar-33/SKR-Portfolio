@@ -10,26 +10,18 @@
     "preview": "node ./node_modules/vite/bin/vite.js preview"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.3.1",
-    "@fortawesome/free-brands-svg-icons": "^7.3.1",
-    "@fortawesome/react-fontawesome": "^3.5.0",
     "@gsap/react": "^2.1.2",
-    "@iconify/react": "^6.0.0",
     "@radix-ui/react-slot": "^1.3.3",
-    "@tabler/icons-react": "^3.41.1",
     "@tailwindcss/vite": "^4.1.7",
     "class-variance-authority": "^0.7.1",
     "dotted-map": "^3.1.0",
-    "framer-motion": "^12.38.0",
     "gsap": "^3.14.2",
     "lenis": "^1.3.4",
     "lucide-react": "^1.31.0",
     "motion": "^12.38.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-icons": "^5.6.0",
-    "tailwindcss": "^4.1.7",
-    "tech-stack-icons": "^3.7.1"
+    "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

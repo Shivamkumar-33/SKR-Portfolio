@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { TbSparkles } from "react-icons/tb";
+import { Sparkles } from "lucide-react";
 import { getTechIcon } from "../constants/techIcons";
 
 const imageVariants = {
@@ -73,7 +73,7 @@ const ProjectSplitCard = ({ project, index }) => {
         <ul className="split-project-highlights">
           {project.highlights?.map((highlight) => (
             <li key={highlight}>
-              <TbSparkles aria-hidden="true" />
+              <Sparkles size={14} aria-hidden="true" />
               <span>{highlight}</span>
             </li>
           ))}

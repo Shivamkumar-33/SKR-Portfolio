@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import { Icon } from "@iconify/react";
+import { Mail, ArrowRight } from "lucide-react";
 import { gsap } from "../lib/gsap";
 import Marquee from "../components/Marquee";
 import ButtonWithIcon from "../components/ui/button-with-icon";
+import { SocialIcon } from "../constants/socialIcons";
 import { SITE, socials } from "../constants";
 
 const EMAIL = SITE.email;
@@ -57,23 +58,30 @@ const quickLinks = [
     label: "Email",
     value: EMAIL,
     href: `mailto:${EMAIL}`,
-    icon: "solar:letter-linear",
+    icon: "mail",
   },
   {
     id: "github",
     label: "GitHub",
     value: "github.com/Shivamkumar-33",
     href: socials.find((s) => s.name === "GitHub")?.href || "#",
-    icon: "ph:github-logo-duotone",
+    icon: "github",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     value: "linkedin.com/in/shivam-kumar-3827b1352",
     href: socials.find((s) => s.name === "LinkedIn")?.href || "#",
-    icon: "ph:linkedin-logo-duotone",
+    icon: "linkedin",
   },
 ];
+
+const QuickLinkIcon = ({ type }) => {
+  if (type === "mail") return <Mail size={18} />;
+  if (type === "github") return <SocialIcon name="GitHub" className="h-[18px] w-[18px]" />;
+  if (type === "linkedin") return <SocialIcon name="LinkedIn" className="h-[18px] w-[18px]" />;
+  return null;
+};
 
 const Contact = () => {
   const sectionRef = useRef(null);
@@ -174,7 +182,7 @@ const Contact = () => {
                   rel={link.id === "email" ? undefined : "noreferrer"}
                 >
                   <span className="contact-link-icon">
-                    <Icon icon={link.icon} width={18} height={18} />
+                    <QuickLinkIcon type={link.icon} />
                   </span>
 
                   <span className="contact-link-text">
@@ -183,7 +191,7 @@ const Contact = () => {
                   </span>
 
                   <span className="contact-link-arrow" aria-hidden>
-                    <Icon icon="solar:arrow-right-linear" width={16} height={16} />
+                    <ArrowRight size={16} />
                   </span>
                 </a>
               </li>
