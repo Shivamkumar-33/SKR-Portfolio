@@ -130,13 +130,13 @@ const Hero = ({ isRevealed = true }) => {
       >
         <motion.div 
           variants={itemVariants}
-          className="flex items-center gap-2 text-gray-500 border border-gray-200 rounded-full px-4 py-2 mb-6"
+          className="flex items-center gap-2 theme-text-secondary border border-[var(--theme-border-soft)] bg-[var(--theme-chip-bg)] rounded-full px-4 py-1.5 mb-6"
         >
-          <div className="relative flex size-3.5 items-center justify-center">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping duration-300"></span>
-            <span className="relative inline-flex size-2 rounded-full bg-green-600"></span>
+          <div className="relative flex size-3 items-center justify-center">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping duration-300"></span>
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
           </div>
-          <span className="text-sm font-medium">Blog section in progress</span>
+          <span className="text-xs font-medium uppercase tracking-wider font-mono">Blog section in progress</span>
         </motion.div>
 
         <motion.h1
@@ -144,7 +144,6 @@ const Hero = ({ isRevealed = true }) => {
           className="hero-title theme-text-primary mb-6 py-2 text-[clamp(2.75rem,11vw,8.5rem)] leading-[0.85] font-black uppercase italic sm:mb-8 md:mb-10 tracking-[-0.04em] premium-header"
           style={{
             fontFamily: "'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif",
-            textShadow: "0 0 28px rgba(255, 255, 255, 0.18)",
             perspective: 800,
           }}
           aria-label="SHIVAM"
