@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { Menu, X } from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -238,7 +238,7 @@ export const MobileNavToggle = ({ isOpen, onClick, controlsId, theme = "dark" })
         theme === "dark" ? "text-white" : "text-neutral-900"
       )}
     >
-      {isOpen ? <IconX className="h-5 w-5" /> : <IconMenu2 className="h-5 w-5" />}
+      {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
     </button>
   );
 };

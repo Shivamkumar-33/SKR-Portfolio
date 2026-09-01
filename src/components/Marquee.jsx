@@ -1,20 +1,18 @@
 import { useRef } from "react";
-import { Icon } from "@iconify/react";
+import { Sparkles } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "../lib/gsap";
 
-const MarqueeItem = ({ text, icon, iconClassName }) => (
+const MarqueeItem = ({ text }) => (
   <span className="marquee__item">
     <span className="marquee__label">{text}</span>
-    <Icon icon={icon} className={`marquee__icon ${iconClassName}`} />
+    <Sparkles size={18} className="marquee__icon" />
   </span>
 );
 
 const Marquee = ({
   items,
   className = "marquee-surface",
-  icon = "mdi:star-four-points",
-  iconClassName = "",
   reverse = false,
   speed = 35,
 }) => {
@@ -76,8 +74,6 @@ const Marquee = ({
             <MarqueeItem
               key={`a-${text}-${index}`}
               text={text}
-              icon={icon}
-              iconClassName={iconClassName}
             />
           ))}
         </div>
@@ -86,8 +82,6 @@ const Marquee = ({
             <MarqueeItem
               key={`b-${text}-${index}`}
               text={text}
-              icon={icon}
-              iconClassName={iconClassName}
             />
           ))}
         </div>

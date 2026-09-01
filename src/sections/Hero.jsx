@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Icon } from "@iconify/react";
+import { Copy } from "lucide-react";
 import LiveLocation from "../components/LiveLocation";
 import HeroRole from "../components/HeroRole";
 import ConnectButton from "../components/ConnectButton";
@@ -193,7 +193,7 @@ const Hero = ({ isRevealed = true }) => {
               </span>
             ) : (
               <span className="theme-text-secondary hover:theme-text-primary inline-flex items-center gap-2 transition-colors">
-                <Icon icon="lucide:copy" className="h-5 w-5" />
+                <Copy className="h-5 w-5" />
                 <span className="font-medium tracking-tight font-mono">{emailAddress}</span>
               </span>
             )}

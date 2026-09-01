@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPeriscope } from "@fortawesome/free-brands-svg-icons";
+import { MapPin } from "lucide-react";
 import { motion as Motion, useReducedMotion } from "motion/react";
 
 const LiveLocation = () => {
@@ -25,8 +24,9 @@ const LiveLocation = () => {
             : { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }
         }
       >
-        <FontAwesomeIcon
-          icon={faPeriscope}
+        <MapPin
+          size={22}
+          strokeWidth={1.8}
           className="live-location-pin-icon relative z-10"
         />
         <span className="live-location-pin-glow" aria-hidden />
