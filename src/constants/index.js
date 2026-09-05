@@ -125,7 +125,7 @@ export const socials = [
   },
   {
     name: "Twitter",
-    href: "https://x.com/ShivamKumarRud1",
+    href: "https://x.com/Shivamkumar3303",
     icon: "ph:x-logo-duotone",
   },
 ];
