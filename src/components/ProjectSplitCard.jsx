@@ -44,7 +44,12 @@ const ProjectSplitCard = ({ project, index }) => {
           loading="lazy"
           decoding="async"
           onError={(event) => {
-            event.currentTarget.style.display = "none";
+            const currentSrc = event.currentTarget.src;
+            if (currentSrc && currentSrc.endsWith(".webp")) {
+              event.currentTarget.src = currentSrc.replace(/\.webp$/, ".png");
+            } else {
+              event.currentTarget.style.display = "none";
+            }
           }}
         />
 
