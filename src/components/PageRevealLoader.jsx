@@ -70,10 +70,10 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
         onComplete: finish,
       });
 
-      // ── 1 & 2: Counter 0→100 + progress bar fill ──
+      // ── 1 & 2: Counter 0→100 + progress bar fill (fast & snappy) ──
       tl.to(counter, {
         value: 100,
-        duration: 2.2,
+        duration: 0.65,
         ease: "power2.inOut",
         onUpdate: () => {
           const pct = Math.round(counter.value);
@@ -82,12 +82,12 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
         },
       });
 
-      tl.to({}, { duration: 0.2 });
+      tl.to({}, { duration: 0.06 });
 
       // ── 3: Follow line → full width ──
       tl.to(lineRef.current, {
         width: "100%",
-        duration: 0.85,
+        duration: 0.25,
       });
 
       // ── 4: Loader hide ──
@@ -95,22 +95,22 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
         [textGroupRef.current, brandRef.current],
         {
           opacity: 0,
-          y: -20,
-          duration: 0.5,
-          stagger: 0.05,
+          y: -15,
+          duration: 0.2,
+          stagger: 0.03,
           ease: "power2.inOut",
         },
-        "-=0.15"
+        "-=0.1"
       );
 
       tl.to(
         root,
         {
           backgroundColor: "rgba(0,0,0,0)",
-          duration: 0.35,
+          duration: 0.15,
           ease: "power2.out",
         },
-        "-=0.25"
+        "-=0.1"
       );
 
       tl.set(".page-reveal-loader__vignette, .page-reveal-loader__noise", {
@@ -124,27 +124,29 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
         yPercent: 0,
         backgroundColor: "#000000",
         boxShadow: "none",
-        duration: 0.95,
+        duration: 0.28,
       });
 
-      // ── 6: Content reveal (opacity + slide) then lift black cover ──
+      // ── 6: Trigger content reveal immediately behind cover so it paints before lift ──
       tl.call(() => {
         onReveal?.();
       });
 
+      // Lift black cover
       tl.to(lineRef.current, {
         yPercent: -100,
-        duration: 1.05,
+        duration: 0.38,
+        ease: "power3.inOut",
       });
 
       tl.to(
         root,
         {
           opacity: 0,
-          duration: 0.25,
+          duration: 0.15,
           ease: "power2.out",
         },
-        "-=0.2"
+        "-=0.1"
       );
     }, root);
 

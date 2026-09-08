@@ -15,8 +15,26 @@ const Footer = lazy(() => import("./sections/Footer"));
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
-  const [showLoader, setShowLoader] = useState(true);
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [showLoader, setShowLoader] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        return !window.sessionStorage.getItem("portfolio_loader_seen");
+      } catch {
+        return true;
+      }
+    }
+    return true;
+  });
+  const [isRevealed, setIsRevealed] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        return Boolean(window.sessionStorage.getItem("portfolio_loader_seen"));
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  });
 
   useEffect(() => {
     const stored = window.localStorage.getItem(SITE.themeKey);
@@ -62,6 +80,11 @@ const App = () => {
   const handleLoaderDone = useCallback(() => {
     window.scrollTo(0, 0);
     setShowLoader(false);
+    try {
+      window.sessionStorage.setItem("portfolio_loader_seen", "true");
+    } catch {
+      // Ignore storage errors (private mode, quota)
+    }
   }, []);
 
   const toggleTheme = () => {

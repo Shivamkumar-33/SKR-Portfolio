@@ -1,5 +1,4 @@
 import { memo, useId, useMemo } from "react";
-import DottedMap from "dotted-map";
 import { motion } from "motion/react";
 
 const projectPoint = ({ lat, lng }) => ({
@@ -13,18 +12,7 @@ const createCurvedPath = (start, end) => {
   return `M ${start.x} ${start.y} Q ${midpointX} ${midpointY} ${end.x} ${end.y}`;
 };
 
-// Generate the dotted map SVG once at module level — it never changes
-const mapSvg = (() => {
-  const map = new DottedMap({ height: 100, grid: "diagonal" });
-  return map.getSVG({
-    radius: 0.22,
-    color: "#ffffff42",
-    shape: "circle",
-    backgroundColor: "transparent",
-  });
-})();
-
-const mapDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(mapSvg)}`;
+const mapSrc = "/images/world-map.svg";
 
 const WorldMap = memo(({ dots = [], lineColor = "#b86cff", className = "" }) => {
   const id = useId().replace(/:/g, "");
@@ -42,10 +30,12 @@ const WorldMap = memo(({ dots = [], lineColor = "#b86cff", className = "" }) => 
   return (
     <div className={`world-map ${className}`.trim()}>
       <img
-        src={mapDataUri}
+        src={mapSrc}
         alt=""
         aria-hidden="true"
         draggable="false"
+        loading="lazy"
+        decoding="async"
       />
 
       <svg viewBox="0 0 800 400" role="img" aria-label="Connections from Delhi to international cities">

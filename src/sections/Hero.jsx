@@ -11,21 +11,19 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.09,
-      delayChildren: 0.12,
+      staggerChildren: 0.05,
+      delayChildren: 0.04,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 36, scale: 0.92, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.95,
+      duration: 0.45,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -35,21 +33,19 @@ const titleContainerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.045,
-      delayChildren: 0.05,
+      staggerChildren: 0.03,
+      delayChildren: 0.02,
     },
   },
 };
 
 const letterVariants = {
-  hidden: { opacity: 0, y: "0.55em", rotateX: 55, scale: 0.88 },
+  hidden: { opacity: 0, y: "0.3em" },
   show: {
     opacity: 1,
     y: "0em",
-    rotateX: 0,
-    scale: 1,
     transition: {
-      duration: 0.9,
+      duration: 0.45,
       ease: [0.16, 1, 0.3, 1],
     },
   },
