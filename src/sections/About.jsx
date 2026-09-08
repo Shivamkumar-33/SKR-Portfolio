@@ -102,7 +102,7 @@ const About = () => {
                 key={social.name}
                 href={social.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={social.name}
               >
                 <SocialIcon name={social.name} className="h-5 w-5" />

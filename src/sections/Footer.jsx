@@ -47,7 +47,7 @@ const Footer = () => {
                   key={social.name}
                   href={social.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="theme-text-tertiary text-sm transition-colors hover:text-[var(--theme-text-primary)]"
                 >
                   {social.name}

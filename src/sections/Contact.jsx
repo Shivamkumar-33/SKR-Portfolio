@@ -179,7 +179,7 @@ const Contact = () => {
                   className="contact-link-row"
                   href={link.href}
                   target={link.id === "email" ? undefined : "_blank"}
-                  rel={link.id === "email" ? undefined : "noreferrer"}
+                  rel={link.id === "email" ? undefined : "noopener noreferrer"}
                 >
                   <span className="contact-link-icon">
                     <QuickLinkIcon type={link.icon} />

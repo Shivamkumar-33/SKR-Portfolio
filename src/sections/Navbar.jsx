@@ -199,7 +199,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                     <NavbarButton
                       href={social.href}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
                       variant={theme === "dark" ? "secondary" : "dark"}
                       className="w-full text-left"
