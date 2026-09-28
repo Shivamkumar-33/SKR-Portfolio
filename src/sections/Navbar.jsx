@@ -46,7 +46,7 @@ const NavMenu = ({ activeSection, onItemClick, theme }) => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.2 + idx * 0.07 }}
-            className={`relative px-3.5 py-2 text-[13px] font-medium tracking-[-0.01em]
+            className={`relative px-4 py-2 text-sm font-medium tracking-[-0.01em]
               transition-colors duration-200 focus-visible:outline-none
               ${
                 isActive
@@ -102,7 +102,7 @@ const NavMenu = ({ activeSection, onItemClick, theme }) => {
 
 /* ─── Icon button style ─────────────────────────────────────── */
 const iconBtnClass = (theme) =>
-  `inline-flex h-9 w-9 items-center justify-center rounded-xl border
+  `inline-flex h-10 w-10 items-center justify-center rounded-full border
    transition-all duration-200 hover:scale-105 active:scale-95
    focus-visible:outline-none focus-visible:ring-2 ${pick(
      theme,
@@ -141,7 +141,7 @@ const MobileDrawer = ({ isOpen, onClose, activeSection, onItemClick, theme }) =>
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-x-0 bottom-0 top-14 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+            className="fixed inset-x-0 bottom-0 top-[68px] z-40 bg-black/40 backdrop-blur-sm md:hidden"
             aria-hidden="true"
           />
 
@@ -151,7 +151,7 @@ const MobileDrawer = ({ isOpen, onClose, activeSection, onItemClick, theme }) =>
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.97 }}
             transition={{ type: "spring", stiffness: 340, damping: 30 }}
-            className={`fixed top-[60px] left-3 right-3 z-50 rounded-2xl p-4
+            className={`fixed top-[72px] left-3 right-3 z-50 rounded-2xl p-4
               shadow-[0_24px_64px_rgba(0,0,0,0.3)] backdrop-blur-2xl md:hidden ${pick(
                 theme,
                 "border border-white/[0.06] bg-[#0a0a0a]/[0.97] text-white",
@@ -355,13 +355,13 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
               : "none",
           }}
           transition={{ type: "spring", stiffness: 200, damping: 50 }}
-          className={`relative z-50 h-14 border-b transition-colors duration-500 ${pick(
+          className={`relative z-50 h-[68px] border-b transition-colors duration-500 ${pick(
             theme,
             "border-white/[0.07] bg-black/60",
             "border-black/[0.06] bg-white/75"
           )}`}
         >
-          <div className="mx-auto flex h-full max-w-4xl items-center justify-between px-4 sm:px-5">
+          <div className="mx-auto flex h-full max-w-[960px] items-center justify-between px-5">
             {/* ── Left: logo + separator + nav ── */}
             <div className="flex items-center gap-5">
               <motion.a
@@ -377,7 +377,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                   alt="SK logo"
                   width={56}
                   height={42}
-                  className={`h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${
+                  className={`h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${
                     theme === "light"
                       ? "[filter:brightness(0)_saturate(100%)] opacity-80"
                       : ""
@@ -436,9 +436,9 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                     className="inline-flex"
                   >
                     {theme === "dark" ? (
-                      <Sun className="h-[15px] w-[15px]" />
+                      <Sun className="h-4 w-4" />
                     ) : (
-                      <Moon className="h-[15px] w-[15px]" />
+                      <Moon className="h-4 w-4" />
                     )}
                   </motion.span>
                 </AnimatePresence>
@@ -455,21 +455,21 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                 title="GitHub"
                 className={`hidden sm:inline-flex ${iconBtnClass(theme)}`}
               >
-                <SocialIcon name="GitHub" className="h-[15px] w-[15px]" />
+                <SocialIcon name="GitHub" className="h-4 w-4" />
               </a>
 
               {/* Email CTA */}
               <a
                 href={`mailto:${SITE.email}`}
-                className={`group relative hidden sm:inline-flex h-9 items-center gap-1.5 overflow-hidden rounded-xl
-                  px-4 text-[13px] font-medium transition-all duration-300 hover:-translate-y-px
+                className={`group relative hidden sm:inline-flex h-10 items-center gap-1.5 overflow-hidden rounded-full
+                  px-5 text-sm font-medium transition-all duration-300 hover:-translate-y-px
                   focus-visible:outline-none focus-visible:ring-2 ${pick(
                     theme,
                     "bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] focus-visible:ring-white/40",
                     "bg-neutral-900 text-white hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] focus-visible:ring-black/30"
                   )}`}
               >
-                <Mail className="h-3.5 w-3.5 opacity-60 transition-transform duration-300 group-hover:scale-110" />
+                <Mail className="h-4 w-4 opacity-60 transition-transform duration-300 group-hover:scale-110" />
                 <span>Email</span>
                 {/* Shine sweep */}
                 <span
