@@ -53,12 +53,12 @@ const NavMenu = ({ activeSection, onItemClick, theme }) => {
                   ? pick(theme, "text-white", "text-neutral-900")
                   : pick(
                       theme,
-                      "text-neutral-500 hover:text-neutral-200",
-                      "text-neutral-400 hover:text-neutral-700"
+                      "text-neutral-500 hover:text-black",
+                      "text-neutral-400 hover:text-white"
                     )
               }`}
           >
-            {/* Hover glow behind item */}
+            {/* Hover pill behind item */}
             <AnimatePresence>
               {hovered === idx && !isActive && (
                 <motion.span
@@ -67,10 +67,10 @@ const NavMenu = ({ activeSection, onItemClick, theme }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className={`absolute inset-0 rounded-lg ${pick(
+                  className={`absolute inset-0 rounded-full ${pick(
                     theme,
-                    "bg-white/[0.06]",
-                    "bg-black/[0.04]"
+                    "bg-white/90",
+                    "bg-neutral-800"
                   )}`}
                 />
               )}
