@@ -48,14 +48,13 @@ const NavMenu = ({ activeSection, onItemClick, theme }) => {
             transition={{ duration: 0.45, delay: 0.2 + idx * 0.07 }}
             className={`relative px-4 py-2 text-sm font-medium tracking-[-0.01em]
               transition-colors duration-200 focus-visible:outline-none
-              ${
-                isActive
-                  ? pick(theme, "text-white", "text-neutral-900")
-                  : pick(
-                      theme,
-                      "text-neutral-500 hover:text-black",
-                      "text-neutral-400 hover:text-white"
-                    )
+              ${isActive
+                ? pick(theme, "text-white", "text-neutral-900")
+                : pick(
+                  theme,
+                  "text-neutral-500 hover:text-black",
+                  "text-neutral-400 hover:text-white"
+                )
               }`}
           >
             {/* Hover pill behind item */}
@@ -105,10 +104,10 @@ const iconBtnClass = (theme) =>
   `inline-flex h-10 w-10 items-center justify-center rounded-full border
    transition-all duration-200 hover:scale-105 active:scale-95
    focus-visible:outline-none focus-visible:ring-2 ${pick(
-     theme,
-     "border-white/[0.08] bg-white/[0.04] text-neutral-400 hover:bg-white/[0.08] hover:text-white focus-visible:ring-white/30",
-     "border-black/[0.06] bg-black/[0.03] text-neutral-500 hover:bg-black/[0.06] hover:text-neutral-900 focus-visible:ring-black/20"
-   )}`;
+    theme,
+    "border-white/[0.08] bg-white/[0.04] text-neutral-400 hover:bg-white/[0.08] hover:text-white focus-visible:ring-white/30",
+    "border-black/[0.06] bg-black/[0.03] text-neutral-500 hover:bg-black/[0.06] hover:text-neutral-900 focus-visible:ring-black/20"
+  )}`;
 
 /* ─── Separator dot ─────────────────────────────────────────── */
 const Dot = ({ theme }) => (
@@ -153,10 +152,10 @@ const MobileDrawer = ({ isOpen, onClose, activeSection, onItemClick, theme }) =>
             transition={{ type: "spring", stiffness: 340, damping: 30 }}
             className={`fixed top-[72px] left-3 right-3 z-50 rounded-2xl p-4
               shadow-[0_24px_64px_rgba(0,0,0,0.3)] backdrop-blur-2xl md:hidden ${pick(
-                theme,
-                "border border-white/[0.06] bg-[#0a0a0a]/[0.97] text-white",
-                "border border-black/[0.06] bg-white/[0.97] text-neutral-900"
-              )}`}
+              theme,
+              "border border-white/[0.06] bg-[#0a0a0a]/[0.97] text-white",
+              "border border-black/[0.06] bg-white/[0.97] text-neutral-900"
+            )}`}
             role="dialog"
             aria-label="Mobile navigation menu"
           >
@@ -175,14 +174,13 @@ const MobileDrawer = ({ isOpen, onClose, activeSection, onItemClick, theme }) =>
                       onClose();
                     }}
                     className={`group flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-medium
-                      transition-all duration-200 ${
-                        isActive
-                          ? pick(theme, "bg-white text-black", "bg-neutral-900 text-white")
-                          : pick(
-                              theme,
-                              "text-neutral-400 hover:bg-white/[0.06] hover:text-white",
-                              "text-neutral-600 hover:bg-black/[0.04] hover:text-neutral-950"
-                            )
+                      transition-all duration-200 ${isActive
+                        ? pick(theme, "bg-white text-black", "bg-neutral-900 text-white")
+                        : pick(
+                          theme,
+                          "text-neutral-400 hover:bg-white/[0.06] hover:text-white",
+                          "text-neutral-600 hover:bg-black/[0.04] hover:text-neutral-950"
+                        )
                       }`}
                   >
                     <span>{item.name}</span>
@@ -237,10 +235,10 @@ const MobileDrawer = ({ isOpen, onClose, activeSection, onItemClick, theme }) =>
                     transition={{ delay: 0.4 + i * 0.05 }}
                     className={`group flex items-center justify-between rounded-xl px-3 py-2.5
                       text-sm font-medium transition-colors ${pick(
-                        theme,
-                        "text-neutral-300 hover:bg-white/[0.06] hover:text-white",
-                        "text-neutral-700 hover:bg-black/[0.04] hover:text-neutral-950"
-                      )}`}
+                      theme,
+                      "text-neutral-300 hover:bg-white/[0.06] hover:text-white",
+                      "text-neutral-700 hover:bg-black/[0.04] hover:text-neutral-950"
+                    )}`}
                   >
                     <span className="flex items-center gap-2.5">
                       <SocialIcon name={social.name} className="h-4 w-4" />
@@ -348,10 +346,10 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
             backdropFilter: scrolled ? "blur(24px)" : "blur(10px)",
             boxShadow: scrolled
               ? pick(
-                  theme,
-                  "0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.35)",
-                  "0 1px 0 rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06)"
-                )
+                theme,
+                "0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.35)",
+                "0 1px 0 rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06)"
+              )
               : "none",
           }}
           transition={{ type: "spring", stiffness: 200, damping: 50 }}
@@ -377,11 +375,10 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                   alt="SK logo"
                   width={56}
                   height={42}
-                  className={`h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${
-                    theme === "light"
+                  className={`h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${theme === "light"
                       ? "[filter:brightness(0)_saturate(100%)] opacity-80"
                       : ""
-                  }`}
+                    }`}
                 />
                 <span
                   className={`absolute inset-0 -z-10 scale-150 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100 ${pick(
@@ -464,10 +461,10 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
                 className={`group relative hidden sm:inline-flex h-10 items-center gap-1.5 overflow-hidden rounded-full
                   px-5 text-sm font-medium transition-all duration-300 hover:-translate-y-px
                   focus-visible:outline-none focus-visible:ring-2 ${pick(
-                    theme,
-                    "bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] focus-visible:ring-white/40",
-                    "bg-neutral-900 text-white hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] focus-visible:ring-black/30"
-                  )}`}
+                  theme,
+                  "bg-white text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] focus-visible:ring-white/40",
+                  "bg-neutral-900 text-white hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] focus-visible:ring-black/30"
+                )}`}
               >
                 <Mail className="h-4 w-4 opacity-60 transition-transform duration-300 group-hover:scale-110" />
                 <span>Email</span>
