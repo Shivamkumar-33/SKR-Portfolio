@@ -287,7 +287,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
 
         setActiveSection((prev) => (prev === current ? prev : current));
       }
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20);
     };
 
     handleScroll();
@@ -364,6 +364,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
             <div className="flex items-center gap-5">
               <motion.a
                 href="#home"
+                aria-label="Go to homepage"
                 className="group relative flex shrink-0 items-center"
                 initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
