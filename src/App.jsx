@@ -102,7 +102,11 @@ const App = () => {
         <div className="page-main relative z-10 w-full">
           <Navbar theme={theme} onToggleTheme={toggleTheme} isRevealed={isRevealed} />
           <Hero isRevealed={isRevealed} />
-          <Suspense>
+          <Suspense fallback={
+            <div className="flex items-center justify-center py-24 opacity-40">
+              <span className="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            </div>
+          }>
             <About />
             <Works />
             <ContactSummary />
