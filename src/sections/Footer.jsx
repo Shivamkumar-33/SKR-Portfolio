@@ -7,7 +7,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="theme-section site-section-shell footer-surface flex w-full flex-col justify-end overflow-hidden">
+    <footer
+      role="contentinfo"
+      aria-label="Site footer"
+      className="theme-section site-section-shell footer-surface flex w-full flex-col justify-end overflow-hidden"
+    >
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
           <div className="flex w-full flex-col items-start text-left md:w-[45%] lg:w-[35%]">
