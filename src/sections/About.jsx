@@ -62,7 +62,7 @@ const About = () => {
     try {
       await navigator.clipboard.writeText(SITE.email);
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      window.setTimeout(() => setCopied(false), 2200);
     } catch {
       // Clipboard can be denied by the browser; keep UI quiet and generic.
     }
@@ -113,6 +113,7 @@ const About = () => {
               target="_blank"
               rel="noreferrer"
               aria-label="View resume"
+              title="Download Resume"
             >
               <FileText size={20} />
             </a>
