@@ -93,7 +93,7 @@ const Hero = ({ isRevealed = true }) => {
 
       copyResetRef.current = setTimeout(() => {
         setIsCopied(false);
-      }, 2000);
+      }, 2500);
     } catch {
       setIsCopied(false);
     }
@@ -207,7 +207,7 @@ const Hero = ({ isRevealed = true }) => {
         transition={{ duration: 0.8, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
       >
         <span>Scroll</span>
-        <span className="hero-scroll-line theme-divider block h-8 w-px origin-top" />
+        <span className="hero-scroll-line theme-divider block h-8 w-px origin-top" aria-hidden="true" />
       </motion.div>
 
       <motion.div
