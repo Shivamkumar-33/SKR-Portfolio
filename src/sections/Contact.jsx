@@ -103,7 +103,7 @@ const Contact = () => {
         y: 24,
         opacity: 0,
         duration: 0.65,
-        stagger: 0.12,
+        stagger: 0.14,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -257,6 +257,7 @@ const Contact = () => {
               minLength={CONTACT_LIMITS.message.min}
               maxLength={CONTACT_LIMITS.message.max}
               rows={6}
+              spellCheck="true"
             />
             <label htmlFor="contact-message">Message</label>
           </div>
