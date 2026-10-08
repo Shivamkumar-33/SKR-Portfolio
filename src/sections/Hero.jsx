@@ -113,7 +113,7 @@ const Hero = ({ isRevealed = true }) => {
         initial: "hidden",
         animate: isRevealed ? "show" : "hidden",
       };
-
+// this is only test comment of AI assistant 2
   return (
     <section
       id="home"
