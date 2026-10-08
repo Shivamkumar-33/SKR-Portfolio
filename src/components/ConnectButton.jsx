@@ -22,8 +22,8 @@ const ConnectButton = ({ magnetic = false }) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      xTo(x * 0.28);
-      yTo(y * 0.28);
+      xTo(x * 0.24);
+      yTo(y * 0.24);
     };
 
     const onLeave = () => {
@@ -37,7 +37,7 @@ const ConnectButton = ({ magnetic = false }) => {
     return () => {
       btn.removeEventListener("mousemove", onMove);
       btn.removeEventListener("mouseleave", onLeave);
-      gsap.set(btn, { x: 0, y: 0 });
+      gsap.set(btn, { x: 0, y: 0, clearProps: "willChange" });
     };
   }, [magnetic]);
 
