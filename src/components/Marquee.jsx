@@ -44,7 +44,7 @@ const Marquee = ({
           const boost = gsap.utils.clamp(
             1,
             5,
-            1 + Math.abs(self.getVelocity()) / 700
+            1 + Math.abs(self.getVelocity()) / 800
           );
 
           gsap.to(loop, {
@@ -67,6 +67,7 @@ const Marquee = ({
   return (
     <div
       className={`marquee flex w-full items-center overflow-hidden font-light uppercase marquee-text-responsive ${className}`}
+      aria-roledescription="marquee"
     >
       <div ref={trackRef} className="marquee__track">
         <div className="marquee__group">
