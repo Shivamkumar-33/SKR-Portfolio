@@ -35,7 +35,7 @@ const Works = () => {
         y: 56,
         opacity: 0,
         duration: 0.75,
-        stagger: 0.1,
+        stagger: 0.12,
         ease: "power3.out",
         clearProps: "transform,opacity",
         scrollTrigger: {
@@ -65,7 +65,7 @@ const Works = () => {
       const stackLoop = gsap.fromTo(
         track,
         { xPercent: 0 },
-        { xPercent: -50, duration: 42, ease: "none", repeat: -1 }
+        { xPercent: -50, duration: 45, ease: "none", repeat: -1 }
       );
 
       const stackTrigger = ScrollTrigger.create({
