@@ -27,7 +27,7 @@ const ContactSummary = () => {
         opacity: 0,
         duration: reduceMotion ? 0 : 0.7,
         stagger: reduceMotion ? 0 : 0.12,
-        ease: "power2.out",
+        ease: "power3.out",
         scrollTrigger: {
           trigger: section,
           start: "top 78%",
@@ -42,6 +42,7 @@ const ContactSummary = () => {
   return (
     <section
       ref={containerRef}
+      aria-label="Call to action"
       className="theme-section site-section-shell contact-summary-section relative z-10 flex flex-col items-center"
     >
       <div className="contact-summary-reveal w-full">
