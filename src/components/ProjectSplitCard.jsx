@@ -4,7 +4,7 @@ import { getTechIcon } from "../constants/techIcons";
 
 const imageVariants = {
   rest: { rotate: 0, scale: 1 },
-  hover: { rotate: -5, scale: 1.4 },
+  hover: { rotate: -3, scale: 1.4 },
 };
 
 const ProjectSplitCard = ({ project, index }) => {
@@ -43,6 +43,7 @@ const ProjectSplitCard = ({ project, index }) => {
           transition={{ type: "spring", duration: 0.6, bounce: 0 }}
           loading="lazy"
           decoding="async"
+          fetchPriority="low"
           onError={(event) => {
             const currentSrc = event.currentTarget.src;
             if (currentSrc && currentSrc.endsWith(".webp")) {
