@@ -42,7 +42,7 @@ const WorldMap = memo(({ dots = [], lineColor = "#b86cff", className = "" }) => 
         <defs>
           <linearGradient id={`route-gradient-${id}`} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor={lineColor} stopOpacity="1" />
-            <stop offset="100%" stopColor={lineColor} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={lineColor} stopOpacity="0.2" />
           </linearGradient>
         </defs>
 
@@ -83,7 +83,7 @@ const WorldMap = memo(({ dots = [], lineColor = "#b86cff", className = "" }) => 
         {origins.map((origin) => (
           <g key={`origin-${origin.x}-${origin.y}`}>
             <circle cx={origin.x} cy={origin.y} r="9" fill={lineColor} opacity="0.16">
-              <animate attributeName="r" values="7;13;7" dur="2s" repeatCount="indefinite" />
+              <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite" />
               <animate attributeName="opacity" values="0.25;0;0.25" dur="2s" repeatCount="indefinite" />
             </circle>
             <circle cx={origin.x} cy={origin.y} r="4.5" fill={lineColor} />
