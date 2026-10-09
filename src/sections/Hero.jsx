@@ -11,7 +11,7 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.06,
       delayChildren: 0.04,
     },
   },
@@ -45,7 +45,7 @@ const letterVariants = {
     opacity: 1,
     y: "0em",
     transition: {
-      duration: 0.45,
+      duration: 0.42,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -113,7 +113,6 @@ const Hero = ({ isRevealed = true }) => {
         initial: "hidden",
         animate: isRevealed ? "show" : "hidden",
       };
-// this is only test comment of AI assistant 2
   return (
     <section
       id="home"
