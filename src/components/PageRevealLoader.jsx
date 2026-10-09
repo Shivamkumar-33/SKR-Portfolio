@@ -73,7 +73,7 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
       // ── 1 & 2: Counter 0→100 + progress bar fill (fast & snappy) ──
       tl.to(counter, {
         value: 100,
-        duration: 0.65,
+        duration: 0.75,
         ease: "power2.inOut",
         onUpdate: () => {
           const pct = Math.round(counter.value);
@@ -174,7 +174,7 @@ const PageRevealLoader = ({ onReveal, onComplete }) => {
       </div>
 
       <div ref={textGroupRef} className="page-reveal-loader__content">
-        <p className="page-reveal-loader__label">Loading</p>
+        <p className="page-reveal-loader__label">Loading experience</p>
 
         <div className="page-reveal-loader__counter-row">
           <span className="page-reveal-loader__counter">
