@@ -10,13 +10,14 @@ const LiveLocation = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0.1 : 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="live-location flex flex-col items-center gap-3 text-center"
+      aria-label="Current location"
     >
       <Motion.span
         className="live-location-pin relative inline-flex items-center justify-center"
         animate={
           reduceMotion
             ? undefined
-            : { y: [0, -3, 0] }
+            : { y: [0, -4, 0] }
         }
         transition={
           reduceMotion
