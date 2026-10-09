@@ -52,6 +52,7 @@ const HeroRole = () => {
   return (
     <Motion.div
       className="hero-role flex flex-col items-center gap-3 text-center"
+      aria-label="Current role"
       initial={reduceMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0.1 : 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -66,7 +67,7 @@ const HeroRole = () => {
         transition={
           reduceMotion
             ? undefined
-            : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 3.8, repeat: Infinity, ease: "easeInOut" }
         }
       >
         <LayersIcon />
