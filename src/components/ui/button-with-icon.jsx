@@ -21,7 +21,7 @@ const ButtonWithIcon = forwardRef(
           className={cn("button-with-icon__icon", iconClassName)}
           aria-hidden="true"
         >
-          <ArrowUpRight size={16} strokeWidth={2} />
+          <ArrowUpRight size={17} strokeWidth={1.75} />
         </span>
       </>
     );
