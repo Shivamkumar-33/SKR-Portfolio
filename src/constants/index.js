@@ -2,8 +2,9 @@ export const SITE = {
   name: "Shivam",
   email: "shivamjmp2@gmail.com",
   themeKey: "portfolio-theme",
+  year: 2024,
   tagline:
-    "Full Stack Engineer — crafting high-performance web experiences with clean architecture and scalable design.",
+    "Full Stack Engineer — building fast, accessible web products with clean code and thoughtful design.",
 };
 
 export const navItems = [
