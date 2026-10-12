@@ -43,9 +43,9 @@ const About = () => {
   useGSAP(
     () => {
       gsap.from(".about-profile-card", {
-        y: 48,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.75,
         stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
