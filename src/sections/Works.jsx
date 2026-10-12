@@ -19,6 +19,7 @@ const stackItems = [
   { name: "docker", label: "Docker", slug: "docker" },
   { name: "aws", label: "AWS", slug: "amazonwebservices", dark: true },
   { name: "github", label: "GitHub", slug: "github", dark: true },
+  { name: "vite", label: "Vite", slug: "vite" },
 ];
 
 // Use devicon CDN for lightweight SVG icons — no JS bundle cost
@@ -40,7 +41,7 @@ const Works = () => {
         clearProps: "transform,opacity",
         scrollTrigger: {
           trigger: ".split-project-list",
-          start: "top 84%",
+          start: "top 80%",
           once: true,
         },
       });
