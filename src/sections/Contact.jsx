@@ -107,7 +107,7 @@ const Contact = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 72%",
+          start: "top 70%",
           once: true,
         },
       });
@@ -138,7 +138,7 @@ const Contact = () => {
       `${result.value.message}\n\n— ${result.value.name}\n${result.value.email}`
     );
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    window.setTimeout(() => setSending(false), 800);
+    window.setTimeout(() => setSending(false), 1000);
   };
 
   return (
