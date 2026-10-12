@@ -20,7 +20,7 @@ const NavUnderline = ({ theme }) => (
         "linear-gradient(90deg, transparent, rgba(0,0,0,0.6), transparent)"
       ),
     }}
-    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+    transition={{ type: "spring", stiffness: 420, damping: 32 }}
   />
 );
 
@@ -302,7 +302,7 @@ const Navbar = ({ theme = "dark", onToggleTheme, isRevealed = true }) => {
     setActiveSection(link.replace("#", ""));
     clickLock.current = true;
     clearTimeout(lockTimer.current);
-    lockTimer.current = setTimeout(() => (clickLock.current = false), 900);
+    lockTimer.current = setTimeout(() => (clickLock.current = false), 750);
   };
 
   useEffect(() => {
